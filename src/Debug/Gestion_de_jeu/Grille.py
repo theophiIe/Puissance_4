@@ -3,7 +3,7 @@ import numpy as ny
 LARGEUR = 7
 LONGEUR = 6
 
-class Grille:
+class Grilles:
     """
         Commentaire sur la classe
     """
@@ -12,10 +12,10 @@ class Grille:
         """ Commentaire sur la fonction """
         self.grille = ny.empty((g_longueur, g_largeur), dtype=object)
 
-    def remplir_grille(self, g_numero_colonne, g_jeton):
+    def coup_valide(self, g_num_colonne):
         """ Commentaire sur la fonction """
-        self.grille[0][g_numero_colonne] = g_jeton
+        pass
 
-    def coup_valide(self):
+    def coup_gagnant(self, g_num_colonne):
         """ Commentaire sur la fonction """
         pass

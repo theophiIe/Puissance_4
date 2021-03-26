@@ -1,7 +1,4 @@
-ROUGE = 0
-JAUNE = 1
-
-class Jeton:
+class Jetons:
     """
         Commentaire sur la classe
     """
