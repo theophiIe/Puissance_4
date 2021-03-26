@@ -1,8 +1,5 @@
 import numpy as ny
 
-LARGEUR = 7
-LONGEUR = 6
-
 class Grilles:
     """
         Commentaire sur la classe
@@ -17,5 +14,9 @@ class Grilles:
         pass
 
     def coup_gagnant(self, g_num_colonne):
+        """ Commentaire sur la fonction """
+        pass
+
+    def vider_grille(self):
         """ Commentaire sur la fonction """
         pass
