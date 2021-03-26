@@ -12,10 +12,7 @@ class Joueur:
 
     def jouer_coup(self, grilles, j_num_colonne):
         """Commentaire"""
-        jeton = Jeton.Jetons(0)
-        Jeton.Jetons.incremente_nombre_jeton()
-        grilles[0][j_num_colonne] = jeton
-        
+        pass
 
 class Ordinateur(Joueur):
     """
@@ -30,12 +27,3 @@ class Ordinateur(Joueur):
     def premier_coup(self):
         """ Commentaire """
         pass
-
-
-board = Grille.Grilles(7,6)
-print(board)
-
-j1 = Joueur(1)
-j1.jouer_coup(board, 0)
-
-print(board)
