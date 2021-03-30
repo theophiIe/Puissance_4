@@ -1,13 +1,13 @@
-import Grille
-import Joueur
+import Gestion_grille
+import Gestion_joueur
 
 def fin_de_partie():
     """
-        Cette fonction permet de vérifier la potentiel fin de partie
-        match nul ou un gagnant (avec la méthode de la classe coup gagnant).
+        Cette fonction permet de vérifier la potentielle fin de partie
+        match nul ou un gagnant (en appelant les méthodes coup_gagnant et est_pleine de la classe Grille).
 
-        Cette fonction renvoie un booléen.
-        True si un coup gagnant est joué ou si la grille est pleine sinon False.
+        Cette fonction renvoie un entier.
+        2 si un coup gagnant est joué, 1 si la grille est pleine sinon 0.
     """
     pass
 
@@ -19,8 +19,8 @@ def initialiser_partie(mode_de_jeu, difficulte_ordi = -1):
 
         Paramètre :
             mode_de_jeu : entier pouvant être 0, 1 ou 2
-            difficulte_ordi : paramètre optionel on l'utilise uniquement si on est dans un mode jeu avec un ordinateur
+            difficulte_ordi : paramètre optionel, on l'utilise uniquement si on est dans un mode jeu avec un ordinateur
 
-        Cette fonction ne renvoi rien
+        Cette fonction ne renvoie rien
     """
     pass
