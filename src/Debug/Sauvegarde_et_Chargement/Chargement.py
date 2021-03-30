@@ -1,24 +1,7 @@
-
-def test_corruption(nom_fichier):
-    """ 
-        Cette fonction ouvre le fichier passé en argument 
-        et vérifie qu'il n'est pas corrompu. Lors de la vérification
-        il s'assure que le nombre de caractères dans le fichier ainsi que
-        le type de caractères sont valides.
-        
-        Paramètre:
-            nom_fichier : variable de type chaine de caractères correspondant
-                            au nom du fichier.
-
-        Cette fonction renvoie un booléen.
-            True  : si le fichier est corrompu
-            False : si le fichier n'est pas corrompu 
-    """
-    pass
-
 def lecture_fichier(nom_fichier):
     """
-        Cette fonction ouvre et lit le contenu du fichier passé en argument.
+        Cette fonction ouvre et lit le contenu du fichier passé en paramètre.
+        Elle fait 
 
         Paramètre:
             nom_fichier : variable de type chaine de caractères correspondant
@@ -28,15 +11,33 @@ def lecture_fichier(nom_fichier):
     """
     pass
 
+def test_corruption(contenu_fichier):
+    """ 
+        Cette fonction lit la chaîne de caractères passée en paramètre
+        et s'assure que le nombre de caractères dans la chaîne de caractères 
+        ainsi que le type de caractères sont valides et interprétables.
+        
+        Paramètre:
+            contenu_fichier : variable de type chaine de caractères correspondant
+                            au contenu du fichier de sauvegarde.
+
+        Cette fonction renvoie un booléen.
+            True  : si le contenu du fichier est incorrect et inutilisable,
+            False : si le contenu du fichier est correct et utilisable pour générer la partie.
+    """
+    pass
+
 def chargement(nom_fichier):
     """
-        Cette fonction recupère les données d'une partie précédement sauvegardée
-        pour les utiliser afin de remplir la grille d'une nouvelle partie.
+        Cette fonction recupère les données d'une partie précédement sauvegardée.
 
         Paramètre:
             nom_fichier : variable de type chaine de caractères correspondant
                             au nom du fichier.
 
-        Cette fonction ne renvoie rien.
+        Cette fonction renvoie un booléen dans les deux cas, et renvoie aussi la chaîne de caractères 
+        contenant le contenu du fichier lu dans le cas True.
+            True et la chaîne de caractères  : si le chargement s'est passé correctement,
+            False : si une erreur est survenue lors du chargement.
     """
     pass
