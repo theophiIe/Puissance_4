@@ -1,15 +1,15 @@
 import numpy as ny
 
-class Grilles:
+class Grille:
     """
-        Classe Grilles permet de gérer la grille de jeu
+        Classe Grille permet de gérer la grille de jeu
         cette grille est représentée par une matrice contenant
         des objets de type Jetons ou objet none s'il n'y a pas de Jetons 
     """
 
     def __init__(self, g_ligne, g_colonne):
         """
-            Constructeur de la classe Grilles.
+            Constructeur de la classe Grille.
 
             Ce constructeur permet d'initialiser un matrice vide de type object
             de taille g_longueur par g_largeur.
@@ -22,9 +22,9 @@ class Grilles:
 
     def coup_valide(self, g_num_colonne):
         """
-            Cette méthode permet de vérifier si le coup entrain d'être joué
-            est valide ou non. Pour cela on regardera si la colonne où le coup
-            veut être joué, est pleine.
+            Cette méthode permet de vérifier si le coup est valide ou non. 
+            Pour cela, on regardera si la colonne où le coup
+            doit être joué est pleine.
 
             Paramètre:
                 g_num_colonne : correspond au numéro de colonne où le coup veut être joué
@@ -48,15 +48,15 @@ class Grilles:
 
 
             Renvoie: bool
-                true si on a un quadruplet de jeton de la même couleur
-                false si le coup n'est pas gagant
+                true si on a un quadruplet de jetons de la même couleur
+                false si le coup n'est pas gagnant
         """
         pass
 
     def vider_grille(self):
         """
             Cette méthode permet de vider la grille
-            en remettant toute les cases de la matrice
+            en remettant toutes les cases de la matrice
             à none.
         """
         pass
