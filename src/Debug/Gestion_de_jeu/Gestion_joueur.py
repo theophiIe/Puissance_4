@@ -1,5 +1,5 @@
-import Jeton
-import Grille
+import Gestion_jeton
+import Gestion_grille
 
 class Joueur:
     """
@@ -19,13 +19,13 @@ class Joueur:
         """
         self.commence = j_commence
 
-    def jouer_coup(self, j_grilles, j_num_colonne):
+    def jouer_coup(self, j_grille, j_num_colonne):
         """
             Méthode de la classe permettant de placer le jeton
             dans la grille à la colonne souhaitée par le joueur.
 
             Paramètres:
-                j_grilles : matrice de la classe Grille.
+                j_grille : matrice de la classe Grille.
                 j_num_colonne : variable de type entier positif
                                 correspondant à un numéro de colonne
                                 de la matrice.
