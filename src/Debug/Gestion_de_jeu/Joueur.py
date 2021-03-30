@@ -58,7 +58,7 @@ class Ordinateur(Joueurs):
         Joueurs.__init__(o_commence)
         self.difficulte = o_difficulte
 
-    def premier_coup(self):
+    def premier_coup(self, o_grille):
         """
             Cette méthode permet de jouer un jeton au centre de la grille
             si l'ordinateur commence la partie.
