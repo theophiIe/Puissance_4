@@ -4,7 +4,7 @@ class Grille:
     """
         Classe Grille permet de gérer la grille de jeu
         cette grille est représentée par une matrice contenant
-        des objets de type Jetons ou objet none s'il n'y a pas de Jetons 
+        des objets de type Jeton ou objet none s'il n'y a pas de Jeton 
     """
 
     def __init__(self, g_ligne, g_colonne):
