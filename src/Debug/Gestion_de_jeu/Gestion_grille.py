@@ -1,4 +1,5 @@
 import numpy as ny
+import Gestion_jeton
 
 class Grille:
     """
@@ -50,6 +51,14 @@ class Grille:
             Renvoie: bool
                 true si on a un quadruplet de jetons de la même couleur
                 false si le coup n'est pas gagnant
+        """
+        pass
+    
+    def est_pleine(self):
+        """
+           Cette méthode permet de vérifier si la grille de jeu est pleine.
+           Cette méthode renvoie un booléen.
+           True si la grille est pleine, False sinon.
         """
         pass
 
