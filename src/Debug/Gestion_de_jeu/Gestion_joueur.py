@@ -1,7 +1,7 @@
 import Jeton
 import Grille
 
-class Joueurs:
+class Joueur:
     """
         Classe Joueur cette classe permet créer un joueur.
     """
@@ -25,7 +25,7 @@ class Joueurs:
             dans la grille à la colonne souhaitée par le joueur.
 
             Paramètres:
-                j_grilles : matrice de la classe Grilles.
+                j_grilles : matrice de la classe Grille.
                 j_num_colonne : variable de type entier positif
                                 correspondant à un numéro de colonne
                                 de la matrice.
@@ -34,11 +34,11 @@ class Joueurs:
         """
         pass
 
-class Ordinateur(Joueurs):
+class Ordinateur(Joueur):
     """
-        La classe Ordinateur est une classe fille de la classe Joueurs.
+        La classe Ordinateur est une classe fille de la classe Joueur.
         
-        Cette classe est utilisé pour le joueur controlé par l'ordinateur
+        Cette classe est utilisée pour le joueur contrôlé par l'ordinateur
     """
 
     def __init__(self, o_commence, o_difficulte):
@@ -47,7 +47,7 @@ class Ordinateur(Joueurs):
             de la classe Joueurs et on définit un niveau de difficulté.
 
             Paramètres:
-                o_commence : variable de typer booléenne permettant de savoir
+                o_commence : variable de type booléenne permettant de savoir
                             si l'ordinateur commence la partie.
                             0 : ne commence pas la partie.
                             1 : commence la partie.
