@@ -1,4 +1,4 @@
-class Jetons:
+class Jeton:
     """
         Cette classe nous permet de créer les jetons qui seront placés
         dans la grille.
@@ -11,7 +11,7 @@ class Jetons:
 
     def __init__(self, j_couleur):
         """ 
-            Constructeur de la classe Jetons.
+            Constructeur de la classe Jeton.
             Permet de créer un jeton en lui assignant une couleur
 
             Paramètre:
