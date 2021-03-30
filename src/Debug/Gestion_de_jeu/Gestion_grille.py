@@ -69,3 +69,12 @@ class Grille:
             à none.
         """
         pass
+    
+    def remplir_grille(self, g_contenu_grille):
+        """
+            Cette méthode permet de remplir la grille
+            grâce à la chaîne de caractères passée en argument.
+            
+            Cette méthode ne renvoie rien.
+        """
+        pass
