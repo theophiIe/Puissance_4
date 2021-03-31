@@ -1,7 +1,6 @@
 def lecture_fichier(nom_fichier):
     """
         Cette fonction ouvre et lit le contenu du fichier passé en paramètre.
-        Elle fait 
 
         Paramètre:
             nom_fichier : variable de type chaine de caractères correspondant
