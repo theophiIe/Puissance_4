@@ -29,8 +29,10 @@ class Joueur:
                 j_num_colonne : variable de type entier positif
                                 correspondant à un numéro de colonne
                                 de la matrice.
+                      
 
-            Cette méthode ne renvoie rien.
+            Renvoie : 
+                Cette méthode renvoie le numéro de la ligne où le coup a été joué.
         """
         pass
 
