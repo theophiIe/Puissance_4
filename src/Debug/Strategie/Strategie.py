@@ -23,7 +23,7 @@ def evaluation_quadruplet(quadruplet, couleur_jeton):
   
   
   
-def evaluation_coup(grille, num_ligne, num_colonne, couleur_jeton)
+def evaluation_coup(grille, num_ligne, num_colonne, couleur_jeton):
   """
     Cette fonction permet d'obtenir la somme des scores des quadruplés autour d'un coup donné.
     Elle fait appel à la fonction evaluation_quadruplet au dessus.
@@ -40,7 +40,7 @@ def evaluation_coup(grille, num_ligne, num_colonne, couleur_jeton)
   pass
   
   
-def fail_soft(cls_grille, profondeur, aplha, beta) 
+def fail_soft(cls_grille, profondeur, aplha, beta):
   """
     Cette fonction permet de faire des calculs sur la grille en prévoyant les coups à l'avance, 
     et ainsi nous donner la colonne qui serait la plus optimale de jouer.
