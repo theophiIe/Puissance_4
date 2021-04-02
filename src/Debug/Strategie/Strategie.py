@@ -25,17 +25,17 @@ def evaluation_quadruplet(quadruplet, couleur_jeton):
   
 def evaluation_coup(grille, num_ligne, num_colonne, couleur_jeton)
   """
-  Cette fonction permet d'obtenir la somme des scores des quadruplés autour d'un coup donné.
-  Elle fait appel à la fonction evaluation_quadruplet au dessus.
+    Cette fonction permet d'obtenir la somme des scores des quadruplés autour d'un coup donné.
+    Elle fait appel à la fonction evaluation_quadruplet au dessus.
   
-  Paramètre : 
-    grille : la grille de jeu sur laquelle on fait les calculs
-    num_ligne : entier correspondant au numéro de la ligne dans la grille
-    num_colonne : entier correspondant au numéro de la colonne dans la grille
-    couleur_jeton : booléen correspondant à la couleur du jeton
-  
-  Renvoie :
-    elle retourne un entier correspondant au score du coup joué
+    Paramètre : 
+      grille : la grille de jeu sur laquelle on fait les calculs
+      num_ligne : entier correspondant au numéro de la ligne dans la grille
+      num_colonne : entier correspondant au numéro de la colonne dans la grille
+      couleur_jeton : booléen correspondant à la couleur du jeton
+
+    Renvoie :
+      elle retourne un entier correspondant au score du coup joué
   """
   pass
   
