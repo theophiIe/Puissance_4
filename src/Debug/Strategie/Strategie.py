@@ -40,7 +40,7 @@ def evaluation_coup(grille, num_ligne, num_colonne, couleur_jeton):
   pass
   
   
-def fail_soft(cls_grille, profondeur, aplha, beta):
+def fail_soft(cls_grille, profondeur, alpha, beta):
   """
     Cette fonction permet de faire des calculs sur la grille en prévoyant les coups à l'avance, 
     et ainsi nous donner la colonne qui serait la plus optimale de jouer.
