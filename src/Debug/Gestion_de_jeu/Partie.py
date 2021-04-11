@@ -23,6 +23,12 @@ def attribution_des_joueurs(qui_commence, mode_de_jeu, niveau_de_difficulte):
             mode_de_jeu :
             niveau_de_difficulte :
 
-        Cette fonction renvoie deux joueurs.
+        Cette fonction renvoie deux joueurs (joueur_actuel, joueur_suivant)
     """
     pass
+
+def valider_jouer_coup_joueur(grille, num_colonne, joueur_actuel, joueur_suivant, niveau_de_difficulte):
+    """
+        Cette fonction permet de : verifier_coup puis jouer_coup puis change l'ordre de passage des joueurs.
+    """
+    return num_ligne, num_colonne, joueur_actuel, joueur_suivant
