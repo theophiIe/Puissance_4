@@ -13,70 +13,58 @@ CONFIRMATION = 9
 ERREUR = 10
 
 def affichage_menu_principal(fenetre):
-    while etat == true:
-        for all_evenement:
-            if(evenement == QUIT):
 
-            if(evenement == MOUSEBUTTONDOWN):
-                if(button == nouvelle_partie) renvoie = affichage_mode_de_jeu
-                if()
-
-    return MODE_DE_JEU ou CHARGEMENT
+    return quel_menu
 
 def affichage_mode_de_jeu(fenetre):
-    return MENU_PRINCIPAL ou COMMENCER(MODE_DE_JEU) ou CHOIX_DE_DIFFICULTE
+    
+    return quel_menu, mode_de_jeu, niveau_de_difficulte, qui_commence
 
 def affichage_chargement(fenetre):
-    return MENU_PRINCIPAL ou CONFIRMATION
+
+    return quel_menu, nom_fichier
 
 def affichage_choix_de_difficulte(fenetre):
-    return MODE_DE_JEU ou COMMENCER(CHOIX_DE_DIFFICULTE)
+    
+    return resultat, niveau_de_difficulte
 
-def affichage_commencer(fenetre, texte, ancien_ou_es_tu):
-    return (ancien_ou_es_tu = MODE_DE_JEU ou CHOIX_DE_DIFFICULTE) ou PARTIE
+def affichage_commencer(fenetre):
+   
+    return resultat, quel_joueur_joue
 
-def affichage_partie(fenetre, grille):
-    return SAUVEGARDE ou CONFIRMATION(PARTIE et VICTOIRE et (texte et nom_gagnant)) ou (VICTOIRE et nom_gagnant)
+def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_difficulte=-1):
+
+    return nom_gagnant
 
 def affichage_sauvegarde(fenetre):
-    return PARTIE ou NOUVELLE_SAUVEGARDE ou CONFIRMATION(PARTIE ou SAUVEGARDE et texte)
+    pass
 
 def affichage_nouvelle_sauvegarde(fenetre):
-    return SAUVEGARDE ou PARTIE
+    pass
 
 def affichage_victoire(fenetre):
     return MENU_PRINCIPAL ou MODE_DE_JEU
 
-def affichage_confirmation(fenetre, texte, ancien_ou_es_tu, nouveau_ou_es_tu, nom_gagnant=""):
-    return (CHARGEMENT ou SAUVEGARDE ou PARTIE) ou (VICTOIRE(nom_gagnant) ou MODE_DE_JEU ou SAUVEGARDE)
+def affichage_confirmation(fenetre, texte):
+    return resultat
 
-def affichage_erreur(fenetre, texte, ancien_ou_es_tu):
-    return ancien_ou_es_tu = CHARGEMENT ou SAUVEGARDE ou NOUVELLE_SAUVEGARDE
+def affichage_erreur(fenetre, texte):
+    pass
 
+def affichage_aide(fenetre, grille):
+    pass
 
+def affichage_jeton(fenetre, grille, num_ligne, num_colonne):
+    pass
 
-def affichage_aide(fenetre):
+def affichage_grille_jeton(fenetre, grille): 
+    pass
+    
+def click_colonne_ou_pas(fenetre, event):
+    return num_colonne
+
 
 def lancer_affichage():
-    ou_es_tu = 0
-    grille = new Grille()
-    while true:
-        if(ou_es_tu == 0) ou_es_tu = affichage_menu_principal
-        elif (ou_es_tu == 1) ou_es_tu = affichage_mode_de_jeu
-        elif (ou_es_tu == 2) ou_es_tu = affichage_choix_de_difficulte
-        elif (ou_es_tu == 3) ou_es_tu = affichage_partie
-        elif (ou_es_tu == 4) ou_es_tu = affichage_sauvegarde
-        elif (ou_es_tu == 5) ou_es_tu = affichage_chargement
-        elif (ou_es_tu == 6):
-            resultat = affichage_confirmation
-            ou_es_tu = resultat[0]
-            n_grille = resultat[1]
-            if(ou_es_tu == MODE_DE_JEU) grille = n_grille 
-        elif (ou_es_tu == 7) ou_es_tu = affichage_erreur
+    pass
 
-        resultat = affichage_confirmation
-        ou_es_tu = resultat[0]
-        n_grille = resultat[1]
-        if(ou_es_tu == MODE_DE_JEU) grille = n_grille 
 
-lancer_affichage()
