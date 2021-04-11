@@ -14,16 +14,15 @@ def fin_de_partie(cls_grille):
     """
     pass
 
-def initialiser_partie(mode_de_jeu, difficulte_ordi = -1):
+def attribution_des_joueurs(qui_commence, mode_de_jeu, niveau_de_difficulte):
     """
-        Cette fonction fait appel au constructeur de la classe :    Grille
-                                                                    Joueur
-                                                                    Ordinateur (si un mode de jeu avec un ordinateur est selectionné).
-
+        Cette fontion permet d'attribuer pour chaque chaque joueur son rôle (joueur ou ordinateur),
+        si il commence ou non et dans le cas d'un ordinateur, sa difficulté.
         Paramètre :
-            mode_de_jeu : entier pouvant être 0, 1 ou 2
-            difficulte_ordi : paramètre optionel, on l'utilise uniquement si on est dans un mode jeu avec un ordinateur
+            qui_commence :
+            mode_de_jeu :
+            niveau_de_difficulte :
 
-        Cette fonction ne renvoie rien
+        Cette fonction renvoie deux joueurs.
     """
     pass
