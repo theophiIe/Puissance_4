@@ -50,7 +50,7 @@ def affichage_mode_de_jeu(fenetre):
                 0  : le niveau de difficulté facile
                 1  : le niveau de difficulté intermédiaire
                 2  : le niveau de difficulté difficile
-            qui_commence : eniter 0 ou 1 correspondant l'ordre de passage. 
+            qui_commence : booléen 0 ou 1 correspondant l'ordre de passage. 
                 0 : pour que le Joueur 1 commence
                 1 : pour que le Joueur 2 commence
     """
@@ -81,7 +81,7 @@ def affichage_choix_de_difficulte(fenetre):
             fenetre : la fenêtre de l'écran
    
         Renvoie : 
-            resultat_du_retour : eniter 0 ou 1 correspondant l'ordre de passage. 
+            resultat_du_retour : booléen 0 ou 1 correspondant l'ordre de passage. 
                 0 : pour que le Joueur 1 commence
                 1 : pour que le Joueur 2 commence
             niveau_de_difficulté : entier qui peut prendre 4 cas :
@@ -102,10 +102,10 @@ def affichage_commencer(fenetre):
             fenetre : la fenêtre de l'écran
    
         Renvoie : 
-            resultat_du_retour : eniter 0 ou 1 correspondant l'ordre de passage 
+            resultat_du_retour : entier correspondant au numero du menu précédent pour le bouton Retour
+            quel_joueur_joue : boooléen qui détermine l'ordre de passage
                 0 : pour que le Joueur 1 commence
                 1 : pour que le Joueur 2 commence
-            quel_joueur_joue : boooléen qui détermine l'ordre de passage
     """
     return resultat_du_retour, quel_joueur_joue
 
@@ -166,10 +166,11 @@ def affichage_victoire(fenetre):
             fenetre : la fenêtre de l'écran
             
         Renvoie : 
-            Un entier correspondant à un numéro compris entre 0 et 1
+            Un booléeb correspondant à un numéro compris entre 0 et 1
             faisant référence à la destination du prochain affichage.
     """
     return MENU_PRINCIPAL ou MODE_DE_JEU
+    return menu_suivant
 
 def affichage_confirmation(fenetre, texte):
     """
