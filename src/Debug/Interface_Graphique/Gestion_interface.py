@@ -1,3 +1,11 @@
+import Puissance_4/src/Debug/Gestion_de_jeu/Gestion_grille 
+import Puissance_4/src/Debug/Gestion_de_jeu/Gestion_joueur
+import Puissance_4/src/Debug/Gestion_de_jeu/Gestion_jeton
+import Puissance_4/src/Debug/Gestion_de_jeu/Partie
+import Puissance_4/src/Debug/Sauvegarde_et_Chargement/Sauvegarde
+import Puissance_4/src/Debug/Sauvegarde_et_Chargement/Chargement
+import Puissance_4/src/Debug/Strategies/Strategie
+import Puissance_4/src/Debug/Interface_Graphique/Gestion_Bouton
 import pygame
 
 MENU_PRINCIPAL = 0
