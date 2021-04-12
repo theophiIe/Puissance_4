@@ -126,9 +126,28 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
     return nom_gagnant
 
 def affichage_sauvegarde(fenetre):
+    """
+        Cette fonction affiche le menu de sauvegarde. 
+        On y retrouve les boutons permettants de créer une nouvelle sauvegarde, en supprimer une et d'en écraser une.
+        On y retrouve aussi un menu déroulant contenant toutes les sauvegardes déjà faites aisni que le bouton retour.
+
+        Paramètre : 
+            fenetre : la fenêtre de l'écran
+
+        Cette fonction ne renvoie rien.
+    """
     pass
 
 def affichage_nouvelle_sauvegarde(fenetre):
+    """
+        Cette fonction affiche le deuxième menu de sauvegarde qui comprend une zone de saisie de texte pour nommer le fichier de sauvegarde demandé.
+        On y retrouve les boutons permettant de valider la demande de sauvegarde ainsi qu'un bouton de retour au premier menu de sauvegarde.
+
+        Paramètre : 
+            fenetre : la fenêtre de l'écran
+
+        Cette fonction ne renvoie rien.
+    """
     pass
 
 def affichage_victoire(fenetre):
@@ -145,9 +164,34 @@ def affichage_victoire(fenetre):
     return MENU_PRINCIPAL ou MODE_DE_JEU
 
 def affichage_confirmation(fenetre, texte):
+    """
+        Cette fonction dirige vers un affichage de confirmation.
+        Le texte affiché dans cet affichage est celui présent en paramètre de la fonction.
+                
+        Paramètre : 
+            fenetre : la fenêtre de l'écran
+            texte : chaîne de caractères à afficher
+            
+        Renvoie : 
+             Un booléen correspondant à la réponse de la confirmation : 
+                0 : réponse négative, on annule l'action en cours
+                1 : réponse positive, on peut passer à l'étape suivante
+    """
     return resultat
 
 def affichage_erreur(fenetre, texte):
+    """
+        Cette fonction dirige vers une fenêtre d'erreur.
+        Le texte présent en paramètre est affiché dans le fenêtre.
+        Il précise le type d'erreur dont il s'agit.
+        En plus de la zone de texte on retrouve un bouton de confirmation qui permet de revenir à la fenêtre précédente.
+        
+        Paramètres : 
+            fenetre : la fenêtre de l'écran
+            texte : chaine de caractères affichée qui correspond au type d'erreur dont il s'agit
+            
+            Cette fonction ne retourne rien.
+    """
     pass
 
 def affichage_aide(fenetre, grille):
@@ -184,11 +228,31 @@ def affichage_grille_jeton(fenetre, grille):
     """
     pass
     
-def click_colonne_ou_pas(fenetre, event):
+def selection_colonne(fenetre, event):
+    """
+        Cette fonction permet de vérifier si l'evenement passé en paramètre est un clic gauche.
+        Si c'est un clic gauche et qu'il a été fait dans la zone de la grille, càd dans une des colonnes,
+        alors il retourne le numéro de la colonne dans laquelle le clic a été fait.
+
+        Paramètre : 
+            fenetre : la fenêtre de l'écran
+            event : evenement Pygame (clic, touche, quitter ...) 
+            
+        Renvoie : 
+            Un entier correspondant au numéro de colonne dans laqeulle le clic a été fait. 
+            0 - 6 : numéro de colonne
+            -1 : clic hors zone de grille
+    """
     return num_colonne
 
 
 def lancer_affichage():
+    """
+        Cette fonction regroupe tous les evenements en lien avec l'affichage de l'interface graphique.
+        
+        Cette fonction ne prend aucun paramètre et ne renvoie rien.
+    """
+    
     pass
 
 
