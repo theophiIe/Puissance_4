@@ -158,15 +158,16 @@ def affichage_nouvelle_sauvegarde(fenetre):
     """
     pass
 
-def affichage_victoire(fenetre):
+def affichage_victoire(fenetre, nom_gagnant):
     """
         Cette fonction affiche l'écran de victoire avec le nome du vainqueur.
                 
         Paramètre : 
             fenetre : la fenêtre de l'écran
+            nom_gagnant : une chaîne de caractères correspondant aux Joueurs qui a gagné la partie
             
         Renvoie : 
-            Un booléeb correspondant à un numéro compris entre 0 et 1
+            Un booléen correspondant à un numéro compris entre 0 et 1
             faisant référence à la destination du prochain affichage.
     """
     return MENU_PRINCIPAL ou MODE_DE_JEU
