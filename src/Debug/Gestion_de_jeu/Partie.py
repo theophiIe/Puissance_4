@@ -29,6 +29,19 @@ def attribution_des_joueurs(qui_commence, mode_de_jeu, niveau_de_difficulte):
 
 def valider_jouer_coup_joueur(grille, num_colonne, joueur_actuel, joueur_suivant, niveau_de_difficulte):
     """
-        Cette fonction permet de : verifier_coup puis jouer_coup puis change l'ordre de passage des joueurs.
+        Cette fonction permet de vérifier un coup, jouer un coup et modifie le joueur à qui c'est le tour de jouer.
+        Paramètre : 
+            grille : matrice de jeu
+            num_colonne : numéro de la colonne où le jeton a été placé sur la colonne
+            joueur_actuel : booléen correspondant au joueur qui joue actuellement
+            joueur_suivant : booléen correspondant au joueur qui doit jouer le coup au tour d'après
+            niveau_de\_difficulte : entier pour le niveau de difficulté de l'ordinateur, peut prendre 4 valeurs différents (-1, 0, 1, 2)
+            
+        Renvoie :
+            num_ligne : entier compris entre 0 et 6 du numéro de la ligne où le jeton a été placé sur la grille
+            num_colonne : entier compris entre 0 et 6 du numéro de la colonne où le jeton a été placé sur la colonne
+            joueur_actuel : booléen correspondant au joueur qui joue actuellement
+            joueur_suivant : booléen correspondant au joueur qui doit jouer le coup au tour d'après            
     """
+    
     return num_ligne, num_colonne, joueur_actuel, joueur_suivant
