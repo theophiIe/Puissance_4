@@ -79,7 +79,7 @@ class Bouton:
         
         b_fenetre.blit(self.image_survole, (self.point_x, self.point_y) )
 
-    def collision_bouton(self, b_fenetre, position_souris):
+    def collision_bouton(self, b_fenetre, b_position_souris):
         """
             Cette méthode permet de récupérer constamment la position de la souris et vérifie 
             si le curseur pointe sur le bouton ou non.
@@ -89,11 +89,11 @@ class Bouton:
             
             Paramètre : 
                 b_fenetre : instance de la fenetre graphique où ajouter le bouton
-                position_souris : tuple d'entiers avec les coordonnées de la souris
+                b_position_souris : tuple d'entiers avec les coordonnées de la souris
                 
             Cette méthode ne renvoie rien.
         """
-        collision = self.rectangle.collidepoint(position_souris)
+        collision = self.rectangle.collidepoint(b_position_souris)
 
         if collision:
             self.affichage_bouton_survole(b_fenetre)
