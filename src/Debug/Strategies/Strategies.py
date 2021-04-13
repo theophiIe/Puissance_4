@@ -40,12 +40,14 @@ def evaluation_coup(grille, num_ligne, num_colonne, couleur_jeton):
   pass
   
   
-def fail_soft(cls_grille, profondeur, alpha, beta):
+def fail_soft(cls_grille, joueur_actuel, joueur_suivant, profondeur, alpha, beta):
   """
     Cette fonction permet de faire des calculs sur la grille en prévoyant les coups à l'avance, 
     et ainsi nous donner la colonne qui serait la plus optimale de jouer.
     
     cls_grille : instance de la classe Grille
+    joueur_actuel : instance de la classe Joueur correspondant à celui qui joue le coup actuel
+    joueur_suivant : instance de la classe Grille correspondant à celui qui jouera le coup suivant
     profondeur : entier correspondant à la profondeur de recherche à laquelle on s'arrête lors des calculs
     alpha : entier correspondant à la valeur minimale
     beta : entier correspondant à la valeur maximale
