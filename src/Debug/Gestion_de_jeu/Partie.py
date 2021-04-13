@@ -19,9 +19,10 @@ def attribution_des_joueurs(qui_commence, mode_de_jeu, niveau_de_difficulte):
         Cette fontion permet d'attribuer pour chaque chaque joueur son rôle (joueur ou ordinateur),
         si il commence ou non et dans le cas d'un ordinateur, sa difficulté.
         Paramètre :
-            qui_commence :
-            mode_de_jeu :
-            niveau_de_difficulte :
+            qui_commence : booléen correspondant à l'ordre de passage
+            mode_de_jeu : booléen correspondant au mode de jeu choisi
+            niveau_de_difficulte : entier correspondant au niveau de difficulté de l'ordinateur
+            (-1, 0, 1, 2 pour Joueur vs Joueur / facile / intermédiaire / difficile)
 
         Cette fonction renvoie deux joueurs (joueur_actuel, joueur_suivant)
     """
