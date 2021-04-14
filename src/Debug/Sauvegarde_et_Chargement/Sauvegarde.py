@@ -1,6 +1,6 @@
 import os
 import time
-import Gestion_grille
+import Puissance\_4/src/Debug/Gestion_de_jeu/Gestion_grille
 
 def information_sauvegarde():
     """
