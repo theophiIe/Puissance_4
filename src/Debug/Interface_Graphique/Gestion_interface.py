@@ -84,7 +84,7 @@ def affichage_choix_de_difficulte(fenetre):
             resultat_du_retour : booléen 0 ou 1 correspondant l'ordre de passage. 
                 0 : pour que le Joueur 1 commence
                 1 : pour que le Joueur 2 commence
-            niveau_de_difficulté : entier qui peut prendre 4 cas :
+            niveau_de_difficulte : entier qui peut prendre 4 cas :
                 -1 : lorsque le mode de jeu correspond à Joueur vs Joueur
                 0  : le niveau de difficulté facile
                 1  : le niveau de difficulté intermédiaire
