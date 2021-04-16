@@ -16,7 +16,7 @@ COMMENCER = 4
 PARTIE = 5
 SAUVEGARDE = 6
 NOUVELLE_SAUVEGARDE = 7
-VICTOIRE = 8
+FIN_DE_PARTIE = 8
 CONFIRMATION = 9
 ERREUR = 10
 
@@ -129,9 +129,9 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                 2  : le niveau de difficulté difficile
           
         Renvoie : 
-            nom_gagnant : chaîne de caractères retennant le nom du vainqueur.  
+            texte_fin_de_partie : chaîne de caractères contenant le texte à afficher lors d'une victoire ou un match nul.
     """
-    return nom_gagnant
+    return texte_fin_de_partie
 
 def affichage_sauvegarde(fenetre):
     """
@@ -158,13 +158,13 @@ def affichage_nouvelle_sauvegarde(fenetre):
     """
     pass
 
-def affichage_victoire(fenetre, nom_gagnant):
+def affichage_fin_de_partie(fenetre, texte_fin_de_partie):
     """
         Cette fonction affiche l'écran de victoire avec le nome du vainqueur.
                 
         Paramètre : 
             fenetre : la fenêtre de l'écran
-            nom_gagnant : une chaîne de caractères correspondant aux Joueurs qui a gagné la partie
+            texte_fin_de_partie : chaîne de caractères contenant le texte qui est à afficher, si c'est une victoire ou un match nul.
             
         Renvoie : 
             Un booléen correspondant à un numéro compris entre 0 et 1
