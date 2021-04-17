@@ -28,7 +28,7 @@ def attribution_des_joueurs(qui_commence, mode_de_jeu, niveau_de_difficulte):
     """
     pass
 
-def valider_jouer_coup_joueur(grille, num_colonne, joueur_actuel, joueur_suivant, niveau_de_difficulte):
+def actions_coup_joueur(grille, num_colonne, joueur_actuel, joueur_suivant, niveau_de_difficulte):
     """
         Cette fonction permet de vérifier un coup, jouer un coup et modifie le joueur à qui c'est le tour de jouer.
         Paramètre : 
