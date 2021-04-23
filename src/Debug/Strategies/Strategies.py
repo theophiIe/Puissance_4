@@ -1,11 +1,10 @@
-import numpy
+import numpy as ny
 import math
 
-from Puissance_4.src.Debug.Gestion_de_jeu.Gestion_grille import *
-from Puissance_4.src.Debug.Gestion_de_jeu.Gestion_joueur import *
-from Puissance_4.src.Debug.Gestion_de_jeu.Gestion_jeton import *
-from Puissance_4.src.Debug.Gestion_de_jeu.Partie import *
-
+import Puissance_4.src.Debug.Gestion_de_jeu.Gestion_grille
+import Puissance_4.src.Debug.Gestion_de_jeu.Gestion_joueur
+import Puissance_4.src.Debug.Gestion_de_jeu.Gestion_jeton
+import Puissance_4.src.Debug.Gestion_de_jeu.Partie
 
 def evaluation_quadruplet(quadruplet, couleur_jeton): 
     """
@@ -21,12 +20,12 @@ def evaluation_quadruplet(quadruplet, couleur_jeton):
     """
     score = 0
 
-    for incr in len(quadruplet):
-        if quadruplet[incr] == couleur_jeton:
+    for incr in range(len(quadruplet)):
+        if quadruplet[incr] != None and quadruplet[incr].couleur == couleur_jeton:
             score += 1   
 
         else:
-            if quadruplet[incr] != couleur_jeton and quadruplet[incr] != None:
+            if quadruplet[incr] != None and quadruplet[incr].couleur != couleur_jeton :
                   return 0
     
     if score == 1:
@@ -55,31 +54,25 @@ def evaluation_coup(grille, num_ligne, num_colonne, couleur_jeton):
     """
     score = 0
     
-    # Horizontal
-    for colonne in num_colonne:
-        quadruplet = (grille.grille[num_ligne][colonne], grille.grille[num_ligne][colonne+1], grille.grille[num_ligne][colonne+2], grille.grille[num_ligne][colonne+3])
-        score += evaluation_quadruplet(quadruplet, couleur_jeton)
-
-    # Vertical
-    for ligne in num_ligne:
-        quadruplet = (grille.grille[ligne][num_colonne], grille.grille[ligne+1][num_colonne], grille.grille[ligne+2][num_colonne], grille.grille[ligne+3][num_colonne])
-        score += evaluation_quadruplet(quadruplet, couleur_jeton)
-
-    # Diagonal gauche
-    for colonne in num_colonne and num_colonne < 7:
-        for ligne in num_ligne and num_ligne + 3 < 6:
+    for ligne, colonne in zip(range(num_ligne-3, num_ligne+1), range(num_colonne-3, num_colonne+1)):
+        if colonne >= 0 and colonne + 3 <= 6:
             quadruplet = (grille.grille[num_ligne][colonne], grille.grille[num_ligne][colonne+1], grille.grille[num_ligne][colonne+2], grille.grille[num_ligne][colonne+3])
             score += evaluation_quadruplet(quadruplet, couleur_jeton)
 
-    # Diagonal droite
-    for colonne in num_colonne and num_colonne < 7:
-        for ligne in num_ligne and num_ligne - 3 >= 0:
-            quadruplet = (grille.grille[num_ligne][colonne], grille.grille[num_ligne][colonne], grille.grille[num_ligne][colonne], grille.grille[num_ligne][colonne])
+        if ligne >= 0 and ligne + 3 <= 5:
+            quadruplet = (grille.grille[ligne][num_colonne], grille.grille[ligne+1][num_colonne], grille.grille[ligne+2][num_colonne], grille.grille[ligne+3][num_colonne])
+            score += evaluation_quadruplet(quadruplet, couleur_jeton)
+
+        if (ligne >= 0 and ligne + 3 <= 5) and (colonne >= 0 and colonne + 3 <= 6):
+            quadruplet = (grille.grille[ligne][colonne], grille.grille[ligne+1][colonne+1], grille.grille[ligne+2][colonne+2], grille.grille[ligne+3][colonne+3])
+            score += evaluation_quadruplet(quadruplet, couleur_jeton)
+
+        ligne_inverse = num_ligne - (ligne - num_ligne)
+        if (ligne_inverse >= 0 and ligne_inverse + 3 <= 5) and (colonne >= 0 and colonne + 3 <= 6):
+            quadruplet = (grille.grille[ligne_inverse][colonne], grille.grille[ligne_inverse+1][colonne+1], grille.grille[ligne_inverse+2][colonne+2], grille.grille[ligne_inverse+3][colonne+3])
             score += evaluation_quadruplet(quadruplet, couleur_jeton)
 
     return score
-
-  
   
 def fail_soft(cls_grille, joueur_actuel, joueur_suivant, profondeur, alpha, beta):
   """
@@ -98,8 +91,3 @@ def fail_soft(cls_grille, joueur_actuel, joueur_suivant, profondeur, alpha, beta
       - un entier correspondant au numéro de la colonne du meilleur coup
   """
   pass
-  
-  
-  
-  
-  
