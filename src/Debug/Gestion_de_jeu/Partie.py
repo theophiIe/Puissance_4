@@ -1,7 +1,8 @@
 import Gestion_grille
 import Gestion_joueur
+import math
 
-def fin_de_partie(cls_grille):
+def fin_de_partie(cls_grille,num_colonne):
     """
         Cette fonction permet de vérifier la potentielle fin de partie
         match nul ou un gagnant (en appelant les méthodes coup_gagnant et est_pleine de la classe Grille).
@@ -12,7 +13,11 @@ def fin_de_partie(cls_grille):
         Cette fonction renvoie un entier.
         2 si un coup gagnant est joué, 1 si la grille est pleine sinon 0.
     """
-    pass
+    if cls_grille.coup_gagnant(num_colonne) == True:
+         return 2
+    if cls_grille.est_pleine() == True:
+        return 1
+    return 0
 
 def attribution_des_joueurs(qui_commence, mode_de_jeu, niveau_de_difficulte):
     """
@@ -26,7 +31,18 @@ def attribution_des_joueurs(qui_commence, mode_de_jeu, niveau_de_difficulte):
 
         Cette fonction renvoie deux joueurs (joueur_actuel, joueur_suivant)
     """
-    pass
+    if mode_de_jeu == True:
+        joueur_actuel=Gestion_joueur.Joueur(True)
+        joueur_suivant=Gestion_joueur.Joueur(False)
+    else: 
+        if qui_commence == True:
+            joueur_actuel=Gestion_joueur.Joueur(True)
+            joueur_suivant=Gestion_joueur.Ordinateur(False,niveau_de_difficulte)
+        else: 
+            joueur_actuel=Gestion_joueur.Ordinateur(True,niveau_de_difficulte)
+            joueur_suivant=Gestion_joueur.Joueur(False)
+    
+    return joueur_actuel,joueur_suivant
 
 def actions_coup_joueur(grille, num_colonne, joueur_actuel, joueur_suivant, niveau_de_difficulte):
     """
