@@ -1,10 +1,24 @@
 import numpy as ny
 import math
+import sys
+#sys.path.append('/home/t/Documents/Cours/Puissance_4/Puissance_4/src/Debug/Gestion_de_jeu')
+#print(sys.path)
 
+sys.path.append('../Gestion_de_jeu')
+
+from Gestion_grille import *
+from Gestion_joueur import *
+from Gestion_jeton import *
+from Partie import *
+
+
+"""
 import Puissance_4.src.Debug.Gestion_de_jeu.Gestion_grille
 import Puissance_4.src.Debug.Gestion_de_jeu.Gestion_joueur
 import Puissance_4.src.Debug.Gestion_de_jeu.Gestion_jeton
 import Puissance_4.src.Debug.Gestion_de_jeu.Partie
+"""
+
 
 def evaluation_quadruplet(quadruplet, couleur_jeton): 
     """
@@ -90,4 +104,42 @@ def fail_soft(cls_grille, joueur_actuel, joueur_suivant, profondeur, alpha, beta
       - un entier correspondant au meilleur score 
       - un entier correspondant au numéro de la colonne du meilleur coup
   """
-  pass
+    # modifier la fonction fin de partie pour qu'elle verifie toute la grille
+  # et pas que la zone autour du dernier coup joué
+  
+  if fin_de_partie(cls_grille, 0) != 0:
+    return 1000 #score_victoire
+  else :
+    if(profondeur <= 0):
+      return evaluation_coup(cls_grille, 0, num_ligne, couleur_jeton)
+
+  courant = -math.inf
+
+  """
+  creer nouvelle grille temporaire
+  a revoir
+  tmp = Grille(6,7)
+  tmp = cls_grille
+  """
+
+  while (cls_grille.coup_valide(cls_grille, num_colonne)) == True:
+    joueur_actuel.jouer_coup(cls_grille, num_colonne)
+    score = - fail_soft(cls_grille, joueur_suivant, joueur_actuel, profondeur-1, -beta, -alpha) 
+
+    #annuler le dernier coup à remplacer
+
+    if score >= courant :
+      courant = score;
+      meilleur_coup = num_colonne
+      if score >= alpha :
+        alpha = score
+        meilleur_coup = num_colonne
+        #if score >= beta :
+        #  break;
+
+  return courant, meilleur_coup;
+    
+#Faire une copie de la grille de base qu'on garde en tete
+#la reutiliser pour toutes les 7 possibilités de jeu si ya de la place dans toutes les colonnes
+#appeler failsoft avec l ajout du coup à une copie de cette grille
+#faire ca pour tous les coups possibles
