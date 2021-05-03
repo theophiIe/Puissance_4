@@ -106,15 +106,17 @@ def fail_soft(cls_grille, joueur_actuel, joueur_suivant, profondeur, alpha, beta
   """
     # modifier la fonction fin de partie pour qu'elle verifie toute la grille
   # et pas que la zone autour du dernier coup joué
-  
-  if fin_de_partie(cls_grille, 0) != 0:
+    
+  if fin_de_partie(cls_grille, num_colonne) != 0:
     return 1000 #score_victoire
   else :
     if(profondeur <= 0):
-      return evaluation_coup(cls_grille, 0, num_ligne, couleur_jeton)
+      return evaluation_coup(cls_grille, num_ligne, num_colonne, couleur_jeton)
 
   courant = -math.inf
-
+  
+  
+  
   """
   creer nouvelle grille temporaire
   a revoir
