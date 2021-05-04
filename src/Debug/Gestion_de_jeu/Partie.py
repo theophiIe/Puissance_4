@@ -69,7 +69,7 @@ def actions_coup_joueur(grille, num_colonne, joueur_actuel, joueur_suivant, nive
             num_ligne = -1
     else: 
         "num_ligne?, num_colonne = fail_soft(grille,joueur_actuel,joueur_suivant,4,-math.inf,math.inf)"
-        joueur_actuel.jouer_coup(grille,num_colonne)
+        num_ligne = joueur_actuel.jouer_coup(grille,num_colonne)
         joueur_actuel,joueur_suivant = joueur_suivant,joueur_actuel
     
     return num_ligne, num_colonne, joueur_actuel, joueur_suivant
