@@ -43,7 +43,12 @@ def verifie_existance_fichier(nom_fichier):
             True  : si le nom de fichier est indisponible.
             False : si le nom de fichier est disponible.
     """
-    pass
+
+    if os.path.exists(nom_fichier):
+        return True
+    return False
+
+        pass
 
 def supprimer_sauvegarde(nom_fichier):
     """
@@ -58,6 +63,17 @@ def supprimer_sauvegarde(nom_fichier):
             True  : si la suppression a été correctement effectuée.
             False : si la suppression a rencontré un problème.
     """
+    
+    if verifie_existance_fichier(nom_fichier):
+        os.remove(nom_fichier)
+        if verifie_existance_fichier(nom_fichier):
+            return False
+        else:
+            return True
+    else :
+        print("The file does not exist")
+        return False
+
     pass
 
 def sauvegarde(grille, nom_fichier):
