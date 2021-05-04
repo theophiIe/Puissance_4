@@ -13,7 +13,15 @@ def information_sauvegarde():
         noms des fichiers de sauvegarde sous forme de 
         chaînes de caractères.
     """
-    myFiles = glob.glob('*.txt')
+    sauvegardes = glob.glob('*.txt')
+    derniere_date_modification = []
+    date_creation = []
+
+    for x in sauvegardes:
+        derniere_date_modification.append(time.ctime(os.path.getmtime(x)))
+        date_creation.append(time.ctime(os.path.getctime(x)))
+
+    return sauvegardes, derniere_date_modification, date_creation
     pass
 
 def verification_syntaxe_nom_fichier(nom_fichier):
