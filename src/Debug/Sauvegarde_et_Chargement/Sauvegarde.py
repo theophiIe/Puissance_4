@@ -1,7 +1,7 @@
 import os
 import glob
 import time
-import Puissance\_4/src/Debug/Gestion_de_jeu/Gestion_grille
+import Puissance_4/src/Debug/Gestion_de_jeu/Gestion_grille
 
 def information_sauvegarde():
     """
@@ -13,6 +13,7 @@ def information_sauvegarde():
         noms des fichiers de sauvegarde sous forme de 
         chaînes de caractères.
     """
+
     sauvegardes = glob.glob('*.txt')
     derniere_date_modification = []
     date_creation = []
@@ -38,6 +39,12 @@ def verification_syntaxe_nom_fichier(nom_fichier):
             True  : si la syntaxe est correcte.
             False : si la syntaxe est incorrecte.
     """
+    char_interdits = "/:\"?|<>*\\"
+
+    for x in range (len(char_interdits)):
+        if char_interdits[x] in nom_fichier:
+            return False
+    return True
     pass
 
 def verifie_existance_fichier(nom_fichier):
@@ -79,7 +86,7 @@ def supprimer_sauvegarde(nom_fichier):
             return False
         else:
             return True
-    else :
+    else:
         print("The file does not exist")
         return False
     pass
@@ -99,4 +106,12 @@ def sauvegarde(grille, nom_fichier):
             True  : si la sauvegarde a été correctement effectuée.
             False : si la sauvegarde a rencontré un problème.
     """
+    f = open(nom_fichier, "w")
+
+    for x in grille:
+        if x != 0 and x != 1 and x != 2:
+            return False
+        f.write(x)
+        f.write(", ")
+    f.close()
     pass
