@@ -1,4 +1,5 @@
 import os
+import glob
 import time
 import Puissance\_4/src/Debug/Gestion_de_jeu/Gestion_grille
 
@@ -12,6 +13,7 @@ def information_sauvegarde():
         noms des fichiers de sauvegarde sous forme de 
         chaînes de caractères.
     """
+    myFiles = glob.glob('*.txt')
     pass
 
 def verification_syntaxe_nom_fichier(nom_fichier):
@@ -47,8 +49,7 @@ def verifie_existance_fichier(nom_fichier):
     if os.path.exists(nom_fichier):
         return True
     return False
-
-        pass
+    pass
 
 def supprimer_sauvegarde(nom_fichier):
     """
@@ -63,7 +64,7 @@ def supprimer_sauvegarde(nom_fichier):
             True  : si la suppression a été correctement effectuée.
             False : si la suppression a rencontré un problème.
     """
-    
+
     if verifie_existance_fichier(nom_fichier):
         os.remove(nom_fichier)
         if verifie_existance_fichier(nom_fichier):
@@ -73,7 +74,6 @@ def supprimer_sauvegarde(nom_fichier):
     else :
         print("The file does not exist")
         return False
-
     pass
 
 def sauvegarde(grille, nom_fichier):
