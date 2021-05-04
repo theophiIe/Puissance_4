@@ -34,7 +34,20 @@ class Joueur:
             Renvoie : 
                 Cette méthode renvoie le numéro de la ligne où le coup a été joué.
         """
-        pass
+        for i in range(0,7):
+            if(j_grille[i][j_num_colonne] is not None):
+                num_ligne = i
+                break
+        
+        couleur = 0
+        if(self.commence):
+            couleur = 1
+        else:
+            couleur = 2
+
+        j_grille[num_ligne][j_num_colonne] = Jeton(couleur)
+
+        return num_ligne
 
 class Ordinateur(Joueur):
     """
