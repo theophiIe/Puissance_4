@@ -1,5 +1,5 @@
-import numpy as ny
-import Puissance_4/src/Gestion_de_Jeu/Gestion_jeton as gj
+import numpy
+import Gestion_jeton
 
 class Grille:
 
@@ -62,7 +62,7 @@ class Grille:
         return False
     
     def est_pleine(self):
-        return (gj.Jeton.nombre_jeton == (self.ligne*self.colonne))
+        return (Gestion_jeton.Jeton.nombre_jeton == (self.ligne*self.colonne))
 
     def vider_grille(self):
         for i in range(self.ligne):
@@ -76,7 +76,7 @@ class Grille:
         j = 0
         for jeton in g_contenu_grille:
             if(jeton != '0'):
-                self.grille[i][j] = gj.Jeton(jeton)
+                self.grille[i][j] = Gestion_jeton.Jeton(jeton)
             j += 1
             if(j%self.colonne == 0):
                 j = 0
