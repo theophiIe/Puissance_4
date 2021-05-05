@@ -68,7 +68,8 @@ def actions_coup_joueur(grille, num_colonne, joueur_actuel, joueur_suivant, nive
             num_colonne = -1
             num_ligne = -1
     else: 
-        "num_colonne = fail_soft(grille,joueur_actuel,joueur_suivant,4,-math.inf,math.inf)"
+        tab[2] = fail_soft(grille,joueur_actuel,joueur_suivant,4,-math.inf,math.inf)
+        num_colonne = tab[0];
         num_ligne = joueur_actuel.jouer_coup(grille,num_colonne)
         joueur_actuel,joueur_suivant = joueur_suivant,joueur_actuel
     
