@@ -1,5 +1,9 @@
-import Puissance_4/src/Sauvegarde_et_Chargement/Sauvegarde
-import Puissance_4/src/Gestion_de_Jeu/Gestion_grille as gg
+import Sauvegarde
+
+import sys
+sys.path.append('../Gestion_de_jeu')
+
+import Gestion_grille
 
 def lecture_fichier(nom_fichier):
     contenu_fichier = ""
@@ -25,6 +29,6 @@ def chargement(nom_fichier):
     if(test_corruption(contenu_fichier)):
         return False
 
-    grille = gg.Grille(6,7)
+    grille = Gestion_grille.Grille(6,7)
     grille.remplir_grille(contenu_fichier)
     return True, grille
