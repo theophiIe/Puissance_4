@@ -34,9 +34,10 @@ class Joueur:
             Renvoie : 
                 Cette méthode renvoie le numéro de la ligne où le coup a été joué.
         """
-        for i in range(0,7):
+        num_ligne = 5
+        for i in range(0, 6):
             if(j_grille[i][j_num_colonne] is not None):
-                num_ligne = i
+                num_ligne = i - 1
                 break
         
         couleur = 0
@@ -45,7 +46,7 @@ class Joueur:
         else:
             couleur = 2
 
-        j_grille[num_ligne][j_num_colonne] = Jeton(couleur)
+        j_grille[num_ligne][j_num_colonne] = Gestion_jeton.Jeton(couleur)
 
         return num_ligne
 
@@ -70,7 +71,7 @@ class Ordinateur(Joueur):
                 o_difficulte : varible de type entier positif nous permettant de
                                 définir le niveau de difficulté de l'ordinateur.
         """
-        Joueurs.__init__(o_commence)
+        super().__init__(o_commence)
         self.difficulte = o_difficulte
 
     def premier_coup(self, o_grille):
@@ -80,4 +81,4 @@ class Ordinateur(Joueur):
 
             Cette méthode ne renvoie rien.
         """
-        self.jouer_coup(o_grille,3)
+        self.jouer_coup(o_grille, 3)
