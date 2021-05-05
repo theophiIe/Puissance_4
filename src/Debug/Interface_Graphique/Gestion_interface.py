@@ -1,11 +1,22 @@
-import Puissance_4/src/Debug/Gestion_de_jeu/Gestion_grille 
-import Puissance_4/src/Debug/Gestion_de_jeu/Gestion_joueur
-import Puissance_4/src/Debug/Gestion_de_jeu/Gestion_jeton
-import Puissance_4/src/Debug/Gestion_de_jeu/Partie
-import Puissance_4/src/Debug/Sauvegarde_et_Chargement/Sauvegarde
-import Puissance_4/src/Debug/Sauvegarde_et_Chargement/Chargement
-import Puissance_4/src/Debug/Strategies/Strategies
-import Puissance_4/src/Debug/Interface_Graphique/Gestion_bouton
+import Gestion_bouton
+
+import sys
+sys.path.append('../Gestion_de_jeu')
+
+import Gestion_grille
+import Gestion_joueur
+import Gestion_jeton
+from Partie import *
+
+sys.path.append('../Sauvegarde_et_Chargement')
+
+from Sauvegarde import *
+from Chargement import *
+
+sys.path.append('../Strategies')
+
+from Strategies import *
+
 import pygame
 
 MENU_PRINCIPAL = 0
