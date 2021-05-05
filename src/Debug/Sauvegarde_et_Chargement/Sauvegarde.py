@@ -1,7 +1,12 @@
+import sys
+sys.path.append('../Gestion_de_jeu')
+
+import Gestion_grille
+import Gestion_jeton
+
 import os
 import glob
 import time
-import Puissance_4/src/Debug/Gestion_de_jeu/Gestion_grille
 
 def information_sauvegarde():
     """
