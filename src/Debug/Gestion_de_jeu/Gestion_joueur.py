@@ -80,4 +80,4 @@ class Ordinateur(Joueur):
 
             Cette méthode ne renvoie rien.
         """
-        pass
+        self.jouer_coup(o_grille,3)
