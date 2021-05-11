@@ -28,7 +28,6 @@ def information_sauvegarde():
         date_creation.append(time.ctime(os.path.getctime(x)))
 
     return sauvegardes, derniere_date_modification, date_creation
-    pass
 
 def verification_syntaxe_nom_fichier(nom_fichier):
     """
@@ -50,7 +49,6 @@ def verification_syntaxe_nom_fichier(nom_fichier):
         if char_interdits[x] in nom_fichier:
             return False
     return True
-    pass
 
 def verifie_existance_fichier(nom_fichier):
     """
@@ -69,7 +67,6 @@ def verifie_existance_fichier(nom_fichier):
     if os.path.exists(nom_fichier):
         return True
     return False
-    pass
 
 def supprimer_sauvegarde(nom_fichier):
     """
@@ -94,7 +91,6 @@ def supprimer_sauvegarde(nom_fichier):
     else:
         print("The file does not exist")
         return False
-    pass
 
 def sauvegarde(grille, nom_fichier):
     """
@@ -113,10 +109,16 @@ def sauvegarde(grille, nom_fichier):
     """
     f = open(nom_fichier, "w")
 
-    for x in grille:
-        if x != 0 and x != 1 and x != 2:
-            return False
-        f.write(x)
-        f.write(", ")
+    for i in range(6):
+        for j in range(7):
+            x = '-1'
+            if grille[i][j] is None:
+                x = '0'
+            elif str(type(grille[i][j])).find('Jeton') != -1:
+                x = grille[i][j].couleur
+            
+            if x == '-1':
+                return False
+            f.write(x)
     f.close()
-    pass
+    return True
