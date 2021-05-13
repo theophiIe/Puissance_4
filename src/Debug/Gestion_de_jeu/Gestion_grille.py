@@ -1,4 +1,4 @@
-import numpy
+import numpy as ny
 import Gestion_jeton
 
 class Grille:
@@ -11,54 +11,47 @@ class Grille:
     def coup_valide(self, g_num_colonne):
         return (self.grille[0][g_num_colonne] is None)
 
-    def coup_gagnant(self, g_num_colonne):
-        num_ligne = 5
-        for i in range(0,self.ligne):
-            if(self.grille[i][g_num_colonne] is not None):
-                num_ligne = i
-                break
-        
-        for i in range(-3,1):
-            ligne = num_ligne + i
-            ligne_inverse = num_ligne - i
-            colonne = g_num_colonne + i
-
-            if((ligne > -1) and (ligne < 3)):
-                jeton1 = self.grille[ligne][g_num_colonne]
-                jeton2 = self.grille[ligne+1][g_num_colonne]
-                jeton3 = self.grille[ligne+2][g_num_colonne]
-                jeton4 = self.grille[ligne+3][g_num_colonne]
+    def coup_gagnant(self, couleur):
+        for ligne in range(self.ligne):
+            for colonne in range(self.colonne-3):
+                jeton1 = self.grille[ligne][colonne]
+                jeton2 = self.grille[ligne][colonne+1]
+                jeton3 = self.grille[ligne][colonne+2]
+                jeton4 = self.grille[ligne][colonne+3]
                 if((jeton1 is not None) and (jeton2 is not None) and (jeton3 is not None) and (jeton4 is not None)):
-                    if(jeton1.couleur == jeton2.couleur == jeton3.couleur == jeton4.couleur):
+                    if(jeton1.couleur == jeton2.couleur == jeton3.couleur == jeton4.couleur == couleur):
                         return True
 
-            if((colonne > -1) and (colonne < 4)):
-                jeton1 = self.grille[num_ligne][colonne]
-                jeton2 = self.grille[num_ligne][colonne+1]
-                jeton3 = self.grille[num_ligne][colonne+2]
-                jeton4 = self.grille[num_ligne][colonne+3]
+        for ligne in range(self.ligne-3):
+            for colonne in range(self.colonne):
+                jeton1 = self.grille[ligne][colonne]
+                jeton2 = self.grille[ligne+1][colonne]
+                jeton3 = self.grille[ligne+2][colonne]
+                jeton4 = self.grille[ligne+3][colonne]
                 if((jeton1 is not None) and (jeton2 is not None) and (jeton3 is not None) and (jeton4 is not None)):
-                    if(jeton1.couleur == jeton2.couleur == jeton3.couleur == jeton4.couleur):
+                    if(jeton1.couleur == jeton2.couleur == jeton3.couleur == jeton4.couleur == couleur):
                         return True
 
-            if(((ligne > -1) and (ligne < 3)) and ((colonne > -1) and (colonne < 4))):
+        for ligne in range(self.ligne-3):
+            for colonne in range(self.colonne-3):
                 jeton1 = self.grille[ligne][colonne]
                 jeton2 = self.grille[ligne+1][colonne+1]
                 jeton3 = self.grille[ligne+2][colonne+2]
-                jeton4 = self.grille[ligne+3][colonne+3]
+                jeton4 = self.grille[ligne+3][colonne+3]    
                 if((jeton1 is not None) and (jeton2 is not None) and (jeton3 is not None) and (jeton4 is not None)):
-                    if(jeton1.couleur == jeton2.couleur == jeton3.couleur == jeton4.couleur):
+                    if(jeton1.couleur == jeton2.couleur == jeton3.couleur == jeton4.couleur == couleur):
                         return True
 
-            if(((ligne_inverse > 2) and (ligne_inverse < 6)) and ((colonne > -1) and (colonne < 4))):
-                jeton1 = self.grille[ligne_inverse][colonne]
-                jeton2 = self.grille[ligne_inverse-1][colonne+1]
-                jeton3 = self.grille[ligne_inverse-2][colonne+2]
-                jeton4 = self.grille[ligne_inverse-3][colonne+3]
+        for ligne in range(3,self.ligne):
+            for colonne in range(self.colonne-3):
+                jeton1 = self.grille[ligne][colonne]
+                jeton2 = self.grille[ligne-1][colonne+1]
+                jeton3 = self.grille[ligne-2][colonne+2]
+                jeton4 = self.grille[ligne-3][colonne+3]    
                 if((jeton1 is not None) and (jeton2 is not None) and (jeton3 is not None) and (jeton4 is not None)):
-                    if(jeton1.couleur == jeton2.couleur == jeton3.couleur == jeton4.couleur):
+                    if(jeton1.couleur == jeton2.couleur == jeton3.couleur == jeton4.couleur == couleur):
                         return True
-
+        
         return False
     
     def est_pleine(self):
