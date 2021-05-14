@@ -50,7 +50,7 @@ def verification_syntaxe_nom_fichier(nom_fichier):
             return False
     return True
 
-def verifie_existance_fichier(nom_fichier):
+def verifie_existence_fichier(nom_fichier):
     """
         Cette fonction permet de vérifier si le fichier 
         ayant pour nom le nom donné en argument existe déjà.
@@ -82,9 +82,9 @@ def supprimer_sauvegarde(nom_fichier):
             False : si la suppression a rencontré un problème.
     """
 
-    if verifie_existance_fichier(nom_fichier):
+    if verifie_existence_fichier(nom_fichier):
         os.remove(nom_fichier)
-        if verifie_existance_fichier(nom_fichier):
+        if verifie_existence_fichier(nom_fichier):
             return False
         else:
             return True
