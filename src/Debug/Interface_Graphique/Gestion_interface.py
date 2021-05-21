@@ -8,6 +8,7 @@ from Chargement import *
 from Strategies import *
 
 import pygame
+import math
 
 import os # pour lire des sauvegardes dans des fichiers à retirer peut-être
 
@@ -155,7 +156,7 @@ def affichage_mode_de_jeu(fenetre):
         b_retour.collision_bouton(fenetre, point)
         pygame.display.flip()
 
-    return quel_menu, mode_de_jeu, niveau_de_difficulte, qui_commence
+    return quel_menu, mode_de_jeu, qui_commence, niveau_de_difficulte
 
 def affichage_chargement(fenetre):
     background = pygame.image.load("Interface_Graphique/Sprites/Backgroundv5.png") 
@@ -492,6 +493,8 @@ def affichage_commencer(fenetre):
 def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_difficulte):
     background = pygame.image.load("Interface_Graphique/Sprites/Backgroundv5.png") 
     fenetre.blit(background, (0, 0))
+
+    print(qui_commence)
     
     b_j1 = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_j1.png", "Interface_Graphique/Sprites/Bouton_j1_2.png", SIZE*8.15/10, SIZE*0.5/10, SIZE*1.5/10, SIZE/15)
     b_j1.affichage_bouton(fenetre)
@@ -502,6 +505,13 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
     else:
         b_j2 = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_ordi.png", "Interface_Graphique/Sprites/Bouton_ordi_2.png", SIZE*8.15/10, SIZE*2/10, SIZE*1.5/10, SIZE/15)
         b_j2.affichage_bouton(fenetre)
+
+    joueur_actuel, joueur_suivant = attribution_des_joueurs(qui_commence, mode_de_jeu, niveau_de_difficulte)
+
+    if type(joueur_actuel) == Gestion_joueur.Ordinateur:
+        joueur_actuel.premier_coup(grille.grille)
+        affichage_jeton(fenetre, grille, 5, 3)
+        joueur_actuel, joueur_suivant = joueur_suivant, joueur_actuel
 
     b_aide = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_aide.png", "Interface_Graphique/Sprites/Bouton_aide2.png", SIZE*8.15/10, SIZE*5/10, SIZE*1.5/10, SIZE/15)
     b_aide.affichage_bouton(fenetre)
@@ -529,6 +539,8 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                 pygame.quit()
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
+                colonne_selectionnee = selection_colonne(fenetre, event)
+
                 if event.button == 1 and b_aide.rectangle.collidepoint(event.pos):
                     if aide == 0:
                         aide = 1
@@ -538,7 +550,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                         affichage_grille_jeton(fenetre, grille)
 
                 elif event.button == 1 and b_sauvegarde.rectangle.collidepoint(event.pos):
-                    tmp = affichage_sauvegarde(fenetre, grille)
+                    affichage_sauvegarde(fenetre, grille)
                     fenetre.blit(background, (0, 0))
                     affichage_grille_jeton(fenetre, grille)
 
@@ -548,25 +560,42 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                     affichage_grille_jeton(fenetre, grille)
                     if confirmation == True:
                         running = False
-                        if tour == True:
-                            tour = False
-                        else:
-                            tour = True
-                        quel_mode = FIN_DE_PARTIE
+                        tour = not tour
                         break
 
-                # elif selection_colonne(fenetre, event) != -1:    
-                #     num_colonne = selection_colonne(fenetre, event)
-                #     for i in range (6):
-                #         if grille[i][num_colonne] == 0:
-                #             if tour == True:
-                #                 grille[i][num_colonne] = 1
-                #                 tour = False
-                #             else:
-                #                 grille[i][num_colonne] = 2
-                #                 tour = True
-                #             affichage_jeton(fenetre, grille, i, num_colonne)
-                #             break
+                elif colonne_selectionnee != -1 and grille.coup_valide(colonne_selectionnee):
+                    num_ligne, num_colonne, joueur_actuel, joueur_suivant = actions_coup_joueur(grille, colonne_selectionnee, joueur_actuel, joueur_suivant, niveau_de_difficulte)
+                    affichage_jeton(fenetre, grille, num_ligne, num_colonne)
+
+                    val_fin_de_partie = fin_de_partie(grille, (joueur_suivant.commence-1)%2 + 1)
+                    if val_fin_de_partie != 0:
+                        if val_fin_de_partie == 2:
+                            if tour == True:
+                                return "Vainqueur : J1 !"
+                            elif tour == False and mode_de_jeu == True:
+                                return "Vainqueur : J2 !"
+                            elif tour == False and mode_de_jeu == False:
+                                return "Vainqueur : ORDI !"
+                        else:
+                            return "Match Nul !"
+                    tour = not tour
+                    if type(joueur_actuel) == Gestion_joueur.Ordinateur:
+                        num_ligne, num_colonne, joueur_actuel, joueur_suivant = actions_coup_joueur(grille, colonne_selectionnee, joueur_actuel, joueur_suivant, niveau_de_difficulte)
+                        affichage_jeton(fenetre, grille, num_ligne, num_colonne)
+
+                        val_fin_de_partie = fin_de_partie(grille, (joueur_suivant.commence-1)%2 + 1)
+                        if val_fin_de_partie != 0:
+                            if val_fin_de_partie == 2:
+                                if tour == True:
+                                    return "Vainqueur : J1 !"
+                                elif tour == False and mode_de_jeu == True:
+                                    return "Vainqueur : J2 !"
+                                elif tour == False and mode_de_jeu == False:
+                                    return "Vainqueur : ORDI !"
+                            else:
+                                return "Match Nul !"
+                        tour = not tour
+                    
                     
         if running == False:
             break
@@ -1053,12 +1082,12 @@ def affichage_aide(fenetre, grille):
 def affichage_jeton(fenetre, grille, num_ligne, num_colonne):
     if grille.grille[num_ligne][num_colonne] is not None:
         if grille.grille[num_ligne][num_colonne].couleur == 1:
-            b_jeton_jaune = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Jeton_jaune.png", "Interface_Graphique/Sprites/Jeton_jaune.png",SIZE * 0.41/10 + num_colonne * (SIZE*1.068/10), SIZE*2.58/10 + num_ligne * (SIZE*1.068/10), SIZE*0.89/10, SIZE*0.89/10) #SIZE*7.92/10 - num_ligne * (SIZE*1.068/10)
-            b_jeton_jaune.affichage_bouton(fenetre)
+            b_jeton_rouge = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Jeton_rouge.png", "Interface_Graphique/Sprites/Jeton_rouge.png",SIZE * 0.41/10 + num_colonne * (SIZE*1.068/10), SIZE*2.58/10 + num_ligne * (SIZE*1.068/10), SIZE*0.89/10, SIZE*0.89/10) #SIZE*7.92/10 - num_ligne * (SIZE*1.068/10)
+            b_jeton_rouge.affichage_bouton(fenetre)
 
         else:
-            b_jeton_jaune2 = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Jeton_rouge.png", "Interface_Graphique/Sprites/Jeton_rouge.png", SIZE * 0.41/10 + num_colonne * (SIZE*1.068/10), SIZE*2.58/10 + num_ligne * (SIZE*1.068/10), SIZE*0.89/10, SIZE*0.89/10)
-            b_jeton_jaune2.affichage_bouton(fenetre)
+            b_jeton_jaune = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Jeton_jaune.png", "Interface_Graphique/Sprites/Jeton_jaune.png", SIZE * 0.41/10 + num_colonne * (SIZE*1.068/10), SIZE*2.58/10 + num_ligne * (SIZE*1.068/10), SIZE*0.89/10, SIZE*0.89/10)
+            b_jeton_jaune.affichage_bouton(fenetre)
 
 def affichage_grille_jeton(fenetre, grille): 
     b_grille = Gestion_bouton.Bouton("Interface_Graphique/Sprites/grille.png", "Interface_Graphique/Sprites/grille.png", SIZE*0.20/10, SIZE*2.4/10, SIZE*7.7/10, SIZE*6.6/10)
@@ -1070,7 +1099,6 @@ def affichage_grille_jeton(fenetre, grille):
             affichage_jeton(fenetre, grille, ligne, colonne)
     
 def selection_colonne(fenetre, event):
-    num_colonne = 0
     """
         Cette fonction permet de vérifier si l'evenement passé en paramètre est un clic gauche.
         Si c'est un clic gauche et qu'il a été fait dans la zone de la grille, càd dans une des colonnes,
@@ -1085,6 +1113,17 @@ def selection_colonne(fenetre, event):
             0 - 6 : numéro de colonne
             -1 : clic hors zone de grille
     """
+    num_colonne = -1
+    if event.button == 1:
+        b_zone_contact = []
+        for i in range (7):
+            tmp = pygame.Rect(SIZE*0.20/10 + (i * SIZE*1.1/10), SIZE*2.4/10, SIZE*1.1/10, SIZE*9/10)
+            b_zone_contact.append(tmp)
+
+        for i in range (7):
+            if b_zone_contact[i].collidepoint(event.pos):
+                num_colonne = i
+
     return num_colonne
 
 
@@ -1143,6 +1182,8 @@ def lancer_affichage():
         elif quel_menu == FIN_DE_PARTIE:
             quel_menu = affichage_fin_de_partie(fenetre, texte_fin_de_partie)
             nom_fichier = ""
+            cls_grille.vider_grille()
+            Gestion_jeton.Jeton.reinitialise_nombre_jeton()
         
         else : break
 
