@@ -1,4 +1,3 @@
-import Gestion_grille
 import Gestion_joueur
 import math
 

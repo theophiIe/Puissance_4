@@ -1,6 +1,3 @@
-import Gestion_grille
-import Gestion_jeton
-
 import os
 import glob
 import time

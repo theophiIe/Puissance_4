@@ -1,14 +1,4 @@
-import numpy as ny
 import math
-import sys
-
-#sys.path.append('/home/t/Documents/Cours/Puissance_4/Puissance_4/src/Debug/Gestion_de_jeu')
-#print(sys.path)
-
-sys.path.append('../Gestion_de_jeu')
-
-import Gestion_grille
-import Gestion_joueur
 import Gestion_jeton
 from Partie import *
 

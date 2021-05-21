@@ -1,5 +1,4 @@
 import Gestion_jeton
-import Gestion_grille
 
 class Joueur:
     """
