@@ -254,7 +254,7 @@ def affichage_chargement(fenetre):
                     if sauvegarde_choisie != -1:
                         running = False
                         quel_menu = MODE_DE_JEU
-                        nom_fichier = "Liste_sauvegardes/"+nom_sauvegarde[sauvegarde_choisie]
+                        nom_fichier = nom_sauvegarde[sauvegarde_choisie]
                         break
                     else:
                         affichage_erreur(fenetre, "Aucune sauvegarde sélectionnée !")
@@ -267,7 +267,7 @@ def affichage_chargement(fenetre):
 
                         if confirmation == True:
 
-                            verif_supprimer = supprimer_sauvegarde("Liste_sauvegardes/"+nom_sauvegarde[sauvegarde_choisie])
+                            verif_supprimer = supprimer_sauvegarde(nom_sauvegarde[sauvegarde_choisie])
                             if verif_supprimer == False:
                                 affichage_erreur(fenetre, "Erreur lors de la suppression")
                             else:
@@ -354,7 +354,7 @@ def affichage_chargement(fenetre):
                 tab_sauvegarde[i].affichage_bouton(menu)
             menu.blit(text_sauvegardes[i], text_sauvegardes_rect[i])
 
-        pygame.display.flip()    
+        pygame.display.flip()
 
     return quel_menu, nom_fichier
 
@@ -702,14 +702,12 @@ def affichage_sauvegarde(fenetre, grille):
                     if sauvegarde_choisie != -1:
                         confirmation = affichage_confirmation(fenetre, "Ecraser les données ?")
                         if confirmation == True :
-                            nom_fichier = nom_sauvegarde[sauvegarde_choisie] 
-                            #sauvegarde(grille, nom_fichier)
+                            sauvegarde(grille.grille, nom_sauvegarde[sauvegarde_choisie] )
                             running = False
                             break
                     else:
                         running = False
                         affichage_nouvelle_sauvegarde(fenetre, grille)
-                        nom_fichier = ""
                         break
                 elif event.button == 1 and b_supprimer.rectangle.collidepoint(event.pos):
                     if sauvegarde_choisie != -1:
@@ -717,38 +715,43 @@ def affichage_sauvegarde(fenetre, grille):
                         confirmation = affichage_confirmation(fenetre, "Supprimer la sauvegarde ?")
 
                         if confirmation == True:
-                            # ======= MODIF DEB MENU DEROULANT + LISTES SAUVERGARDES =======
-                            # nombre de sauvegardes
-                            nb_sauv -= 1
-                            tab_sauvegarde.remove( tab_sauvegarde[sauvegarde_choisie] )
-                            nom_sauvegarde.remove( nom_sauvegarde[sauvegarde_choisie] )
-                            text_sauvegardes.remove( text_sauvegardes[sauvegarde_choisie] )
-                            text_sauvegardes_rect.remove( text_sauvegardes_rect[sauvegarde_choisie] )
-                            #modification des coordonnées
-                            for i in range(nb_sauv):
-                                tab_sauvegarde[i].changement_taille_bouton(5, 5 + i*SIZE/10, SIZE*4/5 - 10, SIZE/10 - 5)
-                                if len(nom_sauvegarde[i]) < 30:
-                                    font = pygame.font.Font('Interface_Graphique/Cafeteria-Bold.otf', int(SIZE / 15))
-                                else:
-                                    font = pygame.font.Font('Interface_Graphique/Cafeteria-Bold.otf', int(SIZE / (len(nom_sauvegarde[i])/2) ))
-                                tmp_text = font.render(nom_sauvegarde[i], True, "white")
-                                tmp_text_rect = tmp_text.get_rect(center = (SIZE*4/10, SIZE/20+i*SIZE/10) )
-                                text_sauvegardes_rect[i] = tmp_text_rect
 
-                            # menu déroulant    
-                            if nb_sauv > 3:
-                                menu = pygame.Surface( ( int(SIZE*4/5) , int(nb_sauv * SIZE/10) + 5 ) )
-                                area = pygame.Rect(0, 0, SIZE*4/5, SIZE*2/5 +5)
+                            verif_supprimer = supprimer_sauvegarde(nom_sauvegarde[sauvegarde_choisie])
+                            if verif_supprimer == False:
+                                affichage_erreur(fenetre, "Erreur lors de la suppression")
                             else:
-                                menu = pygame.Surface( ( int(SIZE*4/5) , int(nb_sauv * SIZE/10) + 5 ) )
-                                area = pygame.Rect(0, 0, SIZE*4/5, SIZE*nb_sauv/10 +5)
-                            menu.blit( background_deroulant, (0, 0) )
-                            menu_rect = menu.get_rect()
+                                # ======= MODIF DEB MENU DEROULANT + LISTES SAUVERGARDES =======
+                                # nombre de sauvegardes
+                                nb_sauv -= 1
+                                tab_sauvegarde.remove( tab_sauvegarde[sauvegarde_choisie] )
+                                nom_sauvegarde.remove( nom_sauvegarde[sauvegarde_choisie] )
+                                text_sauvegardes.remove( text_sauvegardes[sauvegarde_choisie] )
+                                text_sauvegardes_rect.remove( text_sauvegardes_rect[sauvegarde_choisie] )
+                                #modification des coordonnées
+                                for i in range(nb_sauv):
+                                    tab_sauvegarde[i].changement_taille_bouton(5, 5 + i*SIZE/10, SIZE*4/5 - 10, SIZE/10 - 5)
+                                    if len(nom_sauvegarde[i]) < 30:
+                                        font = pygame.font.Font('Interface_Graphique/Cafeteria-Bold.otf', int(SIZE / 15))
+                                    else:
+                                        font = pygame.font.Font('Interface_Graphique/Cafeteria-Bold.otf', int(SIZE / (len(nom_sauvegarde[i])/2) ))
+                                    tmp_text = font.render(nom_sauvegarde[i], True, "white")
+                                    tmp_text_rect = tmp_text.get_rect(center = (SIZE*4/10, SIZE/20+i*SIZE/10) )
+                                    text_sauvegardes_rect[i] = tmp_text_rect
 
-                            menu_subsurface = menu.subsurface(area)
+                                # menu déroulant    
+                                if nb_sauv > 3:
+                                    menu = pygame.Surface( ( int(SIZE*4/5) , int(nb_sauv * SIZE/10) + 5 ) )
+                                    area = pygame.Rect(0, 0, SIZE*4/5, SIZE*2/5 +5)
+                                else:
+                                    menu = pygame.Surface( ( int(SIZE*4/5) , int(nb_sauv * SIZE/10) + 5 ) )
+                                    area = pygame.Rect(0, 0, SIZE*4/5, SIZE*nb_sauv/10 +5)
+                                menu.blit( background_deroulant, (0, 0) )
+                                menu_rect = menu.get_rect()
 
-                            sauvegarde_choisie = -1
-                            # ======= FIN MENU DEROULANT + LISTES SAUVERGARDES =======
+                                menu_subsurface = menu.subsurface(area)
+
+                                sauvegarde_choisie = -1
+                                # ======= FIN MENU DEROULANT + LISTES SAUVERGARDES =======
                     else:
                         affichage_erreur(fenetre, "Aucune sauvegarde sélectionnée !")
 
@@ -839,12 +842,15 @@ def affichage_nouvelle_sauvegarde(fenetre, grille):
                     if text != "": 
                         confirmation = affichage_confirmation(fenetre, "Confirmer ?")
                         if confirmation == True: 
-                            running = False
-                            print(text+'.txt')
-                            #sauvegarde(grille, text)
-                            break
+                            if text.find(".txt") == -1:
+                                text += '.txt'
+                            if sauvegarde(grille.grille, text):
+                                running = False
+                                break
+                            else:
+                                affichage_erreur(fenetre, "Le fichier {} n'a pas pu être sauvergardé".format(text))
                     else:
-                        tmp = affichage_erreur(fenetre, "Nom du fichier vide")
+                        affichage_erreur(fenetre, "Nom du fichier vide")
                 if event.button == 1 and b_retour.rectangle.collidepoint(event.pos):
                     running = False
                     break
@@ -1120,7 +1126,7 @@ def lancer_affichage():
             if quel_menu == MODE_DE_JEU:
                 resultat = chargement(nom_fichier)
                 if type(resultat) is bool:
-                    affichage_erreur(fenetre, "Le fichier n'a pas pu être chargé")
+                    affichage_erreur(fenetre, "Le fichier {} n'a pas pu être chargé".format(nom_fichier))
                     quel_menu = CHARGEMENT
                 else:
                     cls_grille = resultat[1]
