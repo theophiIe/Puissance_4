@@ -1,7 +1,8 @@
 import Gestion_joueur
+from Strategies import *
 import math
 
-def fin_de_partie(cls_grille,num_colonne):
+def fin_de_partie(cls_grille,couleur):
     """
         Cette fonction permet de vérifier la potentielle fin de partie
         match nul ou un gagnant (en appelant les méthodes coup_gagnant et est_pleine de la classe Grille).
@@ -12,7 +13,7 @@ def fin_de_partie(cls_grille,num_colonne):
         Cette fonction renvoie un entier.
         2 si un coup gagnant est joué, 1 si la grille est pleine sinon 0.
     """
-    if cls_grille.coup_gagnant(num_colonne) == True:
+    if cls_grille.coup_gagnant(couleur) == True:
          return 2
     if cls_grille.est_pleine() == True:
         return 1
@@ -60,16 +61,11 @@ def actions_coup_joueur(grille, num_colonne, joueur_actuel, joueur_suivant, nive
             joueur_suivant : instance de la classe Joueur correspondant au joueur qui doit jouer le coup au tour d'après            
     """
     if type(joueur_actuel) == Gestion_joueur.Joueur: 
-        if grille.coup_valide(num_colonne) == True:
-            num_ligne = joueur_actuel.jouer_coup(grille,num_colonne)
-            joueur_actuel,joueur_suivant = joueur_suivant,joueur_actuel
-        else:
-            num_colonne = -1
-            num_ligne = -1
-    else: 
-        tab[2] = fail_soft(grille,joueur_actuel,joueur_suivant,4,-math.inf,math.inf)
-        num_colonne = tab[0]
-        num_ligne = joueur_actuel.jouer_coup(grille,num_colonne)
+        num_ligne = joueur_actuel.jouer_coup(grille.grille,num_colonne)
+        joueur_actuel,joueur_suivant = joueur_suivant,joueur_actuel
+    else:
+        num_colonne = fail_soft(grille, (joueur_actuel.difficulte+1)+joueur_actuel.difficulte, -math.inf, math.inf, joueur_actuel, joueur_suivant)[1]
+        num_ligne = joueur_actuel.jouer_coup(grille.grille,num_colonne)
         joueur_actuel,joueur_suivant = joueur_suivant,joueur_actuel
     
     return num_ligne, num_colonne, joueur_actuel, joueur_suivant
