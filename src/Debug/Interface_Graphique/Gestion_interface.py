@@ -1,20 +1,10 @@
 import Gestion_bouton
-
-import sys
-sys.path.append('../Gestion_de_jeu')
-
 import Gestion_grille
 import Gestion_joueur
 import Gestion_jeton
 from Partie import *
-
-sys.path.append('../Sauvegarde_et_Chargement')
-
 from Sauvegarde import *
 from Chargement import *
-
-sys.path.append('../Strategies')
-
 from Strategies import *
 
 import pygame
@@ -34,6 +24,19 @@ NOUVELLE_SAUVEGARDE = 7
 FIN_DE_PARTIE = 8
 CONFIRMATION = 9
 ERREUR = 10
+
+def afficher_grille(grille):
+    for i in range(6):
+        aff = ''
+        for j in range(7):
+            if(grille[i][j] is None):
+                aff += ' 0'
+            elif(grille[i][j].couleur == 1):
+                aff += ' 1'
+            else:
+                aff+= ' 2'
+        print(aff)
+    print()
 
 def affichage_menu_principal(fenetre):
     
@@ -143,7 +146,9 @@ def affichage_mode_de_jeu(fenetre):
 
         if running == False:
             break
-
+        
+        fenetre.blit(background, (0, 0))
+        b_titre.affichage_bouton(fenetre)
         point = pygame.mouse.get_pos()
         b_jvj.collision_bouton(fenetre, point)
         b_jvo.collision_bouton(fenetre, point)
@@ -182,12 +187,12 @@ def affichage_chargement(fenetre):
     sauvegarde_choisie = -1
 
     # récupérer les fichiers .txt
-    path = r'Listes_sauvegardes'
+    path = r'Liste_sauvegardes'
     tmp = []
     for files in os.walk(path):
         for filename in files:
             tmp.append(filename)
-
+    
     for j in range (len (tmp[2])):
         if tmp[2][j].endswith('.txt'):
             nb_sauv += 1
@@ -249,7 +254,7 @@ def affichage_chargement(fenetre):
                     if sauvegarde_choisie != -1:
                         running = False
                         quel_menu = MODE_DE_JEU
-                        nom_fichier = nom_sauvegarde[sauvegarde_choisie]
+                        nom_fichier = "Liste_sauvegardes/"+nom_sauvegarde[sauvegarde_choisie]
                         break
                     else:
                         affichage_erreur(fenetre, "Aucune sauvegarde sélectionnée !")
@@ -261,38 +266,43 @@ def affichage_chargement(fenetre):
                         confirmation = affichage_confirmation(fenetre, "Supprimer la sauvegarde ?")
 
                         if confirmation == True:
-                            # ======= MODIF DEB MENU DEROULANT + LISTES SAUVERGARDES =======
-                            # nombre de sauvegardes
-                            nb_sauv -= 1
-                            tab_sauvegarde.remove( tab_sauvegarde[sauvegarde_choisie] )
-                            nom_sauvegarde.remove( nom_sauvegarde[sauvegarde_choisie] )
-                            text_sauvegardes.remove( text_sauvegardes[sauvegarde_choisie] )
-                            text_sauvegardes_rect.remove( text_sauvegardes_rect[sauvegarde_choisie] )
-                            #modification des coordonnées
-                            for i in range(nb_sauv):
-                                tab_sauvegarde[i].changement_taille_bouton(5, 5 + i*SIZE/10, SIZE*4/5 - 10, SIZE/10 - 5)
-                                if len(nom_sauvegarde[i]) < 30:
-                                    font = pygame.font.Font('Interface_Graphique/Cafeteria-Bold.otf', int(SIZE / 15))
-                                else:
-                                    font = pygame.font.Font('Interface_Graphique/Cafeteria-Bold.otf', int(SIZE / (len(nom_sauvegarde[i])/2) ))
-                                tmp_text = font.render(nom_sauvegarde[i], True, "white")
-                                tmp_text_rect = tmp_text.get_rect(center = (SIZE*4/10, SIZE/20+i*SIZE/10) )
-                                text_sauvegardes_rect[i] = tmp_text_rect
 
-                            # menu déroulant    
-                            if nb_sauv > 3:
-                                menu = pygame.Surface( ( int(SIZE*4/5) , int(nb_sauv * SIZE/10) + 5 ) )
-                                area = pygame.Rect(0, 0, SIZE*4/5, SIZE*2/5 +5)
+                            verif_supprimer = supprimer_sauvegarde("Liste_sauvegardes/"+nom_sauvegarde[sauvegarde_choisie])
+                            if verif_supprimer == False:
+                                affichage_erreur(fenetre, "Erreur lors de la suppression")
                             else:
-                                menu = pygame.Surface( ( int(SIZE*4/5) , int(nb_sauv * SIZE/10) + 5 ) )
-                                area = pygame.Rect(0, 0, SIZE*4/5, SIZE*nb_sauv/10 +5)
-                            menu.blit( background_deroulant, (0, 0) )
-                            menu_rect = menu.get_rect()
+                                # ======= MODIF DEB MENU DEROULANT + LISTES SAUVERGARDES =======
+                                # nombre de sauvegardes
+                                nb_sauv -= 1
+                                tab_sauvegarde.remove( tab_sauvegarde[sauvegarde_choisie] )
+                                nom_sauvegarde.remove( nom_sauvegarde[sauvegarde_choisie] )
+                                text_sauvegardes.remove( text_sauvegardes[sauvegarde_choisie] )
+                                text_sauvegardes_rect.remove( text_sauvegardes_rect[sauvegarde_choisie] )
+                                #modification des coordonnées
+                                for i in range(nb_sauv):
+                                    tab_sauvegarde[i].changement_taille_bouton(5, 5 + i*SIZE/10, SIZE*4/5 - 10, SIZE/10 - 5)
+                                    if len(nom_sauvegarde[i]) < 30:
+                                        font = pygame.font.Font('Interface_Graphique/Cafeteria-Bold.otf', int(SIZE / 15))
+                                    else:
+                                        font = pygame.font.Font('Interface_Graphique/Cafeteria-Bold.otf', int(SIZE / (len(nom_sauvegarde[i])/2) ))
+                                    tmp_text = font.render(nom_sauvegarde[i], True, "white")
+                                    tmp_text_rect = tmp_text.get_rect(center = (SIZE*4/10, SIZE/20+i*SIZE/10) )
+                                    text_sauvegardes_rect[i] = tmp_text_rect
 
-                            menu_subsurface = menu.subsurface(area)
+                                # menu déroulant    
+                                if nb_sauv > 3:
+                                    menu = pygame.Surface( ( int(SIZE*4/5) , int(nb_sauv * SIZE/10) + 5 ) )
+                                    area = pygame.Rect(0, 0, SIZE*4/5, SIZE*2/5 +5)
+                                else:
+                                    menu = pygame.Surface( ( int(SIZE*4/5) , int(nb_sauv * SIZE/10) + 5 ) )
+                                    area = pygame.Rect(0, 0, SIZE*4/5, SIZE*nb_sauv/10 +5)
+                                menu.blit( background_deroulant, (0, 0) )
+                                menu_rect = menu.get_rect()
 
-                            sauvegarde_choisie = -1
-                            # ======= FIN MENU DEROULANT + LISTES SAUVERGARDES =======
+                                menu_subsurface = menu.subsurface(area)
+
+                                sauvegarde_choisie = -1
+                                # ======= FIN MENU DEROULANT + LISTES SAUVERGARDES =======
                     else:
                         affichage_erreur(fenetre, "Aucune sauvegarde sélectionnée !")
 
@@ -407,7 +417,9 @@ def affichage_choix_de_difficulte(fenetre):
 
         if running == False:
             break
-                
+        
+        fenetre.blit(background, (0, 0))
+        b_titre.affichage_bouton(fenetre)
         point = pygame.mouse.get_pos()
         b_facile.collision_bouton(fenetre, point)
         b_intermediare.collision_bouton(fenetre, point)
@@ -466,6 +478,8 @@ def affichage_commencer(fenetre):
         if running == False:
             break
 
+        fenetre.blit(background, (0, 0))
+        b_titre.affichage_bouton(fenetre)
         point = pygame.mouse.get_pos()
         b_oui.collision_bouton(fenetre, point)
         b_non.collision_bouton(fenetre, point)
@@ -500,7 +514,6 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
 
     pygame.display.flip()
 
-    #grille = numpy.zeros((ROW_COUNT,COLUMN_COUNT), dtype = int)
     affichage_grille_jeton(fenetre, grille)
 
     tour = qui_commence
@@ -1032,23 +1045,26 @@ def affichage_aide(fenetre, grille):
         b_fleche.affichage_bouton(fenetre)
 
 def affichage_jeton(fenetre, grille, num_ligne, num_colonne):
-    """
-        Cette fonction affiche un jeton.
-        Le jeton sera affiché sur la plus basse case non occupée d'une colonne choisie.
-                
-        Paramètres : 
-            fenetre : la fenêtre de l'écran
-            grille : grille de jetons
-            num_ligne : entier indiquant le numéro de la ligne de la grille
-            num_colonne : entier indiquant le numéro de la colonne de la grille
-    """
-    pass
+    if grille.grille[num_ligne][num_colonne] is not None:
+        if grille.grille[num_ligne][num_colonne].couleur == 1:
+            b_jeton_jaune = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Jeton_jaune.png", "Interface_Graphique/Sprites/Jeton_jaune.png",SIZE * 0.41/10 + num_colonne * (SIZE*1.068/10), SIZE*2.58/10 + num_ligne * (SIZE*1.068/10), SIZE*0.89/10, SIZE*0.89/10) #SIZE*7.92/10 - num_ligne * (SIZE*1.068/10)
+            b_jeton_jaune.affichage_bouton(fenetre)
+
+        else:
+            b_jeton_jaune2 = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Jeton_rouge.png", "Interface_Graphique/Sprites/Jeton_rouge.png", SIZE * 0.41/10 + num_colonne * (SIZE*1.068/10), SIZE*2.58/10 + num_ligne * (SIZE*1.068/10), SIZE*0.89/10, SIZE*0.89/10)
+            b_jeton_jaune2.affichage_bouton(fenetre)
 
 def affichage_grille_jeton(fenetre, grille): 
     b_grille = Gestion_bouton.Bouton("Interface_Graphique/Sprites/grille.png", "Interface_Graphique/Sprites/grille.png", SIZE*0.20/10, SIZE*2.4/10, SIZE*7.7/10, SIZE*6.6/10)
     b_grille.affichage_bouton(fenetre)
+
+    afficher_grille(grille.grille)
+    for ligne in range(grille.ligne):
+        for colonne in range(grille.colonne):
+            affichage_jeton(fenetre, grille, ligne, colonne)
     
 def selection_colonne(fenetre, event):
+    num_colonne = 0
     """
         Cette fonction permet de vérifier si l'evenement passé en paramètre est un clic gauche.
         Si c'est un clic gauche et qu'il a été fait dans la zone de la grille, càd dans une des colonnes,
@@ -1076,11 +1092,9 @@ def lancer_affichage():
     print("SIZE =", SIZE)
     fenetre = pygame.display.set_mode((SIZE, SIZE))
     #init une grille à zero
-    # cls_grille = Gestion_grille.Grille(6,7)
-    # grille = numpy.zeros((ROW_COUNT,COLUMN_COUNT), dtype = int)
-    grille = 0
+    cls_grille = Gestion_grille.Grille(6,7)
     running = True
-    quel_menu = 0
+    quel_menu = MENU_PRINCIPAL
     nom_fichier = ""
     mode_de_jeu = 0
     qui_commence = 2
@@ -1090,7 +1104,8 @@ def lancer_affichage():
     while running:
         if quel_menu == MENU_PRINCIPAL:
             nom_fichier = ""
-            print("nom_fichier =", nom_fichier)
+            cls_grille = Gestion_grille.Grille(6,7)
+            #print("nom_fichier =", nom_fichier)
             quel_menu = affichage_menu_principal(fenetre)
             
         elif quel_menu == MODE_DE_JEU:
@@ -1099,24 +1114,26 @@ def lancer_affichage():
                     
         elif quel_menu == CHARGEMENT: 
             quel_menu, nom_fichier = affichage_chargement(fenetre)
-            print("nom_fichier =", nom_fichier)
+            #print("nom_fichier =", nom_fichier)
             # Grille à afficher ici ou dans quel_menu == PARTIE?
             
-            # resultat = chargement(nom_fichier)
-            # if type(resultat) is bool:
-            #   affichage_erreur(fenetre, "Le fichier n'a pas pu être chargé")
-            # else:
-            #   cls_grille = resultatrejouer
+            if quel_menu == MODE_DE_JEU:
+                resultat = chargement(nom_fichier)
+                if type(resultat) is bool:
+                    affichage_erreur(fenetre, "Le fichier n'a pas pu être chargé")
+                    quel_menu = CHARGEMENT
+                else:
+                    cls_grille = resultat[1]
 
             #print("quel_menu = ",quel_menu)
         elif quel_menu == PARTIE: 
-            print("nom_fichier =", nom_fichier)
-            print("quel_menu =", quel_menu)
-            print("mode_de_jeu =", mode_de_jeu)
-            print("difficulté =", niveau_de_difficulte)
-            print("qui_commence =", qui_commence)
+            # afficher_grille(cls_grille.grille)
+            # print("quel_menu =", quel_menu)
+            # print("mode_de_jeu =", mode_de_jeu)
+            # print("difficulté =", niveau_de_difficulte)
+            # print("qui_commence =", qui_commence)
             quel_menu = FIN_DE_PARTIE
-            texte_fin_de_partie = affichage_partie(fenetre, 0, mode_de_jeu, qui_commence, niveau_de_difficulte)
+            texte_fin_de_partie = affichage_partie(fenetre, cls_grille, mode_de_jeu, qui_commence, niveau_de_difficulte)
         elif quel_menu == FIN_DE_PARTIE:
             quel_menu = affichage_fin_de_partie(fenetre, texte_fin_de_partie)
             nom_fichier = ""
