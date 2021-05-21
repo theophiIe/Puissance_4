@@ -77,6 +77,8 @@ def supprimer_sauvegarde(nom_fichier):
             True  : si la suppression a été correctement effectuée.
             False : si la suppression a rencontré un problème.
     """
+    nom_fichier = "Liste_sauvegardes/" + nom_fichier
+
     if verifie_existence_fichier(nom_fichier):
         os.remove(nom_fichier)
         if verifie_existence_fichier(nom_fichier):
@@ -102,6 +104,8 @@ def sauvegarde(grille, nom_fichier):
             True  : si la sauvegarde a été correctement effectuée.
             False : si la sauvegarde a rencontré un problème.
     """
+    nom_fichier = "Liste_sauvegardes/" + nom_fichier
+
     f = open(nom_fichier, "w")
 
     for i in range(6):
@@ -110,7 +114,7 @@ def sauvegarde(grille, nom_fichier):
             if grille[i][j] is None:
                 x = '0'
             elif str(type(grille[i][j])).find('Jeton') != -1:
-                x = grille[i][j].couleur
+                x = str(grille[i][j].couleur)
             
             if x == '-1':
                 return False
