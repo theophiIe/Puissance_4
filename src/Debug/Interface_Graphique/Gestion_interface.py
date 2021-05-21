@@ -603,7 +603,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                 elif colonne_selectionnee != -1 and grille.coup_valide(colonne_selectionnee):
                     num_ligne, num_colonne, joueur_actuel, joueur_suivant = actions_coup_joueur(grille, colonne_selectionnee, joueur_actuel, joueur_suivant, niveau_de_difficulte)
                     affichage_jeton(fenetre, grille, num_ligne, num_colonne)
-                    
+                    afficher_grille(grille.grille)
 
                     val_fin_de_partie = fin_de_partie(grille, (joueur_suivant.commence-1)%2 + 1)
                     if val_fin_de_partie != 0:
