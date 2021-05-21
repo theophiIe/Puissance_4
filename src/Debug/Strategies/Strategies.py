@@ -74,10 +74,10 @@ def fail_soft(cls_grille, profondeur, alpha, beta, joueur_actuel, joueur_suivant
     if profondeur == 0 or fin_partie:
         if fin_partie:
             if cls_grille.coup_gagnant((joueur_actuel.commence-1)%2 + 1):
-                return (50000, None)
+                return (-500000000000000, None)
             
             elif cls_grille.coup_gagnant((joueur_suivant.commence-1)%2 + 1):
-                return (-5000, None)
+                return (50000000000000, None)
             
             else:
                 return (0, None)
