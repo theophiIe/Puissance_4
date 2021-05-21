@@ -69,7 +69,7 @@ class Grille:
         j = 0
         for jeton in g_contenu_grille:
             if(jeton != '0'):
-                self.grille[i][j] = Gestion_jeton.Jeton(jeton)
+                self.grille[i][j] = Gestion_jeton.Jeton(int(jeton))
             j += 1
             if(j%self.colonne == 0):
                 j = 0
