@@ -1,6 +1,3 @@
-import sys
-sys.path.append('../Gestion_de_jeu')
-
 import Gestion_grille
 import Gestion_jeton
 
@@ -63,7 +60,6 @@ def verifie_existence_fichier(nom_fichier):
             True  : si le nom de fichier est indisponible.
             False : si le nom de fichier est disponible.
     """
-
     if os.path.exists(nom_fichier):
         return True
     return False
@@ -81,7 +77,6 @@ def supprimer_sauvegarde(nom_fichier):
             True  : si la suppression a été correctement effectuée.
             False : si la suppression a rencontré un problème.
     """
-
     if verifie_existence_fichier(nom_fichier):
         os.remove(nom_fichier)
         if verifie_existence_fichier(nom_fichier):

@@ -1,8 +1,4 @@
-import Sauvegarde
-
-import sys
-sys.path.append('../Gestion_de_jeu')
-
+from Sauvegarde import *
 import Gestion_grille
 
 def lecture_fichier(nom_fichier):
@@ -28,7 +24,7 @@ def chargement(nom_fichier):
     
     if(test_corruption(contenu_fichier)):
         return False
-
+        
     grille = Gestion_grille.Grille(6,7)
     grille.remplir_grille(contenu_fichier)
     return True, grille
