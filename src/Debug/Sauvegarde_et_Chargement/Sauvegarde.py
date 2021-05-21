@@ -1,5 +1,4 @@
 import os
-import glob
 import time
 
 def information_sauvegarde():
@@ -13,13 +12,15 @@ def information_sauvegarde():
         chaînes de caractères.
     """
 
-    sauvegardes = glob.glob('*.txt')
+    all_files = os.listdir("../Liste_sauvegardes")
+    sauvegardes = filter(lambda x: x[-4:] == '.txt', all_files)
+
     derniere_date_modification = []
     date_creation = []
 
     for x in sauvegardes:
-        derniere_date_modification.append(time.ctime(os.path.getmtime(x)))
-        date_creation.append(time.ctime(os.path.getctime(x)))
+        derniere_date_modification.append(time.ctime(os.path.getmtime('../Liste_sauvegardes/' + x)))
+        date_creation.append(time.ctime(os.path.getctime('../Liste_sauvegardes/' + x)))
 
     return sauvegardes, derniere_date_modification, date_creation
 
