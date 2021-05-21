@@ -20,6 +20,7 @@ def test_corruption(contenu_fichier):
     return False
 
 def chargement(nom_fichier):
+    nom_fichier = "Liste_sauvegardes/" + nom_fichier
     contenu_fichier = lecture_fichier(nom_fichier)
     
     if(test_corruption(contenu_fichier)):
