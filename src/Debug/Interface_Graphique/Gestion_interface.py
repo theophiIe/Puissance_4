@@ -603,7 +603,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
 
     return texte_fin_de_partie
 
-def affichage_sauvegarde(fenetre):
+def affichage_sauvegarde(fenetre, grille):
     
     background = pygame.image.load("Interface_Graphique/Sprites/Backgroundv5.png") 
     fenetre.blit(background, (0, 0))
@@ -634,7 +634,7 @@ def affichage_sauvegarde(fenetre):
     sauvegarde_choisie = -1
 
     # récupérer les fichiers .txt
-    path = r'Listes_sauvegardes'
+    path = r'Liste_sauvegardes'
     tmp = []
     for files in os.walk(path):
         for filename in files:
@@ -802,7 +802,7 @@ def affichage_sauvegarde(fenetre):
 
         pygame.display.flip()
 
-def affichage_nouvelle_sauvegarde(fenetre):
+def affichage_nouvelle_sauvegarde(fenetre, grille):
     background = pygame.image.load("Interface_Graphique/Sprites/Backgroundv5.png") 
     fenetre.blit(background, (0, 0))
 
