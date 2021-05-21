@@ -1,4 +1,5 @@
 import Gestion_joueur
+import Gestion_jeton
 from Strategies import *
 import math
 
@@ -64,9 +65,45 @@ def actions_coup_joueur(grille, num_colonne, joueur_actuel, joueur_suivant, nive
         num_ligne = joueur_actuel.jouer_coup(grille.grille,num_colonne)
         joueur_actuel,joueur_suivant = joueur_suivant,joueur_actuel
     else:
-        num_colonne = fail_soft(grille, (joueur_actuel.difficulte+1)+joueur_actuel.difficulte, -math.inf, math.inf, joueur_actuel, joueur_suivant)[1]
-        num_ligne = joueur_actuel.jouer_coup(grille.grille,num_colonne)
-        joueur_actuel,joueur_suivant = joueur_suivant,joueur_actuel
+
+        coup_joue = False
+
+        for num_colonne in range(grille.colonne):
+            if grille.coup_valide(num_colonne) != True:
+                continue
+            else:
+                num_ligne = joueur_actuel.jouer_coup(grille.grille, num_colonne)
+                if grille.coup_gagnant((joueur_actuel.commence - 1) % 2 + 1):
+                    coup_joue = True
+                    joueur_actuel,joueur_suivant = joueur_suivant,joueur_actuel
+                    break
+
+                else:
+                    Gestion_jeton.Jeton.decremente_nombre_jeton()
+                    grille.grille[num_ligne][num_colonne] = None
+
+        if coup_joue == False:
+            for num_colonne in range(grille.colonne):
+                if grille.coup_valide(num_colonne) != True:
+                    continue
+                else:
+                    num_ligne = joueur_suivant.jouer_coup(grille.grille, num_colonne)
+                    if grille.coup_gagnant((joueur_suivant.commence - 1) % 2 + 1):
+                        coup_joue = True
+                        Gestion_jeton.Jeton.decremente_nombre_jeton()
+                        grille.grille[num_ligne][num_colonne] = None
+                        num_ligne = joueur_actuel.jouer_coup(grille.grille, num_colonne)
+                        joueur_actuel,joueur_suivant = joueur_suivant,joueur_actuel
+                        break
+                    
+                    else:
+                        Gestion_jeton.Jeton.decremente_nombre_jeton()
+                        grille.grille[num_ligne][num_colonne] = None
+
+        if coup_joue == False:
+            num_colonne = fail_soft(grille, (joueur_actuel.difficulte+1)+joueur_actuel.difficulte, -math.inf, math.inf, joueur_actuel, joueur_suivant)[1]
+            num_ligne = joueur_actuel.jouer_coup(grille.grille,num_colonne)
+            joueur_actuel,joueur_suivant = joueur_suivant,joueur_actuel
     
     return num_ligne, num_colonne, joueur_actuel, joueur_suivant
     
