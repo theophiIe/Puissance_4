@@ -636,6 +636,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                 elif colonne_selectionnee != -1 and grille.coup_valide(colonne_selectionnee):
                     num_ligne, num_colonne, joueur_actuel, joueur_suivant = actions_coup_joueur(grille, colonne_selectionnee, joueur_actuel, joueur_suivant, niveau_de_difficulte)
                     affichage_jeton(fenetre, grille, num_ligne, num_colonne)
+                    pygame.display.flip()
                     
                     pygame.mixer.music.load('Interface_Graphique/Sounds/jeton.wav')
                     pygame.mixer.music.set_volume(0.3)
@@ -643,30 +644,25 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
 
                     val_fin_de_partie = fin_de_partie(grille, (joueur_suivant.commence-1)%2 + 1)
                     if val_fin_de_partie != 0:
+                        pygame.time.delay(2000)
                         if val_fin_de_partie == 2:
-                            if tour == True:
+                            if joueur_suivant.commence:
                                 return "Vainqueur : J1 !"
-                            elif tour == False and mode_de_jeu == True:
+                            else:
                                 return "Vainqueur : J2 !"
-                            elif tour == False and mode_de_jeu == False:
-                                return "Vainqueur : ORDI !"
                         else:
                             return "Match Nul !"
                     tour = not tour
                     if type(joueur_actuel) == Gestion_joueur.Ordinateur:
                         num_ligne, num_colonne, joueur_actuel, joueur_suivant = actions_coup_joueur(grille, colonne_selectionnee, joueur_actuel, joueur_suivant, niveau_de_difficulte)
                         affichage_jeton(fenetre, grille, num_ligne, num_colonne)
-                        afficher_grille(grille.grille)
+                        pygame.display.flip()
 
                         val_fin_de_partie = fin_de_partie(grille, (joueur_suivant.commence-1)%2 + 1)
                         if val_fin_de_partie != 0:
+                            pygame.time.delay(2000)
                             if val_fin_de_partie == 2:
-                                if tour == True:
-                                    return "Vainqueur : J1 !"
-                                elif tour == False and mode_de_jeu == True:
-                                    return "Vainqueur : J2 !"
-                                elif tour == False and mode_de_jeu == False:
-                                    return "Vainqueur : ORDI !"
+                                return "Vainqueur : ORDI !"
                             else:
                                 return "Match Nul !"
                         tour = not tour
