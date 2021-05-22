@@ -1019,7 +1019,7 @@ def affichage_fin_de_partie(fenetre, texte_fin_de_partie):
     fenetre.blit(texte_aff, texte_rect)
 
     #DEBUT SON
-    pygame.mixer.music.load('Interface_Graphique/Sounds/OMG.wav') #victoire_2.wav
+    pygame.mixer.music.load('Interface_Graphique/Sounds/victoire_2.wav') #victoire_2.wav
     pygame.mixer.music.set_volume(0.1)
     pygame.mixer.music.play()
     #FIN SON 
