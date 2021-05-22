@@ -69,6 +69,7 @@ def affichage_menu_principal(fenetre):
                 pygame.quit()
 
             if event.type == pygame.MOUSEBUTTONDOWN:
+
                 if event.button == 1 and b_jouer.rectangle.collidepoint(event.pos):
                     pygame.mixer.music.load('Interface_Graphique/Sounds/clic.wav')
                     pygame.mixer.music.set_volume(0.2)
@@ -132,11 +133,11 @@ def affichage_mode_de_jeu(fenetre):
             
             if event.type == pygame.MOUSEBUTTONDOWN:
                 
-                pygame.mixer.music.load('Interface_Graphique/Sounds/clic.wav')
-                pygame.mixer.music.set_volume(0.2)
-                pygame.mixer.music.play()
 
                 if event.button == 1 and b_jvj.rectangle.collidepoint(event.pos):
+                    pygame.mixer.music.load('Interface_Graphique/Sounds/clic.wav')
+                    pygame.mixer.music.set_volume(0.2)
+                    pygame.mixer.music.play()
                     qui_commence = -1
                     retour, qui_commence = affichage_commencer(fenetre)
                     if retour == False:
@@ -147,6 +148,9 @@ def affichage_mode_de_jeu(fenetre):
                         break
 
                 elif event.button == 1 and b_jvo.rectangle.collidepoint(event.pos):
+                    pygame.mixer.music.load('Interface_Graphique/Sounds/clic.wav')
+                    pygame.mixer.music.set_volume(0.2)
+                    pygame.mixer.music.play()
                     niveau_de_difficulte, qui_commence = affichage_choix_de_difficulte(fenetre)
                     if niveau_de_difficulte != -1:
                         running = False
@@ -155,6 +159,9 @@ def affichage_mode_de_jeu(fenetre):
                         break
                 
                 elif event.button == 1 and b_retour.rectangle.collidepoint(event.pos):
+                    pygame.mixer.music.load('Interface_Graphique/Sounds/clic.wav')
+                    pygame.mixer.music.set_volume(0.2)
+                    pygame.mixer.music.play()
                     running = False
                     quel_menu = MENU_PRINCIPAL
                     mode_de_jeu = -1
@@ -269,11 +276,11 @@ def affichage_chargement(fenetre):
             
             if event.type == pygame.MOUSEBUTTONDOWN:
                 
-                pygame.mixer.music.load('Interface_Graphique/Sounds/clic.wav')
-                pygame.mixer.music.set_volume(0.2)
-                pygame.mixer.music.play()
-
                 if event.button == 1 and b_charger.rectangle.collidepoint(event.pos):
+                    pygame.mixer.music.load('Interface_Graphique/Sounds/clic.wav')
+                    pygame.mixer.music.set_volume(0.2)
+                    pygame.mixer.music.play()
+
                     if sauvegarde_choisie != -1:
                         running = False
                         quel_menu = MODE_DE_JEU
@@ -283,6 +290,9 @@ def affichage_chargement(fenetre):
                         affichage_erreur(fenetre, "Aucune sauvegarde sélectionnée !")
 
                 elif event.button == 1 and b_supprimer.rectangle.collidepoint(event.pos):
+                    pygame.mixer.music.load('Interface_Graphique/Sounds/clic.wav')
+                    pygame.mixer.music.set_volume(0.2)
+                    pygame.mixer.music.play()
 
                     if sauvegarde_choisie != -1:
                         
@@ -330,6 +340,10 @@ def affichage_chargement(fenetre):
                         affichage_erreur(fenetre, "Aucune sauvegarde sélectionnée !")
 
                 elif event.button == 1 and b_retour.rectangle.collidepoint(event.pos):
+                    pygame.mixer.music.load('Interface_Graphique/Sounds/clic.wav')
+                    pygame.mixer.music.set_volume(0.2)
+                    pygame.mixer.music.play()
+
                     running = False
                     quel_menu = MENU_PRINCIPAL
                     nom_fichier = ""
@@ -411,12 +425,10 @@ def affichage_choix_de_difficulte(fenetre):
                 pygame.quit()
             
             if event.type == pygame.MOUSEBUTTONDOWN:
-                
-                pygame.mixer.music.load('Interface_Graphique/Sounds/clic.wav')
-                pygame.mixer.music.set_volume(0.2)
-                pygame.mixer.music.play()
-
                 if event.button == 1 and b_facile.rectangle.collidepoint(event.pos):
+                    pygame.mixer.music.load('Interface_Graphique/Sounds/clic.wav')
+                    pygame.mixer.music.set_volume(0.2)
+                    pygame.mixer.music.play()
                     niveau_de_difficulte = 0
                     retour, quel_joueur_joue = affichage_commencer(fenetre)
                     if retour == False:
@@ -424,6 +436,9 @@ def affichage_choix_de_difficulte(fenetre):
                         break
 
                 elif event.button == 1 and b_intermediare.rectangle.collidepoint(event.pos):
+                    pygame.mixer.music.load('Interface_Graphique/Sounds/clic.wav')
+                    pygame.mixer.music.set_volume(0.2)
+                    pygame.mixer.music.play()
                     niveau_de_difficulte = 1
                     retour, quel_joueur_joue = affichage_commencer(fenetre)
                     if retour == False:
@@ -431,6 +446,9 @@ def affichage_choix_de_difficulte(fenetre):
                         break
 
                 elif event.button == 1 and b_difficile.rectangle.collidepoint(event.pos):
+                    pygame.mixer.music.load('Interface_Graphique/Sounds/clic.wav')
+                    pygame.mixer.music.set_volume(0.2)
+                    pygame.mixer.music.play()
                     niveau_de_difficulte = 2
                     retour, quel_joueur_joue = affichage_commencer(fenetre)
                     if retour == False:
@@ -438,6 +456,9 @@ def affichage_choix_de_difficulte(fenetre):
                         break
 
                 elif event.button == 1 and b_retour.rectangle.collidepoint(event.pos):
+                    pygame.mixer.music.load('Interface_Graphique/Sounds/clic.wav')
+                    pygame.mixer.music.set_volume(0.2)
+                    pygame.mixer.music.play()
                     running = False
                     niveau_de_difficulte = -1
                     quel_joueur_joue = -1
@@ -485,24 +506,28 @@ def affichage_commencer(fenetre):
                 pygame.quit()
             
             if event.type == pygame.MOUSEBUTTONDOWN:
-                
-                pygame.mixer.music.load('Interface_Graphique/Sounds/clic.wav')
-                pygame.mixer.music.set_volume(0.2)
-                pygame.mixer.music.play()
-
                 if event.button == 1 and b_oui.rectangle.collidepoint(event.pos):
+                    pygame.mixer.music.load('Interface_Graphique/Sounds/clic.wav')
+                    pygame.mixer.music.set_volume(0.2)
+                    pygame.mixer.music.play()
                     running = False
                     retour = False
                     quel_joueur_joue = True
                     break
 
                 elif event.button == 1 and b_non.rectangle.collidepoint(event.pos):
+                    pygame.mixer.music.load('Interface_Graphique/Sounds/clic.wav')
+                    pygame.mixer.music.set_volume(0.2)
+                    pygame.mixer.music.play()
                     running = False
                     retour = False
                     quel_joueur_joue = False
                     break
 
                 elif event.button == 1 and b_retour.rectangle.collidepoint(event.pos):
+                    pygame.mixer.music.load('Interface_Graphique/Sounds/clic.wav')
+                    pygame.mixer.music.set_volume(0.2)
+                    pygame.mixer.music.play()
                     running = False
                     retour = True
                     quel_joueur_joue = -1
@@ -572,11 +597,13 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 
+
                 colonne_selectionnee = selection_colonne(fenetre, event)
 
                 if event.button == 1 and b_aide.rectangle.collidepoint(event.pos):
-                    
-
+                    pygame.mixer.music.load('Interface_Graphique/Sounds/clic.wav')
+                    pygame.mixer.music.set_volume(0.3)
+                    pygame.mixer.music.play()
                     if aide == 0:
                         aide = 1
                     else:
@@ -585,13 +612,19 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                         affichage_grille_jeton(fenetre, grille)
 
                 elif event.button == 1 and b_sauvegarde.rectangle.collidepoint(event.pos):
+                    pygame.mixer.music.load('Interface_Graphique/Sounds/clic.wav')
+                    pygame.mixer.music.set_volume(0.3)
+                    pygame.mixer.music.play()
+
                     affichage_sauvegarde(fenetre, grille)
                     fenetre.blit(background, (0, 0))
                     affichage_grille_jeton(fenetre, grille)
                     
-                elif event.button == 1 and b_abandon.rectangle.collidepoint(event.pos):
-                    
-                    
+                elif event.button == 1 and b_abandon.rectangle.collidepoint(event.pos):      
+                    pygame.mixer.music.load('Interface_Graphique/Sounds/clic.wav')
+                    pygame.mixer.music.set_volume(0.3)
+                    pygame.mixer.music.play()
+
                     confirmation = affichage_confirmation(fenetre, "Êtes-vous sûr ?")
                     fenetre.blit(background, (0, 0))
                     affichage_grille_jeton(fenetre, grille)
@@ -603,7 +636,10 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                 elif colonne_selectionnee != -1 and grille.coup_valide(colonne_selectionnee):
                     num_ligne, num_colonne, joueur_actuel, joueur_suivant = actions_coup_joueur(grille, colonne_selectionnee, joueur_actuel, joueur_suivant, niveau_de_difficulte)
                     affichage_jeton(fenetre, grille, num_ligne, num_colonne)
-                    afficher_grille(grille.grille)
+                    
+                    pygame.mixer.music.load('Interface_Graphique/Sounds/jeton.wav')
+                    pygame.mixer.music.set_volume(0.3)
+                    pygame.mixer.music.play()
 
                     val_fin_de_partie = fin_de_partie(grille, (joueur_suivant.commence-1)%2 + 1)
                     if val_fin_de_partie != 0:
@@ -620,7 +656,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                     if type(joueur_actuel) == Gestion_joueur.Ordinateur:
                         num_ligne, num_colonne, joueur_actuel, joueur_suivant = actions_coup_joueur(grille, colonne_selectionnee, joueur_actuel, joueur_suivant, niveau_de_difficulte)
                         affichage_jeton(fenetre, grille, num_ligne, num_colonne)
-                        
+                        afficher_grille(grille.grille)
 
                         val_fin_de_partie = fin_de_partie(grille, (joueur_suivant.commence-1)%2 + 1)
                         if val_fin_de_partie != 0:
@@ -635,9 +671,6 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                                 return "Match Nul !"
                         tour = not tour
                     
-                    pygame.mixer.music.load('Interface_Graphique/Sounds/jeton.wav')
-                    pygame.mixer.music.set_volume(0.7)
-                    pygame.mixer.music.play()
                     
         if running == False:
             break
@@ -990,9 +1023,8 @@ def affichage_fin_de_partie(fenetre, texte_fin_de_partie):
     fenetre.blit(texte_aff, texte_rect)
 
     #DEBUT SON
-    
     pygame.mixer.music.load('Interface_Graphique/Sounds/OMG.wav') #victoire_2.wav
-    pygame.mixer.music.set_volume(0.03)
+    pygame.mixer.music.set_volume(0.1)
     pygame.mixer.music.play()
     #FIN SON 
     
