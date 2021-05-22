@@ -4,31 +4,35 @@ from Partie import *
 
 
 def evaluation_quadruplet(quadruplet, couleur_jeton): 
+    nb_vide = 0
     nb_jeton = 0
     nb_jeton_adv = 0
 
     for incr in range(len(quadruplet)):
-        if quadruplet[incr] is not None and quadruplet[incr].couleur == couleur_jeton:
-            nb_jeton += 1
+        if quadruplet[incr] is None:
+            nb_vide += 1
+        else:
+            if quadruplet[incr] is not None and quadruplet[incr].couleur == couleur_jeton:
+                nb_jeton += 1
 
-        elif quadruplet[incr] is not None and quadruplet[incr].couleur != couleur_jeton :
-            nb_jeton_adv += 1
+            elif quadruplet[incr] is not None and quadruplet[incr].couleur != couleur_jeton :
+                nb_jeton_adv += 1
+            
     
-    if nb_jeton > 0 and nb_jeton_adv > 0:
+    if nb_vide == 4:
         return 0
+    
+    if nb_jeton == 2 and nb_vide == 2:
+        return 10
+    
+    elif nb_jeton == 3 and nb_vide == 1:
+        return 25
+    
+    elif nb_jeton == 4:
+        return 500
 
-    if nb_jeton > 0:
-        if nb_jeton == 2:
-            return 10
-        
-        elif nb_jeton == 3:
-            return 25
-        
-        elif nb_jeton == 4:
-            return 500
-    else:
-        if nb_jeton_adv == 3:
-            return -20
+    if nb_jeton_adv == 3 and nb_vide == 1:
+        return -20
 
     return 0
 
@@ -83,7 +87,7 @@ def fail_soft(cls_grille, profondeur, alpha, beta, joueur_actuel, joueur_suivant
                 return (0, None)
         
         else:
-            return (-evaluation_coup(cls_grille, (joueur_actuel.commence-1)%2 + 1), None)
+            return (-(2*evaluation_coup(cls_grille, (joueur_actuel.commence-1)%2 + 1)-3*evaluation_coup(cls_grille, (joueur_suivant.commence-1)%2 + 1)), None)
 
     courant = -math.inf
     meilleur_coup = 0
