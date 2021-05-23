@@ -33,8 +33,12 @@ def attribution_des_joueurs(qui_commence, mode_de_jeu, niveau_de_difficulte):
         Cette fonction renvoie deux joueurs (joueur_actuel, joueur_suivant)
     """
     if mode_de_jeu == True:
-        joueur_actuel=Gestion_joueur.Joueur(True)
-        joueur_suivant=Gestion_joueur.Joueur(False)
+        if qui_commence == True:
+            joueur_actuel=Gestion_joueur.Joueur(True)
+            joueur_suivant=Gestion_joueur.Joueur(False)
+        else:
+            joueur_actuel=Gestion_joueur.Joueur(False)
+            joueur_suivant=Gestion_joueur.Joueur(True)
     else: 
         if qui_commence == True:
             joueur_actuel=Gestion_joueur.Joueur(True)
