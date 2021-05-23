@@ -161,6 +161,9 @@ def affichage_menu_principal(fenetre):
                     b_titre.affichage_bouton(fenetre)   
                     b_langue_anglais.affichage_bouton(fenetre)
                     if MUTE_SOUND == 0:
+                        pygame.mixer.music.load('Interface_Graphique/Sounds/english.wav')
+                        pygame.mixer.music.set_volume(0.5)
+                        pygame.mixer.music.play()
                         b_son.affichage_bouton(fenetre)
                     else:
                         b_son_off.affichage_bouton(fenetre)
@@ -179,6 +182,9 @@ def affichage_menu_principal(fenetre):
                     b_titre.affichage_bouton(fenetre)   
                     b_langue_francais.affichage_bouton(fenetre)
                     if MUTE_SOUND == 0:
+                        pygame.mixer.music.load('Interface_Graphique/Sounds/francais.wav')
+                        pygame.mixer.music.set_volume(0.5)
+                        pygame.mixer.music.play()
                         b_son.affichage_bouton(fenetre)
                     else:
                         b_son_off.affichage_bouton(fenetre)
