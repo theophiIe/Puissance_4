@@ -630,25 +630,33 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
 
     print(qui_commence)
     
-    b_j1 = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_j1.png", "Interface_Graphique/Sprites/Bouton_j1_2.png", SIZE*8.15/10, SIZE*0.5/10, SIZE*1.5/10, SIZE/15)
+    b_j1 = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_j1.png", "Interface_Graphique/Sprites/Bouton_j1_2.png", SIZE*8/10, SIZE*0.32/10, SIZE*1.83/10, SIZE/15)
     b_j1.affichage_bouton(fenetre)
 
     if mode_de_jeu == True:
-        b_j2 = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_j2.png", "Interface_Graphique/Sprites/Bouton_j2_2.png", SIZE*8.15/10, SIZE*2/10, SIZE*1.5/10, SIZE/15)
+        b_j2 = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_j2.png", "Interface_Graphique/Sprites/Bouton_j2_2.png", SIZE*8/10, SIZE*1.32/10, SIZE*1.83/10, SIZE/15)
         b_j2.affichage_bouton(fenetre)
     else:
-        b_j2 = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_ordi.png", "Interface_Graphique/Sprites/Bouton_ordi_2.png", SIZE*8.15/10, SIZE*2/10, SIZE*1.5/10, SIZE/15)
+        b_j2 = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_ordi.png", "Interface_Graphique/Sprites/Bouton_ordi_2.png", SIZE*8/10, SIZE*1.32/10, SIZE*1.83/10, SIZE/15)
         b_j2.affichage_bouton(fenetre)
 
+
     joueur_actuel, joueur_suivant = attribution_des_joueurs(qui_commence, mode_de_jeu, niveau_de_difficulte)
-    
-    b_aide = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_aide.png", "Interface_Graphique/Sprites/Bouton_aide2.png", SIZE*8.15/10, SIZE*5/10, SIZE*1.5/10, SIZE/15)
+
+    if type(joueur_actuel) == Gestion_joueur.Ordinateur:
+        joueur_actuel.premier_coup(grille.grille)
+        affichage_jeton(fenetre, grille, 5, 3)
+        joueur_actuel, joueur_suivant = joueur_suivant, joueur_actuel
+        b_j1.affichage_bouton_survole(fenetre)
+        b_j2.affichage_bouton(fenetre)
+
+    b_aide = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_aide.png", "Interface_Graphique/Sprites/Bouton_aide2.png", SIZE*8.06/10, SIZE*5/10, SIZE*1.77/10, SIZE/15)
     b_aide.affichage_bouton(fenetre)
 
-    b_sauvegarde = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_sauv.png", "Interface_Graphique/Sprites/Bouton_sauv2.png", SIZE*8.15/10, SIZE*6.5/10, SIZE*1.5/10, SIZE/15)
+    b_sauvegarde = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_sauv.png", "Interface_Graphique/Sprites/Bouton_sauv2.png", SIZE*8.06/10, SIZE*6.5/10, SIZE*1.77/10, SIZE/15)
     b_sauvegarde.affichage_bouton(fenetre)
 
-    b_abandon = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_abandon.png", "Interface_Graphique/Sprites/Bouton_abandon2.png", SIZE*8.15/10, SIZE*8/10, SIZE*1.5/10, SIZE/15)
+    b_abandon = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_abandon.png", "Interface_Graphique/Sprites/Bouton_abandon2.png", SIZE*8.06/10, SIZE*8/10, SIZE*1.77/10, SIZE/15)
     b_abandon.affichage_bouton(fenetre)
 
     pygame.display.flip()
