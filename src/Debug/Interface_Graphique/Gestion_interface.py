@@ -476,7 +476,7 @@ def affichage_chargement(fenetre):
                                 # ======= FIN MENU DEROULANT + LISTES SAUVERGARDES =======
                     else:
                         if pygame.mixer.get_init() != None:
-                            pygame.mixer.music.load('Interface_Graphique/Sounds/erreur.wav')
+                            pygame.mixer.music.load('Interface_Graphique/Sounds/erro.wav')
                             pygame.mixer.music.set_volume(0.3)
                             pygame.mixer.music.play()
                         affichage_erreur(fenetre, "Aucune sauvegarde sélectionnée !")
@@ -1311,7 +1311,10 @@ def affichage_nouvelle_sauvegarde(fenetre, grille):
 
 # MENU 8
 def affichage_fin_de_partie(fenetre, texte_fin_de_partie):
-    
+    if pygame.mixer.get_init() != None:
+        pygame.mixer.music.load('Interface_Graphique/Sounds/victory.swf.wav')
+        pygame.mixer.music.set_volume(0.09)
+        pygame.mixer.music.play()
     background = pygame.image.load("Interface_Graphique/Sprites/Background_trans.png") 
     fenetre.blit(background, (0, 0))
     print("texte = ", texte_fin_de_partie)
@@ -1341,9 +1344,9 @@ def affichage_fin_de_partie(fenetre, texte_fin_de_partie):
             if event.type == pygame.MOUSEBUTTONDOWN:
                 
                 if pygame.mixer.get_init() != None:
-                        pygame.mixer.music.load('Interface_Graphique/Sounds/clic.wav')
-                        pygame.mixer.music.set_volume(0.3)
-                        pygame.mixer.music.play()
+                    pygame.mixer.music.load('Interface_Graphique/Sounds/clic.wav')
+                    pygame.mixer.music.set_volume(0.3)
+                    pygame.mixer.music.play()
 
                 if b_rejouer.rectangle.collidepoint(event.pos):
                     running = False
@@ -1431,7 +1434,7 @@ def affichage_confirmation(fenetre, texte):
 def affichage_erreur(fenetre, texte):
 
     if pygame.mixer.get_init() != None:
-        pygame.mixer.music.load('Interface_Graphique/Sounds/erreur.wav')
+        pygame.mixer.music.load('Interface_Graphique/Sounds/erro.wav')
         pygame.mixer.music.set_volume(0.3)
         pygame.mixer.music.play()
    
