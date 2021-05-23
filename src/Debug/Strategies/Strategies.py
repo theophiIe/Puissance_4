@@ -62,7 +62,10 @@ def evaluation_quadruplet(quadruplet, couleur_jeton):
             return -3
 
         elif nb_jeton_adv == 2 and nb_jeton == 0:
-            return -20
+            if Gestion_jeton.Jeton.nombre_jeton % 2 == 1:
+                return -20
+            else:
+                return -10
 
         elif nb_jeton_adv == 3 and nb_jeton == 0:
             return -35
