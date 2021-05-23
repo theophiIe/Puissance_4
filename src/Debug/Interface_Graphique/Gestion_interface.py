@@ -1263,7 +1263,45 @@ def affichage_erreur(fenetre, texte):
         pygame.display.flip()
 
 def affichage_aide(fenetre, grille, joueur_actuel, joueur_suivant):
-    num_colonne = fail_soft(grille, 5, -math.inf, math.inf, joueur_actuel, joueur_suivant)[1]
+    if Gestion_jeton.Jeton.nombre_jeton == 0:
+        num_colonne = 3
+    else:
+        coup_joue = False
+
+        for num_colonne in range(grille.colonne):
+            if grille.coup_valide(num_colonne) != True:
+                continue
+            else:
+                num_ligne = joueur_actuel.jouer_coup(grille.grille, num_colonne)
+                if grille.coup_gagnant((joueur_actuel.commence - 1) % 2 + 1):
+                    coup_joue = True
+                    Gestion_jeton.Jeton.decremente_nombre_jeton()
+                    grille.grille[num_ligne][num_colonne] = None
+                    joueur_actuel,joueur_suivant = joueur_suivant,joueur_actuel
+                    break
+
+                else:
+                    Gestion_jeton.Jeton.decremente_nombre_jeton()
+                    grille.grille[num_ligne][num_colonne] = None
+
+        if coup_joue == False:
+            for num_colonne in range(grille.colonne):
+                if grille.coup_valide(num_colonne) != True:
+                    continue
+                else:
+                    num_ligne = joueur_suivant.jouer_coup(grille.grille, num_colonne)
+                    if grille.coup_gagnant((joueur_suivant.commence - 1) % 2 + 1):
+                        coup_joue = True
+                        Gestion_jeton.Jeton.decremente_nombre_jeton()
+                        grille.grille[num_ligne][num_colonne] = None
+                        joueur_actuel,joueur_suivant = joueur_suivant,joueur_actuel
+                        break
+                    
+                    else:
+                        Gestion_jeton.Jeton.decremente_nombre_jeton()
+                        grille.grille[num_ligne][num_colonne] = None
+
+        num_colonne = fail_soft(grille, 5, -math.inf, math.inf, joueur_actuel, joueur_suivant)[1]
     b_fleche = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Arrow.png", "Interface_Graphique/Sprites/Arrow.png", SIZE * 0.41/10 + num_colonne * (SIZE*1.068/10), SIZE*9/10, SIZE*0.89/10, SIZE*0.89/10)
     b_fleche.affichage_bouton(fenetre)
 
