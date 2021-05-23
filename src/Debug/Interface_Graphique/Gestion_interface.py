@@ -665,7 +665,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                         #pygame.time.delay(2000)
                         if val_fin_de_partie == 2:
                             font = pygame.font.Font('Interface_Graphique/Cafeteria-Bold.otf', int( SIZE / 12 ) )
-
+                            print("le joueur commence {}".format(joueur_suivant.commence))
                             if joueur_suivant.commence:
                                 texte_aff = font.render("Coup Gagnant joueur 1", True, "royalblue1")
                                 texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
