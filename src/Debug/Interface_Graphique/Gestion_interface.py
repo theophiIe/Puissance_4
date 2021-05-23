@@ -37,6 +37,110 @@ def musique(chemin, volume):
     pygame.mixer.music.set_volume(volume)
     pygame.mixer.music.play()
 
+def image_fr_eng():
+    global LANGUE
+    if LANGUE == 0:
+        tab_images = [
+            "Interface_Graphique/Sprites/Sprites_Francais/Titre_blue.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_jouer.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_jouer2.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_quitter.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_quitter2.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Titre_choix_mode_jeu.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_jvsj.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_jvsj2.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_jvso.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_jvso2.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_retour.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_retour2.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Menu_chargement.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_charger.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_charger2.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_supprimer.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_supprimer2.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Titre_choix_difficulte.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_facile.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_moyen.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_moyen2.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_difficile.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_difficile2.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Titre_commencer.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_oui.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_non.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_non2.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_j1.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_j1_2.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_j2.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_j2_2.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_ordi.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_ordi_2.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_aide.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_aide2.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_sauv.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_sauv2.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_abandon.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_abandon2.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Menu_sauvegarde.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_rejouer.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_rejouer2.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_mainmenu.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_mainmenu2.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_facile2.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_oui2.png"
+        ]
+
+    elif LANGUE == 1:
+        tab_images = [
+            "Interface_Graphique/Sprites/Sprites_Anglais/Titre_blue_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_jouer_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_jouer2_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_quitter_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_quitter2_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Titre_choix_mode_jeu_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_jvsj_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_jvsj2_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_jvso_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_jvso2_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_retour_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_retour2_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Menu_chargement_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_charger_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_charger2_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_supprimer_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_supprimer2_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Titre_choix_difficulte_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_facile_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_moyen_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_moyen2_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_difficile_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_difficile2_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Titre_commencer_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_oui_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_non_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_non2_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_j1_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_j1_2_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_j2_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_j2_2_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_ordi_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_ordi_2_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_aide_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_aide2_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_sauv_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_sauv2_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_abandon_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_abandon2_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Menu_sauvegarde_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_rejouer_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_rejouer2_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_mainmenu_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_mainmenu2_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_facile2_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_oui2_eng.png"
+        ]
+
+    return tab_images
+
 def afficher_grille(grille):
     for i in range(6):
         aff = ''
@@ -52,22 +156,22 @@ def afficher_grille(grille):
 
 # MENU 0
 def affichage_menu_principal(fenetre):
-    
+    image = image_fr_eng()
+
     background = pygame.image.load(BACKGROUND_SPRITE) 
     fenetre.blit(background, (0, 0))
 
-    b_titre = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Titre_blue.png", "Interface_Graphique/Sprites/Titre_blue.png", SIZE/10, SIZE*1.5/10, SIZE*8/10, SIZE*2.5/10)
+    b_titre = Gestion_bouton.Bouton(image[0], image[0], SIZE/10, SIZE*1.5/10, SIZE*8/10, SIZE*2.5/10)
     b_titre.affichage_bouton(fenetre)
 
 
-    b_jouer = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_jouer.png", "Interface_Graphique/Sprites/Bouton_jouer2.png", SIZE/3, SIZE*4.5/10, SIZE/3, SIZE/10)
+    b_jouer = Gestion_bouton.Bouton(image[1], image[2], SIZE/3, SIZE*4.5/10, SIZE/3, SIZE/10)
     b_jouer.affichage_bouton(fenetre)
 
-    b_charger = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_charger.png", "Interface_Graphique/Sprites/Bouton_charger2.png", SIZE/3, SIZE*6/10, SIZE/3, SIZE/10)
+    b_charger = Gestion_bouton.Bouton(image[13], image[14], SIZE/3, SIZE*6/10, SIZE/3, SIZE/10)
     b_charger.affichage_bouton(fenetre)
 
-    b_quitter = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_quitter.png", "Interface_Graphique/Sprites/Bouton_quitter2.png", SIZE/3, SIZE*7.5/10, SIZE/3, SIZE/10)
-
+    b_quitter = Gestion_bouton.Bouton(image[3], image[4], SIZE/3, SIZE*7.5/10, SIZE/3, SIZE/10)
     b_quitter.affichage_bouton(fenetre)
 
     b_son = Gestion_bouton.Bouton("Interface_Graphique/Sprites/sound_ON.png", "Interface_Graphique/Sprites/sound_ON.png", SIZE*1/50, SIZE*9/10, SIZE/12, SIZE/12)
@@ -149,7 +253,7 @@ def affichage_menu_principal(fenetre):
                     break
                 
                 #### LANGUE 
-                # FRANCAIS
+                # FRANCAIS -> ANGLAIS
                 if event.button == 1 and b_langue_francais.rectangle.collidepoint(event.pos) and LANGUE == 0:
                     if pygame.mixer.get_init() != None:
                         musique('Interface_Graphique/Sounds/clic.wav', 0.3)
@@ -157,8 +261,21 @@ def affichage_menu_principal(fenetre):
                     running = True
 
                     LANGUE = 1
+                    image = image_fr_eng()
+
+                    b_titre = Gestion_bouton.Bouton(image[0], image[0], SIZE/10, SIZE*1.5/10, SIZE*8/10, SIZE*2.5/10)
+                    b_titre.affichage_bouton(fenetre)
+
+                    b_jouer = Gestion_bouton.Bouton(image[1], image[2], SIZE/3, SIZE*4.5/10, SIZE/3, SIZE/10)
+                    b_jouer.affichage_bouton(fenetre)
+
+                    b_charger = Gestion_bouton.Bouton(image[13], image[14], SIZE/3, SIZE*6/10, SIZE/3, SIZE/10)
+                    b_charger.affichage_bouton(fenetre)
+
+                    b_quitter = Gestion_bouton.Bouton(image[3], image[4], SIZE/3, SIZE*7.5/10, SIZE/3, SIZE/10)
+                    b_quitter.affichage_bouton(fenetre)
+
                     fenetre.blit(background, (0, 0))
-                    b_titre.affichage_bouton(fenetre)   
                     b_langue_anglais.affichage_bouton(fenetre)
                     if MUTE_SOUND == 0:
                         musique('Interface_Graphique/Sounds/english.wav', 0.5)
@@ -167,7 +284,7 @@ def affichage_menu_principal(fenetre):
                         b_son_off.affichage_bouton(fenetre)
                     break
 
-                # ANGLAIS
+                # ANGLAIS -> FRANCAIS
                 elif event.button == 1 and b_langue_francais.rectangle.collidepoint(event.pos) and LANGUE == 1:
                     if pygame.mixer.get_init() != None:
                         musique('Interface_Graphique/Sounds/clic.wav', 0.3)
@@ -175,8 +292,21 @@ def affichage_menu_principal(fenetre):
                     running = True
 
                     LANGUE = 0
+                    image = image_fr_eng()
+
+                    b_titre = Gestion_bouton.Bouton(image[0], image[0], SIZE/10, SIZE*1.5/10, SIZE*8/10, SIZE*2.5/10)
+                    b_titre.affichage_bouton(fenetre)
+
+                    b_jouer = Gestion_bouton.Bouton(image[1], image[2], SIZE/3, SIZE*4.5/10, SIZE/3, SIZE/10)
+                    b_jouer.affichage_bouton(fenetre)
+
+                    b_charger = Gestion_bouton.Bouton(image[13], image[14], SIZE/3, SIZE*6/10, SIZE/3, SIZE/10)
+                    b_charger.affichage_bouton(fenetre)
+
+                    b_quitter = Gestion_bouton.Bouton(image[3], image[4], SIZE/3, SIZE*7.5/10, SIZE/3, SIZE/10)
+                    b_quitter.affichage_bouton(fenetre)
+
                     fenetre.blit(background, (0, 0))
-                    b_titre.affichage_bouton(fenetre)   
                     b_langue_francais.affichage_bouton(fenetre)
                     if MUTE_SOUND == 0:
                         musique('Interface_Graphique/Sounds/francais.wav', 0.5)
@@ -226,19 +356,20 @@ def affichage_menu_principal(fenetre):
 
 # MENU 1
 def affichage_mode_de_jeu(fenetre):
+    image = image_fr_eng()
     background = pygame.image.load(BACKGROUND_SPRITE) 
     fenetre.blit(background, (0, 0))
 
-    b_titre = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Titre_choix_mode_jeu.png", "Interface_Graphique/Sprites/Titre_choix_mode_jeu.png", SIZE*0.5/10, SIZE/10, SIZE*9/10, SIZE/6)
+    b_titre = Gestion_bouton.Bouton(image[5], image[5], SIZE*0.5/10, SIZE/10, SIZE*9/10, SIZE/6)
     b_titre.affichage_bouton(fenetre)
 
-    b_jvj = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_jvsj.png", "Interface_Graphique/Sprites/Bouton_jvsj2.png", SIZE/3, SIZE * 2/5, SIZE/3, SIZE/10)
+    b_jvj = Gestion_bouton.Bouton(image[6], image[7], SIZE/3, SIZE * 2/5, SIZE/3, SIZE/10)
     b_jvj.affichage_bouton(fenetre)
 
-    b_jvo = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_jvso.png", "Interface_Graphique/Sprites/Bouton_jvso2.png", SIZE/3, SIZE*3/5, SIZE/3, SIZE/10)
+    b_jvo = Gestion_bouton.Bouton(image[8], image[9], SIZE/3, SIZE*3/5, SIZE/3, SIZE/10)
     b_jvo.affichage_bouton(fenetre)
 
-    b_retour = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_retour.png", "Interface_Graphique/Sprites/Bouton_retour2.png", SIZE/3, SIZE*4/5, SIZE/3, SIZE/10)
+    b_retour = Gestion_bouton.Bouton(image[10], image[11], SIZE/3, SIZE*4/5, SIZE/3, SIZE/10)
     b_retour.affichage_bouton(fenetre)
 
     pygame.display.flip()
@@ -302,19 +433,20 @@ def affichage_mode_de_jeu(fenetre):
 
 # MENU 2
 def affichage_chargement(fenetre):
+    image = image_fr_eng()
     background = pygame.image.load(BACKGROUND_SPRITE) 
     fenetre.blit(background, (0, 0))
 
-    b_titre = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Menu_chargement.png", "Interface_Graphique/Sprites/Menu_chargement.png", SIZE*0.5/10, SIZE/10, SIZE*9/10, SIZE/6)
+    b_titre = Gestion_bouton.Bouton(image[12], image[12], SIZE*0.5/10, SIZE/10, SIZE*9/10, SIZE/6)
     b_titre.affichage_bouton(fenetre)
     
-    b_charger = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_charger.png", "Interface_Graphique/Sprites/Bouton_charger2.png", SIZE*6.75/10, SIZE*4/5, SIZE/4, SIZE/10)
+    b_charger = Gestion_bouton.Bouton(image[13], image[14], SIZE*6.75/10, SIZE*4/5, SIZE/4, SIZE/10)
     b_charger.affichage_bouton(fenetre)
 
-    b_supprimer = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_supprimer.png", "Interface_Graphique/Sprites/Bouton_supprimer2.png", SIZE*3.75/10, SIZE*4/5, SIZE/4, SIZE/10)
+    b_supprimer = Gestion_bouton.Bouton(image[15], image[16], SIZE*3.75/10, SIZE*4/5, SIZE/4, SIZE/10)
     b_supprimer.affichage_bouton(fenetre)
 
-    b_retour = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_retour.png", "Interface_Graphique/Sprites/Bouton_retour2.png", SIZE*0.75/10, SIZE*4/5, SIZE/4, SIZE/10)
+    b_retour = Gestion_bouton.Bouton(image[10], image[11], SIZE*0.75/10, SIZE*4/5, SIZE/4, SIZE/10)
     b_retour.affichage_bouton(fenetre)
 
     pygame.display.flip()
@@ -518,23 +650,23 @@ def affichage_chargement(fenetre):
 
 # MENU 3
 def affichage_choix_de_difficulte(fenetre):
-    
+    image = image_fr_eng()
     background = pygame.image.load(BACKGROUND_SPRITE) 
     fenetre.blit(background, (0, 0))
 
-    b_titre = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Titre_choix_difficulte.png", "Interface_Graphique/Sprites/Titre_choix_difficulte.png", SIZE*0.5/10, SIZE/10, SIZE*9/10, SIZE/8)
+    b_titre = Gestion_bouton.Bouton(image[17], image[17], SIZE*0.5/10, SIZE/10, SIZE*9/10, SIZE/8)
     b_titre.affichage_bouton(fenetre)
 
-    b_facile = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_facile.png", "Interface_Graphique/Sprites/Bouton_facile2.png", SIZE*0.5/10, SIZE*4.5/10, SIZE*2.5/10, SIZE/10)
+    b_facile = Gestion_bouton.Bouton(image[18], image[43], SIZE*0.5/10, SIZE*4.5/10, SIZE*2.5/10, SIZE/10)
     b_facile.affichage_bouton(fenetre)
 
-    b_intermediare = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_moyen.png", "Interface_Graphique/Sprites/Bouton_moyen2.png", SIZE*3.75/10, SIZE*4.5/10, SIZE*2.5/10, SIZE/10)
+    b_intermediare = Gestion_bouton.Bouton(image[19], image[20], SIZE*3.75/10, SIZE*4.5/10, SIZE*2.5/10, SIZE/10)
     b_intermediare.affichage_bouton(fenetre)
 
-    b_difficile = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_difficile.png", "Interface_Graphique/Sprites/Bouton_difficile2.png", SIZE*7/10, SIZE*4.5/10, SIZE*2.5/10, SIZE/10)
+    b_difficile = Gestion_bouton.Bouton(image[21], image[22], SIZE*7/10, SIZE*4.5/10, SIZE*2.5/10, SIZE/10)
     b_difficile.affichage_bouton(fenetre)
 
-    b_retour = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_retour.png", "Interface_Graphique/Sprites/Bouton_retour2.png", SIZE/3, SIZE*4/5, SIZE/3, SIZE/10)
+    b_retour = Gestion_bouton.Bouton(image[10], image[11], SIZE/3, SIZE*4/5, SIZE/3, SIZE/10)
     b_retour.affichage_bouton(fenetre)
 
     pygame.display.flip()
@@ -603,20 +735,21 @@ def affichage_choix_de_difficulte(fenetre):
 
 # MENU 4
 def affichage_commencer(fenetre):
-    
+    image = image_fr_eng()
+
     background = pygame.image.load(BACKGROUND_SPRITE) 
     fenetre.blit(background, (0, 0))
 
-    b_titre = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Titre_commencer.png", "Interface_Graphique/Sprites/Titre_commencer.png", SIZE*0.5/10, SIZE/10, SIZE*9/10, SIZE/8)
+    b_titre = Gestion_bouton.Bouton(image[23], image[23], SIZE*0.5/10, SIZE/10, SIZE*9/10, SIZE/8)
     b_titre.affichage_bouton(fenetre)
     
-    b_oui = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_oui.png", "Interface_Graphique/Sprites/Bouton_oui2.png", SIZE/5, SIZE/2, SIZE/4, SIZE/10)
+    b_oui = Gestion_bouton.Bouton(image[24], image[45], SIZE/5, SIZE/2, SIZE/4, SIZE/10)
     b_oui.affichage_bouton(fenetre)
 
-    b_non = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_non.png", "Interface_Graphique/Sprites/Bouton_non2.png", SIZE * 5.5 / 10, SIZE/2, SIZE/4, SIZE/10)
+    b_non = Gestion_bouton.Bouton(image[25], image[26], SIZE * 5.5 / 10, SIZE/2, SIZE/4, SIZE/10)
     b_non.affichage_bouton(fenetre)
 
-    b_retour = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_retour.png", "Interface_Graphique/Sprites/Bouton_retour2.png", SIZE/3, SIZE*4/5, SIZE/3, SIZE/10)
+    b_retour = Gestion_bouton.Bouton(image[10], image[11], SIZE/3, SIZE*4/5, SIZE/3, SIZE/10)
     b_retour.affichage_bouton(fenetre)
 
     pygame.display.flip()
@@ -672,19 +805,20 @@ def affichage_commencer(fenetre):
 
 # MENU 5
 def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_difficulte):
+    image = image_fr_eng()
     background = pygame.image.load(BACKGROUND_SPRITE) 
     fenetre.blit(background, (0, 0))
 
     print(qui_commence)
     
-    b_j1 = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_j1.png", "Interface_Graphique/Sprites/Bouton_j1_2.png", SIZE*8/10, SIZE*0.32/10, SIZE*1.83/10, SIZE/15)
+    b_j1 = Gestion_bouton.Bouton(image[27], image[28], SIZE*8/10, SIZE*0.32/10, SIZE*1.83/10, SIZE/15)
     b_j1.affichage_bouton(fenetre)
 
     if mode_de_jeu == True:
-        b_j2 = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_j2.png", "Interface_Graphique/Sprites/Bouton_j2_2.png", SIZE*8/10, SIZE*1.32/10, SIZE*1.83/10, SIZE/15)
+        b_j2 = Gestion_bouton.Bouton(image[29], image[30], SIZE*8/10, SIZE*1.32/10, SIZE*1.83/10, SIZE/15)
         b_j2.affichage_bouton(fenetre)
     else:
-        b_j2 = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_ordi.png", "Interface_Graphique/Sprites/Bouton_ordi_2.png", SIZE*8/10, SIZE*1.32/10, SIZE*1.83/10, SIZE/15)
+        b_j2 = Gestion_bouton.Bouton(image[31], image[32], SIZE*8/10, SIZE*1.32/10, SIZE*1.83/10, SIZE/15)
         b_j2.affichage_bouton(fenetre)
 
 
@@ -697,13 +831,13 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
         b_j1.affichage_bouton_survole(fenetre)
         b_j2.affichage_bouton(fenetre)
 
-    b_aide = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_aide.png", "Interface_Graphique/Sprites/Bouton_aide2.png", SIZE*8.06/10, SIZE*5/10, SIZE*1.77/10, SIZE/15)
+    b_aide = Gestion_bouton.Bouton(image[33], image[34], SIZE*8.06/10, SIZE*5/10, SIZE*1.77/10, SIZE/15)
     b_aide.affichage_bouton(fenetre)
 
-    b_sauvegarde = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_sauv.png", "Interface_Graphique/Sprites/Bouton_sauv2.png", SIZE*8.06/10, SIZE*6.5/10, SIZE*1.77/10, SIZE/15)
+    b_sauvegarde = Gestion_bouton.Bouton(image[35], image[36], SIZE*8.06/10, SIZE*6.5/10, SIZE*1.77/10, SIZE/15)
     b_sauvegarde.affichage_bouton(fenetre)
 
-    b_abandon = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_abandon.png", "Interface_Graphique/Sprites/Bouton_abandon2.png", SIZE*8.06/10, SIZE*8/10, SIZE*1.77/10, SIZE/15)
+    b_abandon = Gestion_bouton.Bouton(image[37], image[38], SIZE*8.06/10, SIZE*8/10, SIZE*1.77/10, SIZE/15)
     b_abandon.affichage_bouton(fenetre)
 
     pygame.display.flip()
@@ -956,20 +1090,20 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
 
 # MENU 6
 def affichage_sauvegarde(fenetre, grille):
-    
+    image = image_fr_eng()
     background = pygame.image.load(BACKGROUND_SPRITE) 
     fenetre.blit(background, (0, 0))
 
-    b_titre = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Menu_sauvegarde.png", "Interface_Graphique/Sprites/Menu_sauvegarde.png", SIZE*0.5/10, SIZE/10, SIZE*9/10, SIZE/6)
+    b_titre = Gestion_bouton.Bouton(image[39], image[39], SIZE*0.5/10, SIZE/10, SIZE*9/10, SIZE/6)
     b_titre.affichage_bouton(fenetre)
     
-    b_sauvegarder = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_sauv.png", "Interface_Graphique/Sprites/Bouton_sauv2.png", SIZE*6.75/10, SIZE*4/5, SIZE/4, SIZE/10)
+    b_sauvegarder = Gestion_bouton.Bouton(image[35], image[36], SIZE*6.75/10, SIZE*4/5, SIZE/4, SIZE/10)
     b_sauvegarder.affichage_bouton(fenetre)
 
-    b_supprimer = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_supprimer.png", "Interface_Graphique/Sprites/Bouton_supprimer2.png", SIZE*3.75/10, SIZE*4/5, SIZE/4, SIZE/10)
+    b_supprimer = Gestion_bouton.Bouton(image[15], image[16], SIZE*3.75/10, SIZE*4/5, SIZE/4, SIZE/10)
     b_supprimer.affichage_bouton(fenetre)
 
-    b_retour = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_retour.png", "Interface_Graphique/Sprites/Bouton_retour2.png", SIZE*0.75/10, SIZE*4/5, SIZE/4, SIZE/10)
+    b_retour = Gestion_bouton.Bouton(image[10], image[11], SIZE*0.75/10, SIZE*4/5, SIZE/4, SIZE/10)
     b_retour.affichage_bouton(fenetre)
 
     pygame.display.flip()
@@ -1165,16 +1299,17 @@ def affichage_sauvegarde(fenetre, grille):
 
 # MENU 7
 def affichage_nouvelle_sauvegarde(fenetre, grille):
+    image = image_fr_eng()
     background = pygame.image.load(BACKGROUND_SPRITE) 
     fenetre.blit(background, (0, 0))
 
-    b_titre = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Menu_sauvegarde.png", "Interface_Graphique/Sprites/Menu_sauvegarde.png", SIZE*0.5/10, SIZE/10, SIZE*9/10, SIZE/6)
+    b_titre = Gestion_bouton.Bouton(image[39], image[39], SIZE*0.5/10, SIZE/10, SIZE*9/10, SIZE/6)
     b_titre.affichage_bouton(fenetre)
 
-    b_sauvegarder = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_sauv.png", "Interface_Graphique/Sprites/Bouton_sauv2.png", SIZE*6.75/10, SIZE*4/5, SIZE/4, SIZE/10)
+    b_sauvegarder = Gestion_bouton.Bouton(image[35], image[36], SIZE*6.75/10, SIZE*4/5, SIZE/4, SIZE/10)
     b_sauvegarder.affichage_bouton(fenetre)
 
-    b_retour = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_retour.png", "Interface_Graphique/Sprites/Bouton_retour2.png", SIZE*0.75/10, SIZE*4/5, SIZE/4, SIZE/10)
+    b_retour = Gestion_bouton.Bouton(image[10], image[11], SIZE*0.75/10, SIZE*4/5, SIZE/4, SIZE/10)
     b_retour.affichage_bouton(fenetre)
         
     input_box = pygame.Rect(SIZE/2 - SIZE/9.5, SIZE/2, SIZE/10, SIZE/20)
@@ -1263,6 +1398,7 @@ def affichage_nouvelle_sauvegarde(fenetre, grille):
 
 # MENU 8
 def affichage_fin_de_partie(fenetre, texte_fin_de_partie):
+    image = image_fr_eng()
     if pygame.mixer.get_init() != None:
         musique('Interface_Graphique/Sounds/victory.swf.wav', 0.09)
 
@@ -1274,13 +1410,13 @@ def affichage_fin_de_partie(fenetre, texte_fin_de_partie):
     texte_rect = texte_aff.get_rect(center = (SIZE*5/10, SIZE*2.25/10) )
     fenetre.blit(texte_aff, texte_rect)
     
-    b_rejouer = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_rejouer.png", "Interface_Graphique/Sprites/Bouton_rejouer2.png", SIZE/3, SIZE/2, SIZE/3, SIZE/10)
+    b_rejouer = Gestion_bouton.Bouton(image[40], image[41], SIZE/3, SIZE/2, SIZE/3, SIZE/10)
     b_rejouer.affichage_bouton(fenetre)
 
-    b_menu_principal = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_mainmenu.png", "Interface_Graphique/Sprites/Bouton_mainmenu2.png", SIZE/3, SIZE*6.5/10, SIZE/3, SIZE/10)
+    b_menu_principal = Gestion_bouton.Bouton(image[42], image[43], SIZE/3, SIZE*6.5/10, SIZE/3, SIZE/10)
     b_menu_principal.affichage_bouton(fenetre)
 
-    b_quitter = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_quitter.png", "Interface_Graphique/Sprites/Bouton_quitter2.png", SIZE/3, SIZE*4/5, SIZE/3, SIZE/10)
+    b_quitter = Gestion_bouton.Bouton(image[3], image[4], SIZE/3, SIZE*4/5, SIZE/3, SIZE/10)
     b_quitter.affichage_bouton(fenetre)
 
     pygame.display.flip()
@@ -1325,7 +1461,7 @@ def affichage_fin_de_partie(fenetre, texte_fin_de_partie):
 
 # MENU 9
 def affichage_confirmation(fenetre, texte):
-    
+    image = image_fr_eng()
     b_fenetre = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Blackground.png", "Interface_Graphique/Sprites/Blackground.png", SIZE/5, SIZE/5, SIZE*3/5, SIZE*4/10)
     b_fenetre.affichage_bouton(fenetre)
     
@@ -1338,10 +1474,10 @@ def affichage_confirmation(fenetre, texte):
     texte_rect = texte_aff.get_rect(center = (SIZE*5/10, SIZE*3.5/10) )
     fenetre.blit(texte_aff, texte_rect)
 
-    b_oui = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_oui.png", "Interface_Graphique/Sprites/Bouton_oui2.png", SIZE*3/10, SIZE*4.5/10, SIZE*1.5/10, SIZE*0.75/10)
+    b_oui = Gestion_bouton.Bouton(image[24], image[45], SIZE*3/10, SIZE*4.5/10, SIZE*1.5/10, SIZE*0.75/10)
     b_oui.affichage_bouton(fenetre)
 
-    b_non = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_non.png", "Interface_Graphique/Sprites/Bouton_non2.png", SIZE*5.5/10, SIZE*4.5/10, SIZE*1.5/10, SIZE*0.75/10)
+    b_non = Gestion_bouton.Bouton(image[25], image[26], SIZE*5.5/10, SIZE*4.5/10, SIZE*1.5/10, SIZE*0.75/10)
     b_non.affichage_bouton(fenetre)
 
     pygame.display.flip()
