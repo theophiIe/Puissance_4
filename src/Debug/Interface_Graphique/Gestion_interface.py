@@ -580,14 +580,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
         b_j2.affichage_bouton(fenetre)
 
     joueur_actuel, joueur_suivant = attribution_des_joueurs(qui_commence, mode_de_jeu, niveau_de_difficulte)
-
-    if type(joueur_actuel) == Gestion_joueur.Ordinateur:
-        joueur_actuel.premier_coup(grille.grille)
-        affichage_jeton(fenetre, grille, 5, 3)
-        joueur_actuel, joueur_suivant = joueur_suivant, joueur_actuel
-        b_j1.affichage_bouton_survole(fenetre)
-        b_j2.affichage_bouton(fenetre)
-
+    
     b_aide = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_aide.png", "Interface_Graphique/Sprites/Bouton_aide2.png", SIZE*8.15/10, SIZE*5/10, SIZE*1.5/10, SIZE/15)
     b_aide.affichage_bouton(fenetre)
 
@@ -597,11 +590,58 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
     b_abandon = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_abandon.png", "Interface_Graphique/Sprites/Bouton_abandon2.png", SIZE*8.15/10, SIZE*8/10, SIZE*1.5/10, SIZE/15)
     b_abandon.affichage_bouton(fenetre)
 
-    b_coup_gagnant = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Bouton_abandon.png", "Interface_Graphique/Sprites/Bouton_abandon2.png", SIZE/3, SIZE/10, SIZE/3, SIZE/10)
-
     pygame.display.flip()
-
+    
     affichage_grille_jeton(fenetre, grille)
+
+
+    
+    if type(joueur_actuel) == Gestion_joueur.Ordinateur:
+        if Gestion_jeton.Jeton.nombre_jeton == 0:
+            joueur_actuel.premier_coup(grille.grille)
+            affichage_jeton(fenetre, grille, 5, 3)
+            joueur_actuel, joueur_suivant = joueur_suivant, joueur_actuel
+            b_j1.affichage_bouton_survole(fenetre)
+            b_j2.affichage_bouton(fenetre)
+        else:
+            num_ligne, num_colonne, joueur_actuel, joueur_suivant = actions_coup_joueur(grille, -1, joueur_actuel, joueur_suivant, niveau_de_difficulte)
+            pygame.mixer.music.load('Interface_Graphique/Sounds/jeton.wav')
+            pygame.mixer.music.set_volume(0.3)
+            pygame.mixer.music.play()
+            affichage_jeton(fenetre, grille, num_ligne, num_colonne)
+            pygame.display.flip()
+
+            val_fin_de_partie = fin_de_partie(grille, (joueur_suivant.commence-1)%2 + 1)
+            if val_fin_de_partie != 0:
+                #pygame.time.delay(2000)
+                if val_fin_de_partie == 2:
+                    pygame.mixer.music.load('Interface_Graphique/Sounds/victoire_3.wav') #victoire_2.wav
+                    pygame.mixer.music.set_volume(0.3)
+                    pygame.mixer.music.play()
+                    font = pygame.font.Font('Interface_Graphique/Cafeteria-Bold.otf', int( SIZE / 12 ) )
+                    texte_aff = font.render("Coup Gagnant Ordi !", True, "royalblue1")
+                    texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
+                    fenetre.blit(texte_aff, texte_rect)
+                    pygame.display.flip()
+                    while True:
+                        for click in pygame.event.get():
+                            if click.type == pygame.MOUSEBUTTONDOWN:
+                                if click.button == 1:
+                                    return "Vainqueur : ORDI !"
+                else:
+                    pygame.mixer.music.load('Interface_Graphique/Sounds/victoire_3.wav') #victoire_2.wav
+                    pygame.mixer.music.set_volume(0.3)
+                    pygame.mixer.music.play()
+                    font = pygame.font.Font('Interface_Graphique/Cafeteria-Bold.otf', int( SIZE / 12 ) )
+                    texte_aff = font.render("Match Nul !", True, "royalblue1")
+                    texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
+                    fenetre.blit(texte_aff, texte_rect)
+                    pygame.display.flip()
+                    while True:
+                        for click in pygame.event.get():
+                            if click.type == pygame.MOUSEBUTTONDOWN:
+                                if click.button == 1:
+                                    return "Match Nul !"
 
     tour = qui_commence
     aide = 0
@@ -1287,40 +1327,44 @@ def affichage_aide(fenetre, grille, joueur_actuel, joueur_suivant):
     else:
         coup_joue = False
 
-        for num_colonne in range(grille.colonne):
-            if grille.coup_valide(num_colonne) != True:
+        for colonne in range(grille.colonne):
+            if grille.coup_valide(colonne) != True:
                 continue
             else:
-                num_ligne = joueur_actuel.jouer_coup(grille.grille, num_colonne)
+                num_ligne = joueur_actuel.jouer_coup(grille.grille, colonne)
                 if grille.coup_gagnant((joueur_actuel.commence - 1) % 2 + 1):
                     coup_joue = True
                     Gestion_jeton.Jeton.decremente_nombre_jeton()
-                    grille.grille[num_ligne][num_colonne] = None
+                    grille.grille[num_ligne][colonne] = None
+                    num_colonne = colonne
                     joueur_actuel,joueur_suivant = joueur_suivant,joueur_actuel
                     break
 
                 else:
                     Gestion_jeton.Jeton.decremente_nombre_jeton()
-                    grille.grille[num_ligne][num_colonne] = None
+                    grille.grille[num_ligne][colonne] = None
 
         if coup_joue == False:
-            for num_colonne in range(grille.colonne):
-                if grille.coup_valide(num_colonne) != True:
+            for colonne in range(grille.colonne):
+                if grille.coup_valide(colonne) != True:
                     continue
                 else:
-                    num_ligne = joueur_suivant.jouer_coup(grille.grille, num_colonne)
+                    num_ligne = joueur_suivant.jouer_coup(grille.grille, colonne)
                     if grille.coup_gagnant((joueur_suivant.commence - 1) % 2 + 1):
                         coup_joue = True
                         Gestion_jeton.Jeton.decremente_nombre_jeton()
-                        grille.grille[num_ligne][num_colonne] = None
+                        grille.grille[num_ligne][colonne] = None
+                        num_colonne = colonne
                         joueur_actuel,joueur_suivant = joueur_suivant,joueur_actuel
                         break
                     
                     else:
                         Gestion_jeton.Jeton.decremente_nombre_jeton()
-                        grille.grille[num_ligne][num_colonne] = None
+                        grille.grille[num_ligne][colonne] = None
 
-        num_colonne = fail_soft(grille, 5, -math.inf, math.inf, joueur_actuel, joueur_suivant)[1]
+        if coup_joue == False:
+            num_colonne = fail_soft(grille, 5, -math.inf, math.inf, joueur_actuel, joueur_suivant)[1]
+            
     b_fleche = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Arrow.png", "Interface_Graphique/Sprites/Arrow.png", SIZE * 0.41/10 + num_colonne * (SIZE*1.068/10), SIZE*9/10, SIZE*0.89/10, SIZE*0.89/10)
     b_fleche.affichage_bouton(fenetre)
 
