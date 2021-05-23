@@ -748,7 +748,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
             pass
 
         if aide == 1:
-            affichage_aide(fenetre, grille)
+            affichage_aide(fenetre, grille, joueur_actuel, joueur_suivant)
 
         if tour == True and mode_de_jeu == True:
             b_j1.affichage_bouton_survole(fenetre)
@@ -1262,10 +1262,10 @@ def affichage_erreur(fenetre, texte):
     
         pygame.display.flip()
 
-def affichage_aide(fenetre, grille):
-    for num_colonne in range (7):
-        b_fleche = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Arrow.png", "Interface_Graphique/Sprites/Arrow.png", SIZE * 0.41/10 + num_colonne * (SIZE*1.068/10), SIZE*9/10, SIZE*0.89/10, SIZE*0.89/10)
-        b_fleche.affichage_bouton(fenetre)
+def affichage_aide(fenetre, grille, joueur_actuel, joueur_suivant):
+    num_colonne = fail_soft(grille, 5, -math.inf, math.inf, joueur_actuel, joueur_suivant)[1]
+    b_fleche = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Arrow.png", "Interface_Graphique/Sprites/Arrow.png", SIZE * 0.41/10 + num_colonne * (SIZE*1.068/10), SIZE*9/10, SIZE*0.89/10, SIZE*0.89/10)
+    b_fleche.affichage_bouton(fenetre)
 
 def affichage_jeton(fenetre, grille, num_ligne, num_colonne):
     if grille.grille[num_ligne][num_colonne] is not None:
