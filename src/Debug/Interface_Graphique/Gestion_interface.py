@@ -1305,7 +1305,7 @@ def selection_colonne(fenetre, event):
     if event.button == 1:
         b_zone_contact = []
         for i in range (7):
-            tmp = pygame.Rect(SIZE*0.20/10 + (i * SIZE*1.1/10), SIZE*2.4/10, SIZE*1.1/10, SIZE*9/10)
+            tmp = pygame.Rect(SIZE*0.20/10 + (i * SIZE*1.1/10), SIZE*2.4/10, SIZE*1.1/10, SIZE*6.6/10)
             b_zone_contact.append(tmp)
 
         for i in range (7):
