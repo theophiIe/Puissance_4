@@ -1,3 +1,6 @@
+from re import L
+
+from numpy.lib.type_check import imag
 import Gestion_bouton
 import Gestion_grille
 import Gestion_joueur
@@ -91,7 +94,7 @@ def image_fr_eng():
 
     elif LANGUE == 1:
         tab_images = [
-            "Interface_Graphique/Sprites/Sprites_Anglais/Titre_blue_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Titre_eng.png",
             "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_jouer_eng.png",
             "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_jouer2_eng.png",
             "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_quitter_eng.png",
@@ -123,7 +126,7 @@ def image_fr_eng():
             "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_j2_eng.png",
             "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_j2_2_eng.png",
             "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_ordi_eng.png",
-            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_ordi_2_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_ordi2_eng.png",
             "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_aide_eng.png",
             "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_aide2_eng.png",
             "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_sauv_eng.png",
@@ -192,7 +195,9 @@ def affichage_menu_principal(fenetre):
         pygame.mixer.init()
     else: 
         fenetre.blit(background, (0, 0))
+        image = image_fr_eng()
         b_titre.affichage_bouton(fenetre)
+
         b_son_off.affichage_bouton(fenetre)
         if LANGUE == 1:
             b_langue_anglais.affichage_bouton(fenetre)
@@ -202,11 +207,14 @@ def affichage_menu_principal(fenetre):
     if LANGUE == 1:
         #afficher le background / titre et boutons anglais
         fenetre.blit(background, (0, 0))
+        image = image_fr_eng()
+        b_titre = Gestion_bouton.Bouton(image[0], image[0], SIZE/10, SIZE*1.5/10, SIZE*8/10, SIZE*2.5/10)
         b_titre.affichage_bouton(fenetre)
         if MUTE_SOUND == 0:
             b_son.affichage_bouton(fenetre)
         else:
-            b_son_off.affichage_bouton(fenetre)
+            b_titre = Gestion_bouton.Bouton(image[0], image[0], SIZE/10, SIZE*1.5/10, SIZE*8/10, SIZE*2.5/10)
+            b_titre.affichage_bouton(fenetre)
         b_langue_anglais.affichage_bouton(fenetre)
 
 
@@ -221,12 +229,16 @@ def affichage_menu_principal(fenetre):
 
             if event.type == pygame.MOUSEBUTTONDOWN:
 
-
+                # SON ON -> OFF
                 if event.button == 1 and b_son.rectangle.collidepoint(event.pos) and pygame.mixer.get_init() != None:
                     musique('Interface_Graphique/Sounds/demute_sound.wav', 0.3)
                     running = True
                     fenetre.blit(background, (0, 0))
+
+                    image = image_fr_eng()
+                    b_titre = Gestion_bouton.Bouton(image[0], image[0], SIZE/10, SIZE*1.5/10, SIZE*8/10, SIZE*2.5/10)
                     b_titre.affichage_bouton(fenetre)
+                  
                     b_son_off.affichage_bouton(fenetre)
                     if LANGUE == 1:
                         b_langue_anglais.affichage_bouton(fenetre)
@@ -237,6 +249,7 @@ def affichage_menu_principal(fenetre):
                     MUTE_SOUND = 1
                     break
                 
+                # SON OFF -> ON
                 elif event.button == 1 and b_son.rectangle.collidepoint(event.pos) and pygame.mixer.get_init() == None:
                     pygame.mixer.init()
                     musique('Interface_Graphique/Sounds/mute_sound.wav', 0.3)
@@ -244,15 +257,21 @@ def affichage_menu_principal(fenetre):
                     MUTE_SOUND = 0
                     running = True
                     fenetre.blit(background, (0, 0))
-                    b_titre.affichage_bouton(fenetre)   
+
+                    image = image_fr_eng()
+                    b_titre = Gestion_bouton.Bouton(image[0], image[0], SIZE/10, SIZE*1.5/10, SIZE*8/10, SIZE*2.5/10)
+                    b_titre.affichage_bouton(fenetre)
+
                     b_son.affichage_bouton(fenetre)
+
                     if LANGUE == 1:
                         b_langue_anglais.affichage_bouton(fenetre)
                     else:
                         b_langue_francais.affichage_bouton(fenetre)
+
                     break
                 
-                #### LANGUE 
+                #### LANGUE ####
                 # FRANCAIS -> ANGLAIS
                 if event.button == 1 and b_langue_francais.rectangle.collidepoint(event.pos) and LANGUE == 0:
                     if pygame.mixer.get_init() != None:
@@ -260,6 +279,7 @@ def affichage_menu_principal(fenetre):
 
                     running = True
 
+                    fenetre.blit(background, (0, 0))
                     LANGUE = 1
                     image = image_fr_eng()
 
@@ -275,7 +295,7 @@ def affichage_menu_principal(fenetre):
                     b_quitter = Gestion_bouton.Bouton(image[3], image[4], SIZE/3, SIZE*7.5/10, SIZE/3, SIZE/10)
                     b_quitter.affichage_bouton(fenetre)
 
-                    fenetre.blit(background, (0, 0))
+                    
                     b_langue_anglais.affichage_bouton(fenetre)
                     if MUTE_SOUND == 0:
                         musique('Interface_Graphique/Sounds/english.wav', 0.5)
@@ -291,11 +311,11 @@ def affichage_menu_principal(fenetre):
                         
                     running = True
 
+                    fenetre.blit(background, (0, 0))
                     LANGUE = 0
                     image = image_fr_eng()
 
                     b_titre = Gestion_bouton.Bouton(image[0], image[0], SIZE/10, SIZE*1.5/10, SIZE*8/10, SIZE*2.5/10)
-                    b_titre.affichage_bouton(fenetre)
 
                     b_jouer = Gestion_bouton.Bouton(image[1], image[2], SIZE/3, SIZE*4.5/10, SIZE/3, SIZE/10)
                     b_jouer.affichage_bouton(fenetre)
@@ -306,7 +326,7 @@ def affichage_menu_principal(fenetre):
                     b_quitter = Gestion_bouton.Bouton(image[3], image[4], SIZE/3, SIZE*7.5/10, SIZE/3, SIZE/10)
                     b_quitter.affichage_bouton(fenetre)
 
-                    fenetre.blit(background, (0, 0))
+                    b_titre.affichage_bouton(fenetre)
                     b_langue_francais.affichage_bouton(fenetre)
                     if MUTE_SOUND == 0:
                         musique('Interface_Graphique/Sounds/francais.wav', 0.5)
@@ -345,6 +365,7 @@ def affichage_menu_principal(fenetre):
         if running == False:
             break
 
+        b_titre.affichage_bouton(fenetre)
         point = pygame.mouse.get_pos()
         b_jouer.collision_bouton(fenetre, point)
         b_charger.collision_bouton(fenetre, point)
@@ -657,7 +678,7 @@ def affichage_choix_de_difficulte(fenetre):
     b_titre = Gestion_bouton.Bouton(image[17], image[17], SIZE*0.5/10, SIZE/10, SIZE*9/10, SIZE/8)
     b_titre.affichage_bouton(fenetre)
 
-    b_facile = Gestion_bouton.Bouton(image[18], image[43], SIZE*0.5/10, SIZE*4.5/10, SIZE*2.5/10, SIZE/10)
+    b_facile = Gestion_bouton.Bouton(image[18], image[44], SIZE*0.5/10, SIZE*4.5/10, SIZE*2.5/10, SIZE/10)
     b_facile.affichage_bouton(fenetre)
 
     b_intermediare = Gestion_bouton.Bouton(image[19], image[20], SIZE*3.75/10, SIZE*4.5/10, SIZE*2.5/10, SIZE/10)
