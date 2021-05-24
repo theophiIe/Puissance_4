@@ -43,6 +43,7 @@ def verification_syntaxe_nom_fichier(nom_fichier):
     for x in range (len(char_interdits)):
         if char_interdits[x] in nom_fichier:
             return False
+
     return True
 
 def verifie_existence_fichier(nom_fichier):
@@ -60,6 +61,7 @@ def verifie_existence_fichier(nom_fichier):
     """
     if os.path.exists(nom_fichier):
         return True
+
     return False
 
 def supprimer_sauvegarde(nom_fichier):
@@ -79,10 +81,13 @@ def supprimer_sauvegarde(nom_fichier):
 
     if verifie_existence_fichier(nom_fichier):
         os.remove(nom_fichier)
+
         if verifie_existence_fichier(nom_fichier):
             return False
+
         else:
             return True
+
     else:
         print("The file does not exist")
         return False
@@ -109,13 +114,17 @@ def sauvegarde(grille, nom_fichier):
     for i in range(6):
         for j in range(7):
             x = '-1'
+
             if grille[i][j] is None:
                 x = '0'
+
             elif str(type(grille[i][j])).find('Jeton') != -1:
                 x = str(grille[i][j].couleur)
             
             if x == '-1':
                 return False
+
             f.write(x)
+            
     f.close()
     return True
