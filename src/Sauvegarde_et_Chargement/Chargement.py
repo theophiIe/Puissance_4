@@ -17,7 +17,7 @@ def test_corruption(contenu_fichier):
         if((ord(caractere) < 48) or (ord(caractere) > 50)):
             return True
         
-    if nb_jeton_rouge > nb_jeton_jaune+1 or nb_jeton_jaune > nb_jeton_rouge+1:
+    if nb_jeton_rouge > nb_jeton_jaune+1 or nb_jeton_jaune > nb_jeton_rouge+1 or (nb_jeton_jaune == 21 and nb_jeton_rouge == 21):
         return True
 
     for i in range(35):
