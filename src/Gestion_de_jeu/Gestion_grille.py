@@ -11,8 +11,8 @@ class Grille:
             Cette méthode est le constructeur de la classe Grille.
             
             Paramètres :
-                - g_ligne : variable de type entier correspondant on nombre de lignes de la matrice
-                - g_colonne : variable de type entier correspondant on nombre de colonnes de la matrice
+                g_ligne : variable de type entier correspondant on nombre de lignes de la matrice
+                g_colonne : variable de type entier correspondant on nombre de colonnes de la matrice
         """
 
         self.grille = ny.empty((g_ligne, g_colonne), dtype=object)
@@ -24,7 +24,7 @@ class Grille:
             Cette méthode permet de vérifier si un coup joué est valide ou non.
 
             Paramètre :
-                - g_num_colonne : entier correspondant à la colonne du coup joué
+                g_num_colonne : entier correspondant à la colonne du coup joué
             
             Retourne :
                 un booléen : True si le coup est valide, False sinon.
@@ -38,8 +38,9 @@ class Grille:
             en fonction de la couleur du jeton passé en paramètre.
 
             Paramètre :
-                - couleur : entier correspondant à la couleur du jeton 
-                            (1 : rouge et 2 : jaune)
+                couleur : entier correspondant à la couleur du jeton 
+                            1 : rouge
+                            2 : jaune
 
             Retourne :
                 un booléen : True si un coup gagnant a été trouvé, False sinon

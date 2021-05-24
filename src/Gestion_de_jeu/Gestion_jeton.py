@@ -3,7 +3,7 @@ class Jeton:
         Cette classe nous permet de créer les jetons qui seront placés
         dans la grille.
 
-        La variable nombre_jeton est de type entier et nous permet de connaitre
+        La variable static nombre_jeton est de type entier et nous permet de connaître
         le nombre de jetons utilisés dans la partie.
     """
     
@@ -12,13 +12,14 @@ class Jeton:
     def __init__(self, j_couleur):
         """ 
             Constructeur de la classe Jeton.
-            Permet de créer un jeton en lui assignant une couleur
+            Permet de créer un jeton en lui assignant une couleur.
 
             Paramètre:
-            j_couleur: variable de type booléen
+                j_couleur: variable de type booléen
                         0 représente la couleur Jaune
                         1 représente la couleur Rouge
         """
+
         self.couleur = j_couleur
         Jeton.incremente_nombre_jeton()
 

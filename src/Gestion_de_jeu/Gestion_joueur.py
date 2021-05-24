@@ -1,9 +1,7 @@
 import Gestion_jeton
 
 class Joueur:
-    """
-        Classe Joueur cette classe permet créer un joueur.
-    """
+    """ Cette classe permet créer un joueur. """
 
     def __init__(self, j_commence):
         """
@@ -16,6 +14,7 @@ class Joueur:
                              1 commence la partie.
                              0 ne commence pas la partie.
         """
+
         self.commence = j_commence
 
     def jouer_coup(self, j_grille, j_num_colonne):
@@ -29,10 +28,10 @@ class Joueur:
                                 correspondant à un numéro de colonne
                                 de la matrice.
                       
-
             Renvoie : 
-                Cette méthode renvoie le numéro de la ligne où le coup a été joué.
+                Cette méthode renvoie un entier correspondant au numéro de la ligne où le coup a été joué.
         """
+
         num_ligne = 5
 
         for i in range(0, 6):
@@ -56,23 +55,24 @@ class Ordinateur(Joueur):
     """
         La classe Ordinateur est une classe fille de la classe Joueur.
         
-        Cette classe est utilisée pour le joueur contrôlé par l'ordinateur
+        Cette classe est utilisée pour le joueur contrôlé par l'ordinateur.
     """
 
     def __init__(self, o_commence, o_difficulte):
         """
             Constructeur de la classe Ordinateur. On fait appel au constucteur
-            de la classe Joueurs et on définit un niveau de difficulté.
+            de la classe Joueur et on définit un niveau de difficulté.
 
             Paramètres:
                 o_commence : variable de type booléenne permettant de savoir
                             si l'ordinateur commence la partie.
-                            0 : ne commence pas la partie.
-                            1 : commence la partie.
+                            True : commence la partie.
+                            False : ne commence pas la partie.
                 
                 o_difficulte : varible de type entier positif nous permettant de
-                                définir le niveau de difficulté de l'ordinateur.
+                               définir le niveau de difficulté de l'ordinateur.
         """
+
         super().__init__(o_commence)
         self.difficulte = o_difficulte
 
@@ -80,7 +80,6 @@ class Ordinateur(Joueur):
         """
             Cette méthode permet de jouer un jeton au centre de la grille
             si l'ordinateur commence la partie.
-
-            Cette méthode ne renvoie rien.
         """
+
         self.jouer_coup(o_grille, 3)
