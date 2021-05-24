@@ -997,7 +997,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                                 if LANGUE == 0:  
                                     texte_aff = font.render("Coup Gagnant Joueur 2", True, "royalblue1")
                                 elif LANGUE == 1:
-                                    texte_aff = font.render("Winning Move Player 2", True, "royaleblue1")
+                                    texte_aff = font.render("Winning Move Player 2", True, "royalblue1")
                                 texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
                                 fenetre.blit(texte_aff, texte_rect)
                                 pygame.display.flip()
