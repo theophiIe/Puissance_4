@@ -2,16 +2,49 @@ import numpy as ny
 import Gestion_jeton
 
 class Grille:
+    """
+        Cette classe permet de gérer le plateau de jeu sous forme matricielle.
+    """
 
     def __init__(self, g_ligne, g_colonne):
+        """
+            Cette méthode est le constructeur de la classe Grille.
+            
+            Paramètres :
+                - g_ligne : variable de type entier correspondant on nombre de lignes de la matrice
+                - g_colonne : variable de type entier correspondant on nombre de colonnes de la matrice
+        """
+
         self.grille = ny.empty((g_ligne, g_colonne), dtype=object)
         self.ligne = g_ligne
         self.colonne = g_colonne
 
     def coup_valide(self, g_num_colonne):
+        """
+            Cette méthode permet de vérifier si un coup joué est valide ou non.
+
+            Paramètre :
+                - g_num_colonne : entier correspondant à la colonne du coup joué
+            
+            Retourne :
+                un booléen : True si le coup est valide, False sinon.
+        """
+
         return (self.grille[0][g_num_colonne] is None)
 
     def coup_gagnant(self, couleur):
+        """
+            Cette méthode permet de vérifier si un coup gagant a été joué dans la grille
+            en fonction de la couleur du jeton passé en paramètre.
+
+            Paramètre :
+                - couleur : entier correspondant à la couleur du jeton 
+                            (1 : rouge et 2 : jaune)
+
+            Retourne :
+                un booléen : True si un coup gagnant a été trouvé, False sinon
+        """
+
         for ligne in range(self.ligne):
             for colonne in range(self.colonne-3):
                 jeton1 = self.grille[ligne][colonne]
@@ -59,15 +92,34 @@ class Grille:
         return False
     
     def est_pleine(self):
+        """
+            Cette méthode vérifie si la grille est pleine en regardant le nombre de jetons.
+
+            Retourne :
+                un booléen : True si la grille est remplie, False sinon
+        """
+
         return (Gestion_jeton.Jeton.nombre_jeton == (self.ligne*self.colonne))
 
     def vider_grille(self):
+        """
+            Cette méthode permet de remettre à "None" toutes les cases de la grille.
+        """
+
         for i in range(self.ligne):
             for j in range(self.colonne):
                 if(self.grille[i][j] is not None):
                     self.grille[i][j] = None
     
     def remplir_grille(self, g_contenu_grille):
+        """
+            Cette méthode permet de remplir une grille à partir d'une chaîne de caractères
+            passée en paramètre.
+
+            Paramètre :
+                g_contenu_grille : chaîne de caractère correspondant à un contenu de grille
+        """
+
         i = 0
         j = 0
 
