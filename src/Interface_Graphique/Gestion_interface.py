@@ -15,6 +15,7 @@ import os # pour lire des sauvegardes dans des fichiers à retirer peut-être
 SIZE = 0 # taille de la fenetre
 BACKGROUND_SPRITE = "assets/Sprites/Backgroundv5.png"
 
+# Define constants correspondants aux menus
 MENU_PRINCIPAL = 0
 MODE_DE_JEU = 1
 CHARGEMENT = 2
@@ -27,17 +28,31 @@ FIN_DE_PARTIE = 8
 CONFIRMATION = 9
 ERREUR = 10
 
-MUTE_SOUND = 0  # 0 = PAS MUTE,    1 = MUTE
+MUTE_SOUND = 0  # 0 = PAS MUTE, 1 = MUTE
 LANGUE = 0  # 0 = Francais, 1 = Anglais
 
 pygame.mixer.init()
 
 def musique(chemin, volume):
+    """
+        Cette fonction permet de lancer une musique
+        à partir de son chemin d'accès et de régler son volume.
+    """
+
     pygame.mixer.music.load(chemin)
     pygame.mixer.music.set_volume(volume)
     pygame.mixer.music.play()
 
 def image_fr_eng():
+    """
+        Cette fonction permet de stocker dans un tableau
+        tous les chemins d'accès des images en fonction de la langue 
+        sélectionnée.
+
+        Renvoie :
+            un tableau de chaîne de caractères contenant les liens des images.
+    """
+
     global LANGUE
     if LANGUE == 0:
         tab_images = [
@@ -143,21 +158,17 @@ def image_fr_eng():
 
     return tab_images
 
-def afficher_grille(grille):
-    for i in range(6):
-        aff = ''
-        for j in range(7):
-            if(grille[i][j] is None):
-                aff += ' 0'
-            elif(grille[i][j].couleur == 1):
-                aff += ' 1'
-            else:
-                aff+= ' 2'
-        print(aff)
-    print()
-
-# MENUMENU 0
+# MENU 0
 def affichage_menu_principal(fenetre):
+    """
+        Cette fonction affiche le menu principal
+
+        Paramètre :
+            fenetre : la fenêtre graphique pygame
+
+        Renvoie :
+            un entier qui correspond au numéro de la fenêtre suivante
+    """
     image = image_fr_eng()
 
     background = pygame.image.load(BACKGROUND_SPRITE) 
@@ -338,6 +349,19 @@ def affichage_menu_principal(fenetre):
 
 # MENU 1
 def affichage_mode_de_jeu(fenetre):
+    """
+        Cette fonction affiche le menu de mode de jeu.
+
+        Paramètre :
+            fenetre : la fenêtre graphique pygame
+
+        Renvoie :
+            quel_menu : un entier qui correspond au numéro de la fenêtre suivante
+            mode_de_jeu : un booléen correspondant au mode de jeu
+            qui_commence : un booléen définissant l'ordre de passage
+            niveau_de_difficulte : un entier correspondant au niveau de difficulté
+    """
+
     image = image_fr_eng()
     background = pygame.image.load(BACKGROUND_SPRITE) 
     fenetre.blit(background, (0, 0))
@@ -415,6 +439,16 @@ def affichage_mode_de_jeu(fenetre):
 
 # MENU 2
 def affichage_chargement(fenetre):
+    """
+        Cette fonction affiche le menu de chargement.
+
+        Paramètre :
+            fenetre : la fenêtre graphique pygame
+
+        Renvoie :
+            quel_menu : un entier qui correspond au numéro de la fenêtre suivante
+            nom_fichier : chaîne de caractères correspondant au chemin du fichier chargé
+    """
     image = image_fr_eng()
     background = pygame.image.load(BACKGROUND_SPRITE) 
     fenetre.blit(background, (0, 0))
@@ -665,6 +699,17 @@ def affichage_chargement(fenetre):
 
 # MENU 3
 def affichage_choix_de_difficulte(fenetre):
+    """
+        Cette fonction affiche le menu de choix de difficulté.
+
+        Paramètre :
+            fenetre : la fenêtre graphique pygame
+
+        Renvoie :
+            niveau_de_difficulte : entier correspondant au niveau de difficult e de l’ordinateur
+            quel_joueur_joue : booléen correspondant à l’ordre de passage
+    """
+
     image = image_fr_eng()
     background = pygame.image.load(BACKGROUND_SPRITE) 
     fenetre.blit(background, (0, 0))
@@ -752,6 +797,17 @@ def affichage_choix_de_difficulte(fenetre):
 
 # MENU 4
 def affichage_commencer(fenetre):
+    """
+        Cette fonction affiche le menu commencer.
+
+        Paramètre :
+            fenetre : la fenêtre graphique pygame
+
+        Renvoie :
+            retour : booléen correspondant à l'action de retour
+            quel_joueur_joue : booléen correspondant à l’ordre de passage
+    """
+
     image = image_fr_eng()
 
     background = pygame.image.load(BACKGROUND_SPRITE) 
@@ -821,6 +877,20 @@ def affichage_commencer(fenetre):
 
 # MENU 5
 def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_difficulte):
+    """
+        Cette fonction affiche le menu partie.
+
+        Paramètres :
+            fenetre : la fenêtre graphique pygame
+            grille : instance de la classe Grille
+            mode_de_jeu : un booléen correspondant au mode de jeu
+            qui_commence : un booléen définissant l'ordre de passage
+            niveau_de_difficulte : un entier correspondant au niveau de difficulté
+
+        Renvoie :
+            texte_fin_de_partie : une chaîne de caractères correspondant au texte de fin de partie
+    """
+    
     image = image_fr_eng()
     background = pygame.image.load(BACKGROUND_SPRITE) 
     fenetre.blit(background, (0, 0))
@@ -1223,6 +1293,14 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
 
 # MENU 6
 def affichage_sauvegarde(fenetre, grille):
+    """
+        Cette fonction affiche le menu sauvegarde.
+
+        Paramètres :
+            fenetre : la fenêtre graphique pygame
+            grille : instance de la classe Grille
+    """
+
     image = image_fr_eng()
     background = pygame.image.load(BACKGROUND_SPRITE) 
     fenetre.blit(background, (0, 0))
@@ -1474,6 +1552,14 @@ def affichage_sauvegarde(fenetre, grille):
 
 # MENU 7
 def affichage_nouvelle_sauvegarde(fenetre, grille):
+    """
+        Cette fonction affiche le menu nouvelle sauvegarde.
+
+        Paramètres :
+            fenetre : la fenêtre graphique pygame
+            grille : instance de la classe Grille
+    """
+
     image = image_fr_eng()
     background = pygame.image.load(BACKGROUND_SPRITE) 
     fenetre.blit(background, (0, 0))
@@ -1607,6 +1693,17 @@ def affichage_nouvelle_sauvegarde(fenetre, grille):
 
 # MENU 8
 def affichage_fin_de_partie(fenetre, texte_fin_de_partie):
+    """
+        Cette fonction affiche le menu fin de partie.
+
+        Paramètres :
+            fenetre : la fenêtre graphique pygame
+            texte_fin_de_partie : chaîne de caractères correspondant au message de fin de partie
+
+        Renvoie : 
+            quel_menu : un entier qui correspond au numéro de la fenêtre suivante
+    """
+
     image = image_fr_eng()
 
     if pygame.mixer.get_init() != None:
@@ -1670,6 +1767,17 @@ def affichage_fin_de_partie(fenetre, texte_fin_de_partie):
 
 # MENU 9
 def affichage_confirmation(fenetre, texte):
+    """
+        Cette fonction affiche une pop-up de confirmation.
+
+        Paramètres :
+            fenetre : la fenêtre graphique pygame
+            texte : chaîne de caractères correspondant au message de confirmation
+
+        Renvoie :
+            resultat : booléen correspondant au résultat de la confirmation
+    """
+
     image = image_fr_eng()
     b_fenetre = Gestion_bouton.Bouton("assets/Sprites/Blackground.png", "assets/Sprites/Blackground.png", SIZE/5, SIZE/5, SIZE*3/5, SIZE*4/10)
     b_fenetre.affichage_bouton(fenetre)
@@ -1726,6 +1834,14 @@ def affichage_confirmation(fenetre, texte):
 
 # MENU 10
 def affichage_erreur(fenetre, texte):
+    """
+        Cette fonction affiche une pop-up d'erreur.
+
+        Paramètres :
+            fenetre : la fenêtre graphique pygame
+            texte : chaîne de caractères correspondant au message d'erreur'
+    """
+
     if pygame.mixer.get_init() != None:
         musique('assets/Sounds/erro.wav', 0.3)
    
@@ -1776,6 +1892,17 @@ def affichage_erreur(fenetre, texte):
         pygame.display.flip()
 
 def affichage_aide(fenetre, grille, joueur_actuel, joueur_suivant):
+    """
+        Cette fonction affiche une aide sous forme de flèche 
+        placée sous la grille de jeu.
+
+        Paramètres :
+            fenetre : la fenêtre graphique pygame
+            grille : instance de la classe Grille
+            joueur_actuel : instance de la classe Joueur / Ordinateur
+            joueur_suivant : instance de la classe Joueur / Ordinateur
+    """
+
     if Gestion_jeton.Jeton.nombre_jeton == 0:
         num_colonne = 3
 
@@ -1828,6 +1955,18 @@ def affichage_aide(fenetre, grille, joueur_actuel, joueur_suivant):
     b_fleche.affichage_bouton(fenetre)
 
 def affichage_jeton(fenetre, grille, num_ligne, num_colonne):
+    """
+        Cette fonction affiche un jeton de la grille à la case
+        correspondant au numéro de ligne et au numéro de colonne donnés
+        en paramètre.
+
+        Paramètres :
+            fenetre : la fenêtre graphique
+            grille : instance de la clase Grille
+            num_ligne : entier correspondant au numéro de la ligne
+            num_colonne : entier correspondant au numéro de la colonne
+    """
+
     if grille.grille[num_ligne][num_colonne] is not None:
         if grille.grille[num_ligne][num_colonne].couleur == 1:
             b_jeton_rouge = Gestion_bouton.Bouton("assets/Sprites/Jeton_rouge.png", "assets/Sprites/Jeton_rouge.png",SIZE * 0.41/10 + num_colonne * (SIZE*1.068/10), SIZE*2.58/10 + num_ligne * (SIZE*1.068/10), SIZE*0.89/10, SIZE*0.89/10) #SIZE*7.92/10 - num_ligne * (SIZE*1.068/10)
@@ -1838,10 +1977,16 @@ def affichage_jeton(fenetre, grille, num_ligne, num_colonne):
             b_jeton_jaune.affichage_bouton(fenetre)
 
 def affichage_grille_jeton(fenetre, grille): 
+    """
+        Cette fonction affiche une grille avec tous ses jetons.
+
+        Paramètres :
+            fenetre : la fenêtre graphique
+            grille : instance de la clase Grille
+    """
+
     b_grille = Gestion_bouton.Bouton("assets/Sprites/grille.png", "assets/Sprites/grille.png", SIZE*0.20/10, SIZE*2.4/10, SIZE*7.7/10, SIZE*6.6/10)
     b_grille.affichage_bouton(fenetre)
-
-    afficher_grille(grille.grille)
 
     for ligne in range(grille.ligne):
         for colonne in range(grille.colonne):
@@ -1850,7 +1995,7 @@ def affichage_grille_jeton(fenetre, grille):
 def selection_colonne(fenetre, event):
     """
         Cette fonction permet de vérifier si l'evenement passé en paramètre est un clic gauche.
-        Si c'est un clic gauche et qu'il a été fait dans la zone de la grille, càd dans une des colonnes,
+        Si c'est un clic gauche et qu'il a été fait dans la zone de la grille, c'est-à-dire dans une des colonnes,
         alors il retourne le numéro de la colonne dans laquelle le clic a été fait.
 
         Paramètre : 
@@ -1858,10 +2003,11 @@ def selection_colonne(fenetre, event):
             event : evenement Pygame (clic, touche, quitter ...) 
             
         Renvoie : 
-            Un entier correspondant au numéro de colonne dans laqeulle le clic a été fait. 
+            Un entier correspondant au numéro de colonne dans laquelle le clic a été fait. 
             0 - 6 : numéro de colonne
-            -1 : clic hors zone de grille
+            -1 : clic hors de la zone de grille
     """
+
     num_colonne = -1
 
     if event.button == 1:
@@ -1879,6 +2025,10 @@ def selection_colonne(fenetre, event):
 
 
 def lancer_affichage():
+    """
+        Cette fonction regroupe tous les évènements en lien avec l'affichage de l'interface graphique.
+    """
+
     pygame.init()
 
     if LANGUE == 0:

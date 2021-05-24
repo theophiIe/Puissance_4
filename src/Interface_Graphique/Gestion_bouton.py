@@ -14,9 +14,8 @@ class Bouton:
                 b_position_y : entier qui définit la position en ordonnée du bouton
                 b_largeur : entier qui correpond à la largeur du bouton, en pixels
                 b_hauteur : entier qui correspond à la hauteur du bouton, en pixels
-            
-            Cette fonction ne renvoie rien.
         """
+
         self.point_x = b_position_x
         self.point_y = b_position_y
 
@@ -39,10 +38,8 @@ class Bouton:
                 b_position_y : entier qui définit la position en ordonnée du bouton
                 b_largeur : entier qui correpond à la largeur du bouton, en pixels
                 b_hauteur : entier qui correspond à la hauteur du bouton, en pixels
-            
-            Cette méthode ne renvoie rien.
-            
         """
+
         self.point_x = b_position_x
         self.point_y = b_position_y
 
@@ -59,8 +56,6 @@ class Bouton:
             
             Paramètre : 
                 b_fenetre : instance de la fenetre graphique où ajouter le bouton
-                        
-            Cette méthode ne renvoie rien.
         """
         b_fenetre.blit(self.image, (self.point_x, self.point_y) )
 
@@ -70,8 +65,6 @@ class Bouton:
             
             Paramètre : 
                 b_fenetre : instance de la fenetre graphique où ajouter le bouton
-                        
-            Cette méthode ne renvoie rien.
         """
         b_fenetre.blit(self.image_survole, (self.point_x, self.point_y) )
 
@@ -79,16 +72,15 @@ class Bouton:
         """
             Cette méthode permet de récupérer constamment la position de la souris et vérifie 
             si le curseur pointe sur le bouton ou non.
-            Le paramètre position_souris correspond à la valeur retournée par la fonction pygame.mouse.get_pos()
+            Le paramètre b_position_souris correspond à la valeur retournée par la fonction pygame.mouse.get_pos()
             Cette valeur est sous la forme d'un tuple d'entiers qui correspond aux coordonnées en abscisse et 
             ordonnée de la souris à l'instant présent. 
             
             Paramètre : 
                 b_fenetre : instance de la fenetre graphique où ajouter le bouton
                 b_position_souris : tuple d'entiers avec les coordonnées de la souris
-                
-            Cette méthode ne renvoie rien.
         """
+
         collision = self.rectangle.collidepoint(b_position_souris)
 
         if collision:
