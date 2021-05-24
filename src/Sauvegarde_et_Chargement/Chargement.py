@@ -3,6 +3,7 @@ import Gestion_grille
 
 def lecture_fichier(nom_fichier):
     contenu_fichier = ""
+
     if(verifie_existence_fichier(nom_fichier)):
         fichier = open(nom_fichier, "r")
         contenu_fichier = fichier.read()
@@ -15,12 +16,15 @@ def test_corruption(contenu_fichier):
 
     nb_jeton_rouge = 0
     nb_jeton_jaune = 0
+
     for caractere in contenu_fichier:
         if((ord(caractere) < 48) or (ord(caractere) > 50)):
             return True
+
         else:
             if caractere == '1':
                 nb_jeton_rouge += 1
+                
             elif caractere == '2':
                 nb_jeton_jaune += 1
         
