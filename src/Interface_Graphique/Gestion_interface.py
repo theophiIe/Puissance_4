@@ -845,6 +845,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                 tour = not tour
         else:
             joueur_actuel, joueur_suivant = joueur_suivant, joueur_actuel
+            tour = not tour
 
     if type(joueur_actuel) == Gestion_joueur.Ordinateur:
         joueur_actuel.premier_coup(grille.grille)
