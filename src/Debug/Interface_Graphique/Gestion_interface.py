@@ -352,7 +352,7 @@ def affichage_mode_de_jeu(fenetre):
     b_jvj = Gestion_bouton.Bouton(image[6], image[7], SIZE/3, SIZE * 2/5, SIZE/3, SIZE/10)
     b_jvj.affichage_bouton(fenetre)
 
-    b_jvo = Gestion_bouton.Bouton(image[8], image[9], SIZE/3, SIZE*3/5, SIZE/3, SIZE/10)
+    b_jvo = Gestion_bouton.Bouton(image[8], image[9], SIZE/3, SIZE*2.8/5, SIZE/3, SIZE/10)
     b_jvo.affichage_bouton(fenetre)
 
     b_retour = Gestion_bouton.Bouton(image[10], image[11], SIZE/3, SIZE*4/5, SIZE/3, SIZE/10)
