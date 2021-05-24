@@ -228,7 +228,7 @@ def affichage_menu_principal(fenetre):
 
                 # SON ON -> OFF
                 if event.button == 1 and b_son.rectangle.collidepoint(event.pos) and pygame.mixer.get_init() != None:
-                    musique('Interface_Graphique/Sounds/demute_sound.wav', 0.3)
+                    #musique('Interface_Graphique/Sounds/demute_sound.wav', 0.3)
                     fenetre.blit(background, (0, 0))
                   
                     b_son_off.affichage_bouton(fenetre)
@@ -240,7 +240,7 @@ def affichage_menu_principal(fenetre):
                 # SON OFF -> ON
                 elif event.button == 1 and b_son.rectangle.collidepoint(event.pos) and pygame.mixer.get_init() == None:
                     pygame.mixer.init()
-                    musique('Interface_Graphique/Sounds/change_sound.wav', 0.2)
+                    musique('Interface_Graphique/Sounds/demute.wav', 0.3)
 
                     MUTE_SOUND = 0
                     fenetre.blit(background, (0, 0))
@@ -315,8 +315,6 @@ def affichage_menu_principal(fenetre):
                     quel_menu = -1
                     break
 
-                if pygame.mixer.get_init() != None:
-                    musique('Interface_Graphique/Sounds/miaou.wav', 0.5) #victoire_2.wav
 
         if running == False:
             break
@@ -863,7 +861,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                 #pygame.time.delay(2000)
                 if val_fin_de_partie == 2:
                     if pygame.mixer.get_init() != None:
-                        musique('Interface_Graphique/Sounds/victoire_3.wav', 0.3)
+                        musique('Interface_Graphique/Sounds/victoire_partie.wav', 0.3)
                         
                     font = pygame.font.Font('Interface_Graphique/Cafeteria-Bold.otf', int( SIZE / 12 ) )
                     if LANGUE == 0:
@@ -881,7 +879,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                                     return "Vainqueur : ORDI !"
                 else:
                     if pygame.mixer.get_init() != None:
-                        musique('Interface_Graphique/Sounds/victoire_3.wav', 0.3)
+                        musique('Interface_Graphique/Sounds/victoire_partie.wav', 0.3)
 
                     font = pygame.font.Font('Interface_Graphique/Cafeteria-Bold.otf', int( SIZE / 12 ) )
                     if LANGUE == 0:
@@ -973,7 +971,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                             print("le joueur commence {}".format(joueur_suivant.commence))
                             if joueur_suivant.commence:
                                 if pygame.mixer.get_init() != None:
-                                    musique('Interface_Graphique/Sounds/victoire_3.wav', 0.3)
+                                    musique('Interface_Graphique/Sounds/victoire_partie.wav', 0.3)
                                     
                                 if LANGUE == 0:
                                     texte_aff = font.render("Coup Gagnant Joueur 1", True, "royalblue1")
@@ -992,7 +990,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                                                 return "Winner : P1 !"
                             else:
                                 if pygame.mixer.get_init() != None:
-                                    musique('Interface_Graphique/Sounds/victoire_3.wav', 0.3)
+                                    musique('Interface_Graphique/Sounds/victoire_partie.wav', 0.3)
 
                                 if LANGUE == 0:  
                                     texte_aff = font.render("Coup Gagnant Joueur 2", True, "royalblue1")
@@ -1010,7 +1008,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                                                 return "Winner : P2 !"
                         else:
                             if pygame.mixer.get_init() != None:
-                                musique('Interface_Graphique/Sounds/victoire_3.wav', 0.3)
+                                musique('Interface_Graphique/Sounds/victoire_partie.wav', 0.3)
                             font = pygame.font.Font('Interface_Graphique/Cafeteria-Bold.otf', int( SIZE / 12 ) )
                             if LANGUE == 0:
                                 texte_aff = font.render("Match Nul !", True, "royalblue1")
@@ -1046,7 +1044,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                             #pygame.time.delay(2000)
                             if val_fin_de_partie == 2:
                                 if pygame.mixer.get_init() != None:
-                                    musique('Interface_Graphique/Sounds/victoire_3.wav', 0.3)
+                                    musique('Interface_Graphique/Sounds/victoire_partie.wav', 0.3)
                                     
                                 font = pygame.font.Font('Interface_Graphique/Cafeteria-Bold.otf', int( SIZE / 12 ) )
                                 
@@ -1067,7 +1065,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                                                 return "Winner : CPU !"
                             else:
                                 if pygame.mixer.get_init() != None:
-                                    musique('Interface_Graphique/Sounds/victoire_3.wav', 0.3)
+                                    musique('Interface_Graphique/Sounds/victoire_partie.wav', 0.3)
                                     
                                 font = pygame.font.Font('Interface_Graphique/Cafeteria-Bold.otf', int( SIZE / 12 ) )
                                 if LANGUE == 0:
@@ -1474,7 +1472,7 @@ def affichage_nouvelle_sauvegarde(fenetre, grille):
 def affichage_fin_de_partie(fenetre, texte_fin_de_partie):
     image = image_fr_eng()
     if pygame.mixer.get_init() != None:
-        musique('Interface_Graphique/Sounds/victory.swf.wav', 0.09)
+        musique('Interface_Graphique/Sounds/victoire_fin_partie.swf.wav', 0.09)
 
     background = pygame.image.load("Interface_Graphique/Sprites/Background_trans.png") 
     fenetre.blit(background, (0, 0))
