@@ -16,8 +16,10 @@ def fin_de_partie(cls_grille,couleur):
     """
     if cls_grille.coup_gagnant(couleur) == True:
          return 2
+
     if cls_grille.est_pleine() == True:
         return 1
+
     return 0
 
 def attribution_des_joueurs(qui_commence, mode_de_jeu, niveau_de_difficulte):
@@ -36,13 +38,16 @@ def attribution_des_joueurs(qui_commence, mode_de_jeu, niveau_de_difficulte):
         if qui_commence == True:
             joueur_actuel=Gestion_joueur.Joueur(True)
             joueur_suivant=Gestion_joueur.Joueur(False)
+
         else:
             joueur_actuel=Gestion_joueur.Joueur(False)
             joueur_suivant=Gestion_joueur.Joueur(True)
+
     else: 
         if qui_commence == True:
             joueur_actuel=Gestion_joueur.Joueur(True)
             joueur_suivant=Gestion_joueur.Ordinateur(False,niveau_de_difficulte)
+
         else: 
             joueur_actuel=Gestion_joueur.Ordinateur(True,niveau_de_difficulte)
             joueur_suivant=Gestion_joueur.Joueur(False)
@@ -68,15 +73,17 @@ def actions_coup_joueur(grille, num_colonne, joueur_actuel, joueur_suivant, nive
     if type(joueur_actuel) == Gestion_joueur.Joueur: 
         num_ligne = joueur_actuel.jouer_coup(grille.grille,num_colonne)
         joueur_actuel,joueur_suivant = joueur_suivant,joueur_actuel
-    else:
 
+    else:
         coup_joue = False
 
         for num_colonne in range(grille.colonne):
             if grille.coup_valide(num_colonne) != True:
                 continue
+
             else:
                 num_ligne = joueur_actuel.jouer_coup(grille.grille, num_colonne)
+            
                 if grille.coup_gagnant((joueur_actuel.commence - 1) % 2 + 1):
                     coup_joue = True
                     joueur_actuel,joueur_suivant = joueur_suivant,joueur_actuel
@@ -90,8 +97,10 @@ def actions_coup_joueur(grille, num_colonne, joueur_actuel, joueur_suivant, nive
             for num_colonne in range(grille.colonne):
                 if grille.coup_valide(num_colonne) != True:
                     continue
+            
                 else:
                     num_ligne = joueur_suivant.jouer_coup(grille.grille, num_colonne)
+            
                     if grille.coup_gagnant((joueur_suivant.commence - 1) % 2 + 1):
                         coup_joue = True
                         Gestion_jeton.Jeton.decremente_nombre_jeton()
