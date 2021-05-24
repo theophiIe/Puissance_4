@@ -64,6 +64,7 @@ def evaluation_quadruplet(quadruplet, couleur_jeton):
         elif nb_jeton_adv == 2 and nb_jeton == 0:
             if Gestion_jeton.Jeton.nombre_jeton % 2 == 1:
                 return -20
+
             else:
                 return -10
 
@@ -81,6 +82,7 @@ def evaluation_coup(cls_grille, couleur_jeton):
 
     for ligne in range(cls_grille.ligne):
         jeton_centre = cls_grille.grille[ligne][3]
+        
         if jeton_centre is not None and jeton_centre.couleur == couleur_jeton:
             jeton += 1
 
