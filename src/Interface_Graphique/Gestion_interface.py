@@ -10,7 +10,6 @@ from Strategies import *
 
 import pygame
 import math
-
 import os # pour lire des sauvegardes dans des fichiers à retirer peut-être
 
 SIZE = 0 # taille de la fenetre
@@ -203,15 +202,18 @@ def affichage_menu_principal(fenetre):
             b_langue_francais.affichage_bouton(fenetre)
 
     if LANGUE == 1:
-        #afficher le background / titre et boutons anglais
+        # afficher le background / titre et boutons anglais
         image = image_fr_eng()
         b_titre = Gestion_bouton.Bouton(image[0], image[0], SIZE/10, SIZE*1.5/10, SIZE*8/10, SIZE*2.5/10)
         b_titre.affichage_bouton(fenetre)
+
         if MUTE_SOUND == 0:
             b_son.affichage_bouton(fenetre)
+
         else:
             b_titre = Gestion_bouton.Bouton(image[0], image[0], SIZE/10, SIZE*1.5/10, SIZE*8/10, SIZE*2.5/10)
             b_titre.affichage_bouton(fenetre)
+
         b_langue_anglais.affichage_bouton(fenetre)
 
     pygame.display.flip()
@@ -258,11 +260,8 @@ def affichage_menu_principal(fenetre):
                     image = image_fr_eng()
 
                     b_titre = Gestion_bouton.Bouton(image[0], image[0], SIZE/10, SIZE*1.5/10, SIZE*8/10, SIZE*2.5/10)
-
                     b_jouer = Gestion_bouton.Bouton(image[1], image[2], SIZE/3, SIZE*4.5/10, SIZE/3, SIZE/10)
-
                     b_charger = Gestion_bouton.Bouton(image[13], image[14], SIZE/3, SIZE*6/10, SIZE/3, SIZE/10)
-
                     b_quitter = Gestion_bouton.Bouton(image[3], image[4], SIZE/3, SIZE*7.5/10, SIZE/3, SIZE/10)
                     
                     if MUTE_SOUND == 0:
@@ -279,15 +278,13 @@ def affichage_menu_principal(fenetre):
                     image = image_fr_eng()
 
                     b_titre = Gestion_bouton.Bouton(image[0], image[0], SIZE/10, SIZE*1.5/10, SIZE*8/10, SIZE*2.5/10)
-
                     b_jouer = Gestion_bouton.Bouton(image[1], image[2], SIZE/3, SIZE*4.5/10, SIZE/3, SIZE/10)
-
                     b_charger = Gestion_bouton.Bouton(image[13], image[14], SIZE/3, SIZE*6/10, SIZE/3, SIZE/10)
-
                     b_quitter = Gestion_bouton.Bouton(image[3], image[4], SIZE/3, SIZE*7.5/10, SIZE/3, SIZE/10)
 
                     if MUTE_SOUND == 0:
                         musique('assets/Sounds/francais.wav', 0.5)
+
                     break
 
                 if event.button == 1 and b_jouer.rectangle.collidepoint(event.pos):
@@ -314,7 +311,6 @@ def affichage_menu_principal(fenetre):
                     quel_menu = -1
                     break
 
-
         if running == False:
             break
 
@@ -323,13 +319,16 @@ def affichage_menu_principal(fenetre):
         b_jouer.collision_bouton(fenetre, point)
         b_charger.collision_bouton(fenetre, point)
         b_quitter.collision_bouton(fenetre, point)
+
         if LANGUE == 1:
             b_langue_anglais.affichage_bouton(fenetre)
+
         else:
             b_langue_francais.affichage_bouton(fenetre)
         
         if MUTE_SOUND == 0:
             b_son.affichage_bouton(fenetre)
+
         else:
             b_son_off.affichage_bouton(fenetre)
 
@@ -359,19 +358,18 @@ def affichage_mode_de_jeu(fenetre):
 
     running = True
     while running:
-        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
             
             if event.type == pygame.MOUSEBUTTONDOWN:
-                
-
                 if event.button == 1 and b_jvj.rectangle.collidepoint(event.pos):
                     if pygame.mixer.get_init() != None:
                         musique('assets/Sounds/clic.wav', 0.3)
+                    
                     qui_commence = -1
                     retour, qui_commence = affichage_commencer(fenetre)
+                    
                     if retour == False:
                         running = False
                         mode_de_jeu = True
@@ -384,6 +382,7 @@ def affichage_mode_de_jeu(fenetre):
                         musique('assets/Sounds/clic.wav', 0.3)
 
                     niveau_de_difficulte, qui_commence = affichage_choix_de_difficulte(fenetre)
+
                     if niveau_de_difficulte != -1:
                         running = False
                         mode_de_jeu = False
@@ -435,6 +434,7 @@ def affichage_chargement(fenetre):
     pygame.display.flip()
 
     # ============== DEB MENU DEROULANT + LISTES SAUVERGARDES ==============
+
     # nombre de sauvegardes
     nb_sauv = 0
 
@@ -448,6 +448,7 @@ def affichage_chargement(fenetre):
     # récupérer les fichiers .txt
     path = r'data/Liste_sauvegardes'
     tmp = []
+
     for files in os.walk(path):
         for filename in files:
             tmp.append(filename)
@@ -463,6 +464,7 @@ def affichage_chargement(fenetre):
     if nb_sauv > 3:
         menu = pygame.Surface( ( int(SIZE*4/5) , int(nb_sauv * SIZE/10) + 5 ) )
         area = pygame.Rect(0, 0, SIZE*4/5, SIZE*2/5 +5)
+
     else:
         menu = pygame.Surface( ( int(SIZE*4/5) , int(nb_sauv * SIZE/10) + 5 ) )
         area = pygame.Rect(0, 0, SIZE*4/5, SIZE*nb_sauv/10 +5)
@@ -475,23 +477,27 @@ def affichage_chargement(fenetre):
 
     #point de la zone déroulante 
     pos = (SIZE/10, SIZE*3/10)
+
     # vitesse de déroulement
     pos_change = 20
+
     # zone menu_déroulant
     cx1 = SIZE/10
     cx2 = SIZE/10 + SIZE*4/5
     cy1 = SIZE*3/10
     cy2 = SIZE*3/10 + SIZE*2/5 +5
 
-    
     for i in range(nb_sauv):
         sauv = Gestion_bouton.Bouton("assets/Sprites/Bouton_vide.png", "assets/Sprites/Bouton_vide2.png", 5, 5 + i*SIZE/10, SIZE*4/5 - 10, SIZE/10 - 5)
         sauv.affichage_bouton(menu)
         tab_sauvegarde.append(sauv)
+
         if len(nom_sauvegarde[i]) < 30:
             font = pygame.font.Font('assets/Cafeteria-Bold.otf', int(SIZE / 15))
+
         else:
             font = pygame.font.Font('assets/Cafeteria-Bold.otf', int(SIZE / (len(nom_sauvegarde[i])/2) ))
+
         tmp_text = font.render(nom_sauvegarde[i], True, "white")
         tmp_text_rect = tmp_text.get_rect(center = (SIZE*4/10, SIZE/20+i*SIZE/10) )
         text_sauvegardes.append(tmp_text)
@@ -501,8 +507,8 @@ def affichage_chargement(fenetre):
     # ============== FIN MENU DEROULANT + LISTES SAUVERGARDES ==============
 
     running = True
+
     while running:
-                
         point = pygame.mouse.get_pos()
         x_point_menu , y_point_menu = point
         
@@ -511,7 +517,6 @@ def affichage_chargement(fenetre):
                 pygame.quit()
             
             if event.type == pygame.MOUSEBUTTONDOWN:
-                
                 if event.button == 1 and b_charger.rectangle.collidepoint(event.pos):
                     if pygame.mixer.get_init() != None:
                         musique('assets/Sounds/clic.wav', 0.3)
@@ -521,9 +526,11 @@ def affichage_chargement(fenetre):
                         quel_menu = MODE_DE_JEU
                         nom_fichier = nom_sauvegarde[sauvegarde_choisie]
                         break
+
                     else:
                         if LANGUE == 0:
                             affichage_erreur(fenetre, "Aucune sauvegarde sélectionnée !")
+
                         else:
                             affichage_erreur(fenetre, "No save selected !")
 
@@ -534,15 +541,17 @@ def affichage_chargement(fenetre):
                     if sauvegarde_choisie != -1:
                         if LANGUE == 0:
                             confirmation = affichage_confirmation(fenetre, "Supprimer la sauvegarde ?")
+
                         else: 
                             confirmation = affichage_confirmation(fenetre, "Delete selected save ?")
 
                         if confirmation == True:
-
                             verif_supprimer = supprimer_sauvegarde(nom_sauvegarde[sauvegarde_choisie])
+
                             if verif_supprimer == False:
                                 if LANGUE == 0:
                                     affichage_erreur(fenetre, "Erreur lors de la suppression")
+
                                 else:
                                     affichage_erreur(fenetre, "Error occured while deleting")
                             else:
@@ -553,13 +562,16 @@ def affichage_chargement(fenetre):
                                 nom_sauvegarde.remove( nom_sauvegarde[sauvegarde_choisie] )
                                 text_sauvegardes.remove( text_sauvegardes[sauvegarde_choisie] )
                                 text_sauvegardes_rect.remove( text_sauvegardes_rect[sauvegarde_choisie] )
+                                
                                 #modification des coordonnées
                                 for i in range(nb_sauv):
                                     tab_sauvegarde[i].changement_taille_bouton(5, 5 + i*SIZE/10, SIZE*4/5 - 10, SIZE/10 - 5)
                                     if len(nom_sauvegarde[i]) < 30:
                                         font = pygame.font.Font('assets/Cafeteria-Bold.otf', int(SIZE / 15))
+
                                     else:
                                         font = pygame.font.Font('assets/Cafeteria-Bold.otf', int(SIZE / (len(nom_sauvegarde[i])/2) ))
+                                    
                                     tmp_text = font.render(nom_sauvegarde[i], True, "white")
                                     tmp_text_rect = tmp_text.get_rect(center = (SIZE*4/10, SIZE/20+i*SIZE/10) )
                                     text_sauvegardes_rect[i] = tmp_text_rect
@@ -568,15 +580,16 @@ def affichage_chargement(fenetre):
                                 if nb_sauv > 3:
                                     menu = pygame.Surface( ( int(SIZE*4/5) , int(nb_sauv * SIZE/10) + 5 ) )
                                     area = pygame.Rect(0, 0, SIZE*4/5, SIZE*2/5 +5)
+
                                 else:
                                     menu = pygame.Surface( ( int(SIZE*4/5) , int(nb_sauv * SIZE/10) + 5 ) )
                                     area = pygame.Rect(0, 0, SIZE*4/5, SIZE*nb_sauv/10 +5)
+                                
                                 menu.blit( background_deroulant, (0, 0) )
                                 menu_rect = menu.get_rect()
-
                                 menu_subsurface = menu.subsurface(area)
-
                                 sauvegarde_choisie = -1
+
                                 # ======= FIN MENU DEROULANT + LISTES SAUVERGARDES =======
                     else:
                         if pygame.mixer.get_init() != None:
@@ -584,6 +597,7 @@ def affichage_chargement(fenetre):
                             
                         if LANGUE == 0:
                             affichage_erreur(fenetre, "Aucune sauvegarde sélectionnée !")
+
                         else:
                             affichage_erreur(fenetre, "No save selected !")
 
@@ -595,27 +609,32 @@ def affichage_chargement(fenetre):
                     quel_menu = MENU_PRINCIPAL
                     nom_fichier = ""
                     break
+
                 # 4 = scroll up
                 elif event.button == 4: 
                     area.y -= pos_change
                     area.clamp_ip(menu_rect)
                     menu_subsurface = menu.subsurface(area)
+
                 # 5 = scroll down
                 elif event.button == 5: 
                     area.y += pos_change
                     area.clamp_ip(menu_rect)
                     menu_subsurface = menu.subsurface(area)
+
                 # vérifie si on clique à l'intérieur de la zone déroulante
                 # en fonction de pos
                 if x_point_menu > cx1 and y_point_menu > cy1 and x_point_menu < cx2 and y_point_menu < cy2:
                     x_point_menu = x_point_menu - SIZE/10
                     y_point_menu = y_point_menu - SIZE*3/10 + area.y
                     point_menu = (x_point_menu, y_point_menu)
+                    
                     for i in range (nb_sauv):    
                         # 1 = click gauche        
                         if event.button == 1 and tab_sauvegarde[i].rectangle.collidepoint(point_menu):
                             if sauvegarde_choisie != i:
                                 sauvegarde_choisie = i
+
                             elif sauvegarde_choisie == i:
                                 sauvegarde_choisie = -1
 
@@ -634,8 +653,10 @@ def affichage_chargement(fenetre):
         for i in range(nb_sauv):
             if sauvegarde_choisie == i:
                 tab_sauvegarde[i].affichage_bouton_survole(menu)
+
             else:
                 tab_sauvegarde[i].affichage_bouton(menu)
+
             menu.blit(text_sauvegardes[i], text_sauvegardes_rect[i])
 
         pygame.display.flip()
@@ -667,7 +688,6 @@ def affichage_choix_de_difficulte(fenetre):
 
     running = True
     while running:
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -679,6 +699,7 @@ def affichage_choix_de_difficulte(fenetre):
                         
                     niveau_de_difficulte = 0
                     retour, quel_joueur_joue = affichage_commencer(fenetre)
+
                     if retour == False:
                         running = False
                         break
@@ -689,6 +710,7 @@ def affichage_choix_de_difficulte(fenetre):
 
                     niveau_de_difficulte = 1
                     retour, quel_joueur_joue = affichage_commencer(fenetre)
+
                     if retour == False:
                         running = False
                         break
@@ -699,6 +721,7 @@ def affichage_choix_de_difficulte(fenetre):
 
                     niveau_de_difficulte = 2
                     retour, quel_joueur_joue = affichage_commencer(fenetre)
+
                     if retour == False:
                         running = False
                         break
@@ -750,7 +773,6 @@ def affichage_commencer(fenetre):
 
     running = True
     while running:
-        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -809,20 +831,22 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
     if mode_de_jeu == True:
         b_j2 = Gestion_bouton.Bouton(image[29], image[30], SIZE*8/10, SIZE*1.32/10, SIZE*1.83/10, SIZE/15)
         b_j2.affichage_bouton(fenetre)
+
     else:
         b_j2 = Gestion_bouton.Bouton(image[31], image[32], SIZE*8/10, SIZE*1.32/10, SIZE*1.83/10, SIZE/15)
         b_j2.affichage_bouton(fenetre)
-
 
     tour = qui_commence
 
     nb_jeton_rouge = 0
     nb_jeton_jaune = 0
+
     for ligne in range(grille.ligne):
         for colonne in range(grille.colonne):
             if grille.grille[ligne][colonne] is not None:
                 if grille.grille[ligne][colonne].couleur == 1:
                     nb_jeton_rouge += 1
+
                 elif grille.grille[ligne][colonne].couleur == 2:
                     nb_jeton_jaune += 1
 
@@ -839,6 +863,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
             if qui_commence == True:
                 joueur_actuel, joueur_suivant = joueur_suivant, joueur_actuel
                 tour = not tour
+
         else:
             joueur_actuel, joueur_suivant = joueur_suivant, joueur_actuel
             tour = not tour
@@ -863,8 +888,6 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
     
     affichage_grille_jeton(fenetre, grille)
 
-
-    
     if type(joueur_actuel) == Gestion_joueur.Ordinateur:
         if Gestion_jeton.Jeton.nombre_jeton == 0:
             joueur_actuel.premier_coup(grille.grille)
@@ -872,8 +895,10 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
             joueur_actuel, joueur_suivant = joueur_suivant, joueur_actuel
             b_j1.affichage_bouton_survole(fenetre)
             b_j2.affichage_bouton(fenetre)
+
         else:
             num_ligne, num_colonne, joueur_actuel, joueur_suivant = actions_coup_joueur(grille, -1, joueur_actuel, joueur_suivant, niveau_de_difficulte)
+            
             if pygame.mixer.get_init() != None:
                 musique('assets/Sounds/jeton.wav', 0.3)
                 
@@ -881,21 +906,24 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
             pygame.display.flip()
 
             val_fin_de_partie = fin_de_partie(grille, (joueur_suivant.commence-1)%2 + 1)
+
             if val_fin_de_partie != 0:
-                #pygame.time.delay(2000)
                 if val_fin_de_partie == 2:
                     if pygame.mixer.get_init() != None:
                         musique('assets/Sounds/victoire_partie.wav', 0.3)
                         
                     font = pygame.font.Font('assets/Cafeteria-Bold.otf', int( SIZE / 12 ) )
+
                     if LANGUE == 0:
                         texte_aff = font.render("Coup Gagnant Ordi !", True, "royalblue1")
+
                     elif LANGUE == 1: 
                         texte_aff = font.render("Winning Move CPU !", True, "royalblue1")
                         
                     texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
                     fenetre.blit(texte_aff, texte_rect)
                     pygame.display.flip()
+
                     while True:
                         for click in pygame.event.get():
                             if click.type == pygame.MOUSEBUTTONDOWN:
@@ -906,44 +934,47 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                         musique('assets/Sounds/victoire_partie.wav', 0.3)
 
                     font = pygame.font.Font('assets/Cafeteria-Bold.otf', int( SIZE / 12 ) )
+
                     if LANGUE == 0:
                         texte_aff = font.render("Match Nul !", True, "royalblue1")
+
                     elif LANGUE == 1: 
                         texte_aff = font.render("Draw !", True, "royalblue1")
 
                     texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
                     fenetre.blit(texte_aff, texte_rect)
                     pygame.display.flip()
+
                     while True:
                         for click in pygame.event.get():
                             if click.type == pygame.MOUSEBUTTONDOWN:
                                 if click.button == 1 and LANGUE == 0:
                                     return "Match Nul !"
+
                                 elif click.button == 1 and LANGUE == 1:
                                     return "Draw !"
-                                
+
     aide = 0
     texte_fin_de_partie = ""
     running = True
+    
     while running:
-
         point = pygame.mouse.get_pos()
-        
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                
-
                 colonne_selectionnee = selection_colonne(fenetre, event)
 
                 if event.button == 1 and b_aide.rectangle.collidepoint(event.pos):
                     if pygame.mixer.get_init() != None:
                         musique('assets/Sounds/clic.wav', 0.3)
-                        
+
                     if aide == 0:
                         aide = 1
+
                     else:
                         aide = 0
                         fenetre.blit(background, (0, 0))
@@ -956,18 +987,20 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                     affichage_sauvegarde(fenetre, grille)
                     fenetre.blit(background, (0, 0))
                     affichage_grille_jeton(fenetre, grille)
-                    
+
                 elif event.button == 1 and b_abandon.rectangle.collidepoint(event.pos):      
                     if pygame.mixer.get_init() != None:
                         musique('assets/Sounds/clic.wav', 0.3)
                         
                     if LANGUE == 0:
                         confirmation = affichage_confirmation(fenetre, "Êtes-vous sûr ?")
+
                     elif LANGUE == 1:
                         confirmation = affichage_confirmation(fenetre, "Are you sure ?")
                     
                     fenetre.blit(background, (0, 0))
                     affichage_grille_jeton(fenetre, grille)
+
                     if confirmation == True:
                         running = False
                         tour = not tour
@@ -975,6 +1008,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
 
                 elif colonne_selectionnee != -1 and grille.coup_valide(colonne_selectionnee):
                     num_ligne, num_colonne, joueur_actuel, joueur_suivant = actions_coup_joueur(grille, colonne_selectionnee, joueur_actuel, joueur_suivant, niveau_de_difficulte)
+                    
                     if pygame.mixer.get_init() != None:
                         musique('assets/Sounds/jeton.wav', 0.3)
                         
@@ -987,27 +1021,32 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                         affichage_grille_jeton(fenetre, grille)
 
                     val_fin_de_partie = fin_de_partie(grille, (joueur_suivant.commence-1)%2 + 1)
+
                     if val_fin_de_partie != 0:
-                        #pygame.time.delay(2000)
                         if val_fin_de_partie == 2:
                             font = pygame.font.Font('assets/Cafeteria-Bold.otf', int( SIZE / 12 ) )
                             print("le joueur commence {}".format(joueur_suivant.commence))
+
                             if joueur_suivant.commence == False and mode_de_jeu == True:
                                 if pygame.mixer.get_init() != None:
                                     musique('assets/Sounds/victoire_partie.wav', 0.3)
 
                                 if LANGUE == 0:  
                                     texte_aff = font.render("Coup Gagnant Joueur 2", True, "royalblue1")
+
                                 elif LANGUE == 1:
                                     texte_aff = font.render("Winning Move Player 2", True, "royalblue1")
+
                                 texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
                                 fenetre.blit(texte_aff, texte_rect)
                                 pygame.display.flip()
+
                                 while True:
                                     for click in pygame.event.get():
                                         if click.type == pygame.MOUSEBUTTONDOWN:
                                             if click.button == 1 and LANGUE == 0:
                                                 return "Vainqueur : J2 !"
+
                                             else:
                                                 return "Winner : P2 !"
 
@@ -1017,38 +1056,48 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                                     
                                 if LANGUE == 0:
                                     texte_aff = font.render("Coup Gagnant Joueur 1", True, "royalblue1")
+
                                 elif LANGUE == 1:
                                     texte_aff = font.render("Winning Move Player 1", True, "royalblue1")
 
                                 texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
                                 fenetre.blit(texte_aff, texte_rect)
                                 pygame.display.flip()
+
                                 while True:
                                     for click in pygame.event.get():
                                         if click.type == pygame.MOUSEBUTTONDOWN:
                                             if click.button == 1 and LANGUE == 0:
                                                 return "Vainqueur : J1 !"
+
                                             else:
                                                 return "Winner : P1 !"
 
                         else:
                             if pygame.mixer.get_init() != None:
                                 musique('assets/Sounds/victoire_partie.wav', 0.3)
+
                             font = pygame.font.Font('assets/Cafeteria-Bold.otf', int( SIZE / 12 ) )
+
                             if LANGUE == 0:
                                 texte_aff = font.render("Match Nul !", True, "royalblue1")
+
                             elif LANGUE == 1: 
                                 texte_aff = font.render("Draw !", True, "royalblue1")
+
                             texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
                             fenetre.blit(texte_aff, texte_rect)
                             pygame.display.flip()
+
                             while True:
                                 for click in pygame.event.get():
                                     if click.type == pygame.MOUSEBUTTONDOWN:
                                         if click.button == 1 and LANGUE == 0:
                                             return "Match Nul !"
+
                                         else:
                                             return "Draw !"
+
                     tour = not tour
 
                     if type(joueur_actuel) == Gestion_joueur.Ordinateur:
@@ -1057,16 +1106,15 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                         pygame.display.flip()
 
                         num_ligne, num_colonne, joueur_actuel, joueur_suivant = actions_coup_joueur(grille, colonne_selectionnee, joueur_actuel, joueur_suivant, niveau_de_difficulte)
+                        
                         if pygame.mixer.get_init() != None:
                             musique('assets/Sounds/jeton.wav', 0.3)
 
                         affichage_jeton(fenetre, grille, num_ligne, num_colonne)
-                        
                         pygame.display.flip()
-
                         val_fin_de_partie = fin_de_partie(grille, (joueur_suivant.commence-1)%2 + 1)
+
                         if val_fin_de_partie != 0:
-                            #pygame.time.delay(2000)
                             if val_fin_de_partie == 2:
                                 if pygame.mixer.get_init() != None:
                                     musique('assets/Sounds/victoire_partie.wav', 0.3)
@@ -1075,42 +1123,50 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                                 
                                 if LANGUE == 0:
                                     texte_aff = font.render("Coup Gagnant Ordi !", True, "royalblue1")
+
                                 else:
                                     texte_aff = font.render("Winning Move CPU !", True, "royalblue1")
 
                                 texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
                                 fenetre.blit(texte_aff, texte_rect)
                                 pygame.display.flip()
+
                                 while True:
                                     for click in pygame.event.get():
                                         if click.type == pygame.MOUSEBUTTONDOWN:
                                             if click.button == 1 and LANGUE == 0:
                                                 return "Vainqueur : ORDI !"
+
                                             elif click.button == 1 and LANGUE == 1:
                                                 return "Winner : CPU !"
+
                             else:
                                 if pygame.mixer.get_init() != None:
                                     musique('assets/Sounds/victoire_partie.wav', 0.3)
                                     
-                                font = pygame.font.Font('assets/Cafeteria-Bold.otf', int( SIZE / 12 ) )
+                                font = pygame.font.Font('assets/Cafeteria-Bold.otf', int( SIZE / 12 ))
+
                                 if LANGUE == 0:
                                     texte_aff = font.render("Match Nul !", True, "royalblue1")
+
                                 elif LANGUE == 1:
                                     texte_aff =  font.render("Draw !", True, "royalblue1")
+
                                 texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
                                 fenetre.blit(texte_aff, texte_rect)
                                 pygame.display.flip()
+
                                 while True:
                                     for click in pygame.event.get():
                                         if click.type == pygame.MOUSEBUTTONDOWN:
                                             if click.button == 1 and LANGUE == 0:
                                                 return "Match Nul !"
+
                                             elif click.button == 1 and LANGUE == 1:
                                                 return "Draw !"
 
                         tour = not tour
-                    
-                    
+
         if running == False:
             break
 
@@ -1123,6 +1179,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
         if tour == True and mode_de_jeu == True:
             b_j1.affichage_bouton_survole(fenetre)
             b_j2.affichage_bouton(fenetre)
+
         elif tour == False and mode_de_jeu == True:
             b_j2.affichage_bouton_survole(fenetre)
             b_j1.affichage_bouton(fenetre)
@@ -1133,6 +1190,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
 
         if aide == 1:
             b_aide.affichage_bouton_survole(fenetre)
+
         else:
             b_aide.affichage_bouton(fenetre)
 
@@ -1144,16 +1202,21 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
     if tour == True and mode_de_jeu == True:
         if LANGUE == 0:
             texte_fin_de_partie = "Vainqueur : J1 !"
+
         elif LANGUE == 1:
             texte_fin_de_partie = "Winner : P1 !"
+
     elif tour == False and mode_de_jeu == True:
         if LANGUE == 0:
             texte_fin_de_partie = "Vainqueur : J2 !"
+
         elif LANGUE == 1:
             texte_fin_de_partie = "Winner : P2 !"
+
     elif mode_de_jeu == False:
         if LANGUE == 0:
             texte_fin_de_partie = "Vainqueur : ORDI !"
+
         elif LANGUE == 1: 
             texte_fin_de_partie = "Winner : CPU !"
 
@@ -1193,6 +1256,7 @@ def affichage_sauvegarde(fenetre, grille):
     # récupérer les fichiers .txt
     path = r'data/Liste_sauvegardes'
     tmp = []
+
     for files in os.walk(path):
         for filename in files:
             tmp.append(filename)
@@ -1209,6 +1273,7 @@ def affichage_sauvegarde(fenetre, grille):
     if nb_sauv > 3:
         menu = pygame.Surface( ( int(SIZE*4/5) , int(nb_sauv * SIZE/10) + 5 ) )
         area = pygame.Rect(0, 0, SIZE*4/5, SIZE*2/5 +5)
+
     else:
         menu = pygame.Surface( ( int(SIZE*4/5) , int(nb_sauv * SIZE/10) + 5 ) )
         area = pygame.Rect(0, 0, SIZE*4/5, SIZE*nb_sauv/10 +5)
@@ -1216,13 +1281,14 @@ def affichage_sauvegarde(fenetre, grille):
     background_deroulant = pygame.image.load("assets/Sprites/Backgroundv4.png") 
     menu.blit( background_deroulant, (0, 0) )
     menu_rect = menu.get_rect()
-
     menu_subsurface = menu.subsurface(area)
 
     #point de la zone déroulante 
     pos = (SIZE/10, SIZE*3/10)
+
     # vitesse de déroulement
     pos_change = 20
+
     # zone menu_déroulant
     cx1 = SIZE/10
     cx2 = SIZE/10 + SIZE*4/5
@@ -1236,8 +1302,10 @@ def affichage_sauvegarde(fenetre, grille):
         
         if len(nom_sauvegarde[i]) < 30:
             font = pygame.font.Font('assets/Cafeteria-Bold.otf', int(SIZE / 15))
+
         else:
             font = pygame.font.Font('assets/Cafeteria-Bold.otf', int(SIZE / (len(nom_sauvegarde[i])/2) ))
+
         tmp_text = font.render(nom_sauvegarde[i], True, "white")
         tmp_text_rect = tmp_text.get_rect(center = (SIZE*4/10, SIZE/20+i*SIZE/10) )
         text_sauvegardes.append(tmp_text)
@@ -1247,8 +1315,8 @@ def affichage_sauvegarde(fenetre, grille):
     # ============== FIN MENU DEROULANT + LISTES SAUVERGARDES ==============
 
     running = True
+
     while running:
-                
         point = pygame.mouse.get_pos()
         x_point_menu , y_point_menu = point
         
@@ -1257,7 +1325,6 @@ def affichage_sauvegarde(fenetre, grille):
                 pygame.quit()
             
             if event.type == pygame.MOUSEBUTTONDOWN:
-                
                 if event.button == 1 and b_sauvegarder.rectangle.collidepoint(event.pos):
                     if pygame.mixer.get_init() != None:
                         musique('assets/Sounds/clic.wav', 0.3)
@@ -1265,16 +1332,20 @@ def affichage_sauvegarde(fenetre, grille):
                     if sauvegarde_choisie != -1:
                         if LANGUE == 0:
                             confirmation = affichage_confirmation(fenetre, "Ecraser les données ?")
+
                         elif LANGUE == 1: 
                             confirmation = affichage_confirmation(fenetre, "Overwrite data file ?")
+
                         if confirmation == True :
                             sauvegarde(grille.grille, nom_sauvegarde[sauvegarde_choisie] )
                             running = False
                             break
+
                     else:
                         running = False
                         affichage_nouvelle_sauvegarde(fenetre, grille)
                         break
+
                 elif event.button == 1 and b_supprimer.rectangle.collidepoint(event.pos):
                     if pygame.mixer.get_init() != None:
                         musique('assets/Sounds/clic.wav', 0.3)
@@ -1282,17 +1353,20 @@ def affichage_sauvegarde(fenetre, grille):
                     if sauvegarde_choisie != -1:
                         if LANGUE == 0:
                             confirmation = affichage_confirmation(fenetre, "Supprimer la sauvegarde ?")
+
                         elif LANGUE == 1:
                             confirmation = affichage_confirmation(fenetre, "Delete save ?")
 
                         if confirmation == True:
-
                             verif_supprimer = supprimer_sauvegarde(nom_sauvegarde[sauvegarde_choisie])
+
                             if verif_supprimer == False:
                                 if LANGUE == 0:
                                     affichage_erreur(fenetre, "Erreur lors de la suppression")
+
                                 elif LANGUE == 1:
                                     affichage_erreur(fenetre, "Error occured while deleting")
+
                             else:
                                 # ======= MODIF DEB MENU DEROULANT + LISTES SAUVERGARDES =======
                                 # nombre de sauvegardes
@@ -1301,13 +1375,17 @@ def affichage_sauvegarde(fenetre, grille):
                                 nom_sauvegarde.remove( nom_sauvegarde[sauvegarde_choisie] )
                                 text_sauvegardes.remove( text_sauvegardes[sauvegarde_choisie] )
                                 text_sauvegardes_rect.remove( text_sauvegardes_rect[sauvegarde_choisie] )
+
                                 #modification des coordonnées
                                 for i in range(nb_sauv):
                                     tab_sauvegarde[i].changement_taille_bouton(5, 5 + i*SIZE/10, SIZE*4/5 - 10, SIZE/10 - 5)
+
                                     if len(nom_sauvegarde[i]) < 30:
                                         font = pygame.font.Font('assets/Cafeteria-Bold.otf', int(SIZE / 15))
+
                                     else:
                                         font = pygame.font.Font('assets/Cafeteria-Bold.otf', int(SIZE / (len(nom_sauvegarde[i])/2) ))
+
                                     tmp_text = font.render(nom_sauvegarde[i], True, "white")
                                     tmp_text_rect = tmp_text.get_rect(center = (SIZE*4/10, SIZE/20+i*SIZE/10) )
                                     text_sauvegardes_rect[i] = tmp_text_rect
@@ -1316,49 +1394,58 @@ def affichage_sauvegarde(fenetre, grille):
                                 if nb_sauv > 3:
                                     menu = pygame.Surface( ( int(SIZE*4/5) , int(nb_sauv * SIZE/10) + 5 ) )
                                     area = pygame.Rect(0, 0, SIZE*4/5, SIZE*2/5 +5)
+
                                 else:
                                     menu = pygame.Surface( ( int(SIZE*4/5) , int(nb_sauv * SIZE/10) + 5 ) )
                                     area = pygame.Rect(0, 0, SIZE*4/5, SIZE*nb_sauv/10 +5)
+
                                 menu.blit( background_deroulant, (0, 0) )
                                 menu_rect = menu.get_rect()
 
                                 menu_subsurface = menu.subsurface(area)
 
                                 sauvegarde_choisie = -1
+                                
                                 # ======= FIN MENU DEROULANT + LISTES SAUVERGARDES =======
                     else:
                         if LANGUE == 0:
                             affichage_erreur(fenetre, "Aucune sauvegarde sélectionnée !")
+
                         else:
                             affichage_erreur(fenetre, "No save selected !")
 
                 elif event.button == 1 and b_retour.rectangle.collidepoint(event.pos):
                     if pygame.mixer.get_init() != None:
                         musique('assets/Sounds/clic.wav', 0.3)
+
                     running = False
-                    nom_fichier = ""
                     break
+
                 # 4 = scroll up
                 elif event.button == 4: 
                     area.y -= pos_change
                     area.clamp_ip(menu_rect)
                     menu_subsurface = menu.subsurface(area)
+
                 # 5 = scroll down
                 elif event.button == 5: 
                     area.y += pos_change
                     area.clamp_ip(menu_rect)
                     menu_subsurface = menu.subsurface(area)
+
                 # vérifie si on clique à l'intérieur de la zone déroulante
                 # en fonction de pos
                 if x_point_menu > cx1 and y_point_menu > cy1 and x_point_menu < cx2 and y_point_menu < cy2:
                     x_point_menu = x_point_menu - SIZE/10
                     y_point_menu = y_point_menu - SIZE*3/10 + area.y
                     point_menu = (x_point_menu, y_point_menu)
+
                     for i in range (nb_sauv):    
                         # 1 = click gauche        
                         if event.button == 1 and tab_sauvegarde[i].rectangle.collidepoint(point_menu):
                             if sauvegarde_choisie != i:
                                 sauvegarde_choisie = i
+
                             elif sauvegarde_choisie == i:
                                 sauvegarde_choisie = -1
 
@@ -1378,8 +1465,10 @@ def affichage_sauvegarde(fenetre, grille):
         for i in range(nb_sauv):
             if sauvegarde_choisie == i:
                 tab_sauvegarde[i].affichage_bouton_survole(menu)
+
             else:
                 tab_sauvegarde[i].affichage_bouton(menu)
+
             menu.blit(text_sauvegardes[i], text_sauvegardes_rect[i])
 
         pygame.display.flip()
@@ -1412,14 +1501,13 @@ def affichage_nouvelle_sauvegarde(fenetre, grille):
     pygame.display.flip()
 
     running = True
+
     while running:
-        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
             
             if event.type == pygame.MOUSEBUTTONDOWN:
-                
                 if pygame.mixer.get_init() != None:
                     musique('assets/Sounds/clic.wav', 0.3)
 
@@ -1427,33 +1515,42 @@ def affichage_nouvelle_sauvegarde(fenetre, grille):
                     if text != "": 
                         if LANGUE == 0:
                             confirmation = affichage_confirmation(fenetre, "Confirmer ?")
+
                         else:
                             confirmation = affichage_confirmation(fenetre, "Confirm ?")
 
                         if confirmation == True: 
                             if text.find(".txt") == -1:
                                 text += '.txt'
+
                             if sauvegarde(grille.grille, text):
                                 running = False
                                 break
+
                             else:
                                 if LANGUE == 0:
                                     affichage_erreur(fenetre, "Le fichier {} n'a pas pu être sauvergardé".format(text))
+
                                 else :
                                     affichage_erreur(fenetre, "File named {} counldn't be saved".format(text))
+
                     else:
                         if LANGUE == 0:
                             affichage_erreur(fenetre, "Nom du fichier vide")
+
                         else:
                             affichage_erreur(fenetre, "Empty file name")
 
                 if event.button == 1 and b_retour.rectangle.collidepoint(event.pos):
                     running = False
                     break
+
                 if event.button == 1 and input_box.collidepoint(event.pos):
                     active = not active
+
                 else:
                     active = False
+
                 color = color_active if active else color_inactive
 
             if event.type == pygame.KEYDOWN:
@@ -1461,8 +1558,10 @@ def affichage_nouvelle_sauvegarde(fenetre, grille):
                     if event.key == pygame.K_RETURN:
                         text = ''
                         input_box.x = SIZE/2 - SIZE/9.5
+
                     elif event.key == pygame.K_BACKSPACE:
                         text = text[:-1]
+
                     else:
                         if len(text) < 30:
                             text += event.unicode  
@@ -1480,14 +1579,17 @@ def affichage_nouvelle_sauvegarde(fenetre, grille):
         
         # Render the current text.
         txt_surface = font.render(text, True, color)
+
         # Resize the box if the text is too long.
         width = max(SIZE/5, txt_surface.get_width()+10)
         input_box.w = width
+
         # Blit the input_box rect.
         if width > SIZE/5:
             input_box.x = SIZE/2 - SIZE/9.5 - ( (width-SIZE/5) /2 )
 
         pygame.draw.rect(fenetre, color, input_box, 4)
+
         # Blit the text.
         fenetre.blit(txt_surface, (input_box.x+5, input_box.y+7))
     
@@ -1497,12 +1599,12 @@ def affichage_nouvelle_sauvegarde(fenetre, grille):
 # MENU 8
 def affichage_fin_de_partie(fenetre, texte_fin_de_partie):
     image = image_fr_eng()
+
     if pygame.mixer.get_init() != None:
         musique('assets/Sounds/victoire_fin_partie.swf.wav', 0.09)
 
     background = pygame.image.load("assets/Sprites/Background_trans.png") 
     fenetre.blit(background, (0, 0))
-    print("texte = ", texte_fin_de_partie)
     font = pygame.font.Font('assets/Cafeteria-Bold.otf', int( SIZE / 6 ) )
     texte_aff = font.render(texte_fin_de_partie, True, "royalblue1")
     texte_rect = texte_aff.get_rect(center = (SIZE*5/10, SIZE*2.25/10) )
@@ -1520,8 +1622,8 @@ def affichage_fin_de_partie(fenetre, texte_fin_de_partie):
     pygame.display.flip()
 
     running = True
-    while running:
-        
+
+    while running:    
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -1565,6 +1667,7 @@ def affichage_confirmation(fenetre, texte):
     
     if len(texte) < 25:
         font = pygame.font.Font('assets/Cafeteria-Bold.otf', int( SIZE / 12 ) )
+
     else:
         font = pygame.font.Font('assets/Cafeteria-Bold.otf', int( SIZE / (len(texte)/1.5) ) )
 
@@ -1581,14 +1684,13 @@ def affichage_confirmation(fenetre, texte):
     pygame.display.flip()
 
     running = True
+
     while running:
-        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
             
             if event.type == pygame.MOUSEBUTTONDOWN:
-                
                 if pygame.mixer.get_init() != None:
                     musique('assets/Sounds/clic.wav', 0.3)
 
@@ -1615,7 +1717,6 @@ def affichage_confirmation(fenetre, texte):
 
 # MENU 10
 def affichage_erreur(fenetre, texte):
-
     if pygame.mixer.get_init() != None:
         musique('assets/Sounds/erro.wav', 0.3)
    
@@ -1630,6 +1731,7 @@ def affichage_erreur(fenetre, texte):
 
     if len(texte) > 30:
         font = pygame.font.Font('assets/Cafeteria-Bold.otf', int( SIZE / (len(texte)/1.8) ) )
+
     else:
         font = pygame.font.Font('assets/Cafeteria-Bold.otf', int( SIZE / 12 ) )
 
@@ -1640,14 +1742,13 @@ def affichage_erreur(fenetre, texte):
     pygame.display.flip()
 
     running = True
-    while running:
-        
+
+    while running:    
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
             
             if event.type == pygame.MOUSEBUTTONDOWN:
-                
                 if pygame.mixer.get_init() != None:
                     musique('assets/Sounds/clic.wav', 0.3)
                     
@@ -1668,6 +1769,7 @@ def affichage_erreur(fenetre, texte):
 def affichage_aide(fenetre, grille, joueur_actuel, joueur_suivant):
     if Gestion_jeton.Jeton.nombre_jeton == 0:
         num_colonne = 3
+
     else:
         coup_joue = False
 
@@ -1677,6 +1779,7 @@ def affichage_aide(fenetre, grille, joueur_actuel, joueur_suivant):
 
             else:
                 num_ligne = joueur_actuel.jouer_coup(grille.grille, colonne)
+
                 if grille.coup_gagnant((joueur_actuel.commence - 1) % 2 + 1):
                     coup_joue = True
                     Gestion_jeton.Jeton.decremente_nombre_jeton()
@@ -1693,8 +1796,10 @@ def affichage_aide(fenetre, grille, joueur_actuel, joueur_suivant):
             for colonne in range(grille.colonne):
                 if grille.coup_valide(colonne) != True:
                     continue
+
                 else:
                     num_ligne = joueur_suivant.jouer_coup(grille.grille, colonne)
+
                     if grille.coup_gagnant((joueur_suivant.commence - 1) % 2 + 1):
                         coup_joue = True
                         Gestion_jeton.Jeton.decremente_nombre_jeton()
@@ -1702,7 +1807,7 @@ def affichage_aide(fenetre, grille, joueur_actuel, joueur_suivant):
                         num_colonne = colonne
                         joueur_actuel,joueur_suivant = joueur_suivant,joueur_actuel
                         break
-                    
+
                     else:
                         Gestion_jeton.Jeton.decremente_nombre_jeton()
                         grille.grille[num_ligne][colonne] = None
@@ -1728,6 +1833,7 @@ def affichage_grille_jeton(fenetre, grille):
     b_grille.affichage_bouton(fenetre)
 
     afficher_grille(grille.grille)
+
     for ligne in range(grille.ligne):
         for colonne in range(grille.colonne):
             affichage_jeton(fenetre, grille, ligne, colonne)
@@ -1748,8 +1854,10 @@ def selection_colonne(fenetre, event):
             -1 : clic hors zone de grille
     """
     num_colonne = -1
+
     if event.button == 1:
         b_zone_contact = []
+
         for i in range (7):
             tmp = pygame.Rect(SIZE*0.20/10 + (i * SIZE*1.1/10), SIZE*2.4/10, SIZE*1.1/10, SIZE*6.6/10)
             b_zone_contact.append(tmp)
@@ -1763,16 +1871,20 @@ def selection_colonne(fenetre, event):
 
 def lancer_affichage():
     pygame.init()
+
     if LANGUE == 0:
-        pygame.display.set_caption('Puissance 4')  
+        pygame.display.set_caption('Puissance 4')
+
     elif LANGUE == 1:
         pygame.display.set_caption('Connect 4')
+
     fenetre = pygame.display.set_mode() 
-    LONG, LARG = fenetre.get_size() 
+    LARG = fenetre.get_size()[1]
     global SIZE 
     SIZE= int(LARG*0.95)
     print("SIZE =", SIZE)
     fenetre = pygame.display.set_mode((SIZE, SIZE))
+
     #init une grille à zero
     cls_grille = Gestion_grille.Grille(6,7)
     running = True
@@ -1787,43 +1899,38 @@ def lancer_affichage():
         if quel_menu == MENU_PRINCIPAL:
             nom_fichier = ""
             cls_grille = Gestion_grille.Grille(6,7)
-            #print("nom_fichier =", nom_fichier)
             quel_menu = affichage_menu_principal(fenetre)
             
         elif quel_menu == MODE_DE_JEU:
-            
             quel_menu, mode_de_jeu, qui_commence, niveau_de_difficulte = affichage_mode_de_jeu(fenetre)
                     
         elif quel_menu == CHARGEMENT: 
             quel_menu, nom_fichier = affichage_chargement(fenetre)
-            #print("nom_fichier =", nom_fichier)
-            # Grille à afficher ici ou dans quel_menu == PARTIE?
             
             if quel_menu == MODE_DE_JEU:
                 resultat = chargement(nom_fichier)
+
                 if type(resultat) is bool:
                     if LANGUE == 0:
                         affichage_erreur(fenetre, "Le fichier {} n'a pas pu être chargé".format(nom_fichier))
+                        
                     else:
                         affichage_erreur(fenetre, "File named {} couldn't be saved".format(nom_fichier))
+
                     quel_menu = CHARGEMENT
+
                 else:
                     cls_grille = resultat[1]
 
-            #print("quel_menu = ",quel_menu)
-        elif quel_menu == PARTIE: 
-            # afficher_grille(cls_grille.grille)
-            # print("quel_menu =", quel_menu)
-            # print("mode_de_jeu =", mode_de_jeu)
-            # print("difficulté =", niveau_de_difficulte)
-            # print("qui_commence =", qui_commence)
+        elif quel_menu == PARTIE:
             quel_menu = FIN_DE_PARTIE
             texte_fin_de_partie = affichage_partie(fenetre, cls_grille, mode_de_jeu, qui_commence, niveau_de_difficulte)
+
         elif quel_menu == FIN_DE_PARTIE:
             quel_menu = affichage_fin_de_partie(fenetre, texte_fin_de_partie)
             nom_fichier = ""
             cls_grille.vider_grille()
             Gestion_jeton.Jeton.reinitialise_nombre_jeton()
         
-        else : break
-
+        else:
+            break
