@@ -737,7 +737,7 @@ def affichage_commencer(fenetre):
     background = pygame.image.load(BACKGROUND_SPRITE) 
     fenetre.blit(background, (0, 0))
 
-    b_titre = Gestion_bouton.Bouton(image[23], image[23], SIZE*0.5/10, SIZE/10, SIZE*9/10, SIZE/8)
+    b_titre = Gestion_bouton.Bouton(image[23], image[23], SIZE*0.5/10, SIZE/10, SIZE*9/10, SIZE/4)
     b_titre.affichage_bouton(fenetre)
     
     b_oui = Gestion_bouton.Bouton(image[24], image[45], SIZE/5, SIZE/2, SIZE/4, SIZE/10)
