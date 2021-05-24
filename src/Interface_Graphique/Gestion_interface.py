@@ -824,7 +824,6 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
     for ligne in range(grille.ligne):
         for colonne in range(grille.colonne):
             if grille.grille[ligne][colonne] is not None:
-                Gestion_jeton.Jeton.incremente_nombre_jeton()
                 if grille.grille[ligne][colonne].couleur == 1:
                     nb_jeton_rouge += 1
                 elif grille.grille[ligne][colonne].couleur == 2:
