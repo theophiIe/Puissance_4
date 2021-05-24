@@ -240,7 +240,7 @@ def affichage_menu_principal(fenetre):
                 # SON OFF -> ON
                 elif event.button == 1 and b_son.rectangle.collidepoint(event.pos) and pygame.mixer.get_init() == None:
                     pygame.mixer.init()
-                    musique('Interface_Graphique/Sounds/mute_sound.wav', 0.3)
+                    musique('Interface_Graphique/Sounds/sf_dog_03.wav', 0.7)  #change_sound.wav
 
                     MUTE_SOUND = 0
                     fenetre.blit(background, (0, 0))
