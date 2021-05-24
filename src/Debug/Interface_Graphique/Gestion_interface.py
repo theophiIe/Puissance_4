@@ -143,9 +143,6 @@ def image_fr_eng():
             "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_oui2_eng.png"
         ]
 
-    # for i in range (len(tab_images) - 1):
-    #     print("[", i, "] = ", tab_images[i])
-
     return tab_images
 
 def afficher_grille(grille):
@@ -1235,10 +1232,10 @@ def affichage_sauvegarde(fenetre, grille):
             
             if event.type == pygame.MOUSEBUTTONDOWN:
                 
-                if pygame.mixer.get_init() != None:
-                    musique('Interface_Graphique/Sounds/clic.wav', 0.3)
-
                 if event.button == 1 and b_sauvegarder.rectangle.collidepoint(event.pos):
+                    if pygame.mixer.get_init() != None:
+                        musique('Interface_Graphique/Sounds/clic.wav', 0.3)
+
                     if sauvegarde_choisie != -1:
                         if LANGUE == 0:
                             confirmation = affichage_confirmation(fenetre, "Ecraser les données ?")
@@ -1253,6 +1250,9 @@ def affichage_sauvegarde(fenetre, grille):
                         affichage_nouvelle_sauvegarde(fenetre, grille)
                         break
                 elif event.button == 1 and b_supprimer.rectangle.collidepoint(event.pos):
+                    if pygame.mixer.get_init() != None:
+                        musique('Interface_Graphique/Sounds/clic.wav', 0.3)
+
                     if sauvegarde_choisie != -1:
                         if LANGUE == 0:
                             confirmation = affichage_confirmation(fenetre, "Supprimer la sauvegarde ?")
@@ -1307,6 +1307,8 @@ def affichage_sauvegarde(fenetre, grille):
                             affichage_erreur(fenetre, "No save selected !")
 
                 elif event.button == 1 and b_retour.rectangle.collidepoint(event.pos):
+                    if pygame.mixer.get_init() != None:
+                        musique('Interface_Graphique/Sounds/clic.wav', 0.3)
                     running = False
                     nom_fichier = ""
                     break
@@ -1544,10 +1546,10 @@ def affichage_confirmation(fenetre, texte):
     texte_rect = texte_aff.get_rect(center = (SIZE*5/10, SIZE*3.5/10) )
     fenetre.blit(texte_aff, texte_rect)
 
-    b_oui = Gestion_bouton.Bouton(image[24], image[45], SIZE*3/10, SIZE*4.5/10, SIZE*1.5/10, SIZE*0.75/10)
+    b_oui = Gestion_bouton.Bouton(image[24], image[45], SIZE*2.7/10, SIZE*4.5/10, SIZE*1.9/10, SIZE*0.75/10)
     b_oui.affichage_bouton(fenetre)
 
-    b_non = Gestion_bouton.Bouton(image[25], image[26], SIZE*5.5/10, SIZE*4.5/10, SIZE*1.5/10, SIZE*0.75/10)
+    b_non = Gestion_bouton.Bouton(image[25], image[26], SIZE*5.2/10, SIZE*4.5/10, SIZE*1.9/10, SIZE*0.75/10)
     b_non.affichage_bouton(fenetre)
 
     pygame.display.flip()
