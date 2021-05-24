@@ -805,8 +805,6 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
     image = image_fr_eng()
     background = pygame.image.load(BACKGROUND_SPRITE) 
     fenetre.blit(background, (0, 0))
-
-    print(qui_commence)
     
     b_j1 = Gestion_bouton.Bouton(image[27], image[28], SIZE*8/10, SIZE*0.32/10, SIZE*1.83/10, SIZE/15)
     b_j1.affichage_bouton(fenetre)
@@ -819,7 +817,34 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
         b_j2.affichage_bouton(fenetre)
 
 
+    tour = qui_commence
+
+    nb_jeton_rouge = 0
+    nb_jeton_jaune = 0
+    for ligne in range(grille.ligne):
+        for colonne in range(grille.colonne):
+            if grille.grille[ligne][colonne] is not None:
+                Gestion_jeton.Jeton.incremente_nombre_jeton()
+                if grille.grille[ligne][colonne].couleur == 1:
+                    nb_jeton_rouge += 1
+                elif grille.grille[ligne][colonne].couleur == 2:
+                    nb_jeton_jaune += 1
+
     joueur_actuel, joueur_suivant = attribution_des_joueurs(qui_commence, mode_de_jeu, niveau_de_difficulte)
+
+    if nb_jeton_jaune > nb_jeton_rouge:
+        if mode_de_jeu == True:
+            if qui_commence == False:
+                joueur_actuel, joueur_suivant = joueur_suivant, joueur_actuel
+                tour = not tour
+    
+    if nb_jeton_rouge > nb_jeton_jaune:
+        if mode_de_jeu == True:
+            if qui_commence == True:
+                joueur_actuel, joueur_suivant = joueur_suivant, joueur_actuel
+                tour = not tour
+        else:
+            joueur_actuel, joueur_suivant = joueur_suivant, joueur_actuel
 
     if type(joueur_actuel) == Gestion_joueur.Ordinateur:
         joueur_actuel.premier_coup(grille.grille)
@@ -899,8 +924,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                                     return "Match Nul !"
                                 elif click.button == 1 and LANGUE == 1:
                                     return "Draw !"
-
-    tour = qui_commence
+                                
     aide = 0
     texte_fin_de_partie = ""
     running = True
