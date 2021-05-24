@@ -1385,7 +1385,7 @@ def affichage_nouvelle_sauvegarde(fenetre, grille):
     color = color_inactive
     active = False
     text = ''
-    done = False
+
     font = pygame.font.Font(None, 50)
 
     pygame.display.flip()
