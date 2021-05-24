@@ -90,7 +90,8 @@ def image_fr_eng():
             "Interface_Graphique/Sprites/Sprites_Francais/Bouton_mainmenu.png",
             "Interface_Graphique/Sprites/Sprites_Francais/Bouton_mainmenu2.png",
             "Interface_Graphique/Sprites/Sprites_Francais/Bouton_facile2.png",
-            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_oui2.png"
+            "Interface_Graphique/Sprites/Sprites_Francais/Bouton_oui2.png",
+            "Interface_Graphique/Sprites/Sprites_Francais/Menu_nouv_sauvegarde.png"
         ]
 
     elif LANGUE == 1:
@@ -140,7 +141,8 @@ def image_fr_eng():
             "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_mainmenu_eng.png",
             "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_mainmenu2_eng.png",
             "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_facile2_eng.png",
-            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_oui2_eng.png"
+            "Interface_Graphique/Sprites/Sprites_Anglais/Bouton_oui2_eng.png",
+            "Interface_Graphique/Sprites/Sprites_Anglais/Menu_nouv_sauvegarde_eng.png"
         ]
 
     return tab_images
@@ -158,7 +160,7 @@ def afficher_grille(grille):
         print(aff)
     print()
 
-# MENU 0
+# MENUMENU 0
 def affichage_menu_principal(fenetre):
     image = image_fr_eng()
 
@@ -1367,7 +1369,7 @@ def affichage_nouvelle_sauvegarde(fenetre, grille):
     background = pygame.image.load(BACKGROUND_SPRITE) 
     fenetre.blit(background, (0, 0))
 
-    b_titre = Gestion_bouton.Bouton(image[39], image[39], SIZE*0.5/10, SIZE/10, SIZE*9/10, SIZE/6)
+    b_titre = Gestion_bouton.Bouton(image[46], image[46], SIZE*0.5/10, SIZE/10, SIZE*9/10, SIZE/6)
     b_titre.affichage_bouton(fenetre)
 
     b_sauvegarder = Gestion_bouton.Bouton(image[35], image[36], SIZE*6.75/10, SIZE*4/5, SIZE/4, SIZE/10)
