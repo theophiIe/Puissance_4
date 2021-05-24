@@ -240,7 +240,7 @@ def affichage_menu_principal(fenetre):
                 # SON OFF -> ON
                 elif event.button == 1 and b_son.rectangle.collidepoint(event.pos) and pygame.mixer.get_init() == None:
                     pygame.mixer.init()
-                    musique('Interface_Graphique/Sounds/sf_dog_03.wav', 0.7)  #change_sound.wav
+                    musique('Interface_Graphique/Sounds/change_sound.wav', 0.2)
 
                     MUTE_SOUND = 0
                     fenetre.blit(background, (0, 0))
@@ -1049,10 +1049,12 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                                     musique('Interface_Graphique/Sounds/victoire_3.wav', 0.3)
                                     
                                 font = pygame.font.Font('Interface_Graphique/Cafeteria-Bold.otf', int( SIZE / 12 ) )
-                                if LANGUE == 1:
+                                
+                                if LANGUE == 0:
                                     texte_aff = font.render("Coup Gagnant Ordi !", True, "royalblue1")
-                                elif LANGUE == 0:
+                                else:
                                     texte_aff = font.render("Winning Move CPU !", True, "royalblue1")
+
                                 texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
                                 fenetre.blit(texte_aff, texte_rect)
                                 pygame.display.flip()
