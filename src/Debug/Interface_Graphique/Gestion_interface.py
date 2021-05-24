@@ -1083,9 +1083,6 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                                             elif click.button == 1 and LANGUE == 1:
                                                 return "Draw !"
 
-                        b_j1.affichage_bouton_survole(fenetre)
-                        b_j2.affichage_bouton(fenetre)
-                        pygame.display.flip()
                         tour = not tour
                     
                     
@@ -1105,6 +1102,10 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
             b_j2.affichage_bouton_survole(fenetre)
             b_j1.affichage_bouton(fenetre)
 
+        if mode_de_jeu == False:
+            b_j1.affichage_bouton_survole(fenetre)
+            b_j2.affichage_bouton(fenetre)
+
         if aide == 1:
             b_aide.affichage_bouton_survole(fenetre)
         else:
@@ -1115,7 +1116,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
 
         pygame.display.flip()
 
-    if tour == True:
+    if tour == True and mode_de_jeu == True:
         if LANGUE == 0:
             texte_fin_de_partie = "Vainqueur : J1 !"
         elif LANGUE == 1:
@@ -1125,7 +1126,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
             texte_fin_de_partie = "Vainqueur : J2 !"
         elif LANGUE == 1:
             texte_fin_de_partie = "Winner : P2 !"
-    elif tour == False and mode_de_jeu == False:
+    elif mode_de_jeu == False:
         if LANGUE == 0:
             texte_fin_de_partie = "Vainqueur : ORDI !"
         elif LANGUE == 1: 
