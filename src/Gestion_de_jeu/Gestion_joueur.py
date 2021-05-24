@@ -34,14 +34,17 @@ class Joueur:
                 Cette méthode renvoie le numéro de la ligne où le coup a été joué.
         """
         num_ligne = 5
+
         for i in range(0, 6):
             if(j_grille[i][j_num_colonne] is not None):
                 num_ligne = i - 1
                 break
         
         couleur = 0
+        
         if(self.commence):
             couleur = 1
+        
         else:
             couleur = 2
 
