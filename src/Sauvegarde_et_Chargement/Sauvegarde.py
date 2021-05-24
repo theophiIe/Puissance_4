@@ -7,7 +7,7 @@ def information_sauvegarde():
         des fichiers correspondant aux sauvegardes
         des parties.
 
-        Cette fonction renvoie un tableau contenant les 
+        Cette fonction renvoie un tableau contenant aux
         noms des fichiers de sauvegarde sous forme de 
         chaînes de caractères.
     """
@@ -38,6 +38,7 @@ def verification_syntaxe_nom_fichier(nom_fichier):
             True  : si la syntaxe est correcte.
             False : si la syntaxe est incorrecte.
     """
+
     char_interdits = "/:\"?|<>*\\"
 
     for x in range (len(char_interdits)):
@@ -59,6 +60,7 @@ def verifie_existence_fichier(nom_fichier):
             True  : si le nom de fichier est indisponible.
             False : si le nom de fichier est disponible.
     """
+
     if os.path.exists(nom_fichier):
         return True
 
@@ -77,6 +79,7 @@ def supprimer_sauvegarde(nom_fichier):
             True  : si la suppression a été correctement effectuée.
             False : si la suppression a rencontré un problème.
     """
+
     nom_fichier = "data/Liste_sauvegardes/" + nom_fichier
 
     if verifie_existence_fichier(nom_fichier):
@@ -89,14 +92,13 @@ def supprimer_sauvegarde(nom_fichier):
             return True
 
     else:
-        print("The file does not exist")
         return False
 
 def sauvegarde(grille, nom_fichier):
     """
         Cette fonction permet, à partir des informations de la grille passée en paramètre,
         de sauvegarder cette dernière dans un fichier texte qui a pour nom celui passé en paramètre,
-        s'il n'existe pas déjà.
+        s'il ce dernier n'existe pas déjà.
 
         Paramètres:
             grille : matrice de la classe Grille.
@@ -107,6 +109,7 @@ def sauvegarde(grille, nom_fichier):
             True  : si la sauvegarde a été correctement effectuée.
             False : si la sauvegarde a rencontré un problème.
     """
+
     nom_fichier = "data/Liste_sauvegardes/" + nom_fichier
 
     f = open(nom_fichier, "w")
@@ -127,4 +130,5 @@ def sauvegarde(grille, nom_fichier):
             f.write(x)
             
     f.close()
+    
     return True

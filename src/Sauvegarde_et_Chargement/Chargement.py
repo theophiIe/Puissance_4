@@ -2,6 +2,17 @@ from Sauvegarde import *
 import Gestion_grille
 
 def lecture_fichier(nom_fichier):
+    """
+        Cette fonction va stocker le contenu du fichier passé en paramètre
+        dans une chaîne de caractères.
+
+        Paramètre :
+            nom_fichier : chaîne de caractères
+
+        Renvoie :
+            une chaîne de caractères avec le contenu du fichier 
+    """
+
     contenu_fichier = ""
 
     if(verifie_existence_fichier(nom_fichier)):
@@ -11,6 +22,25 @@ def lecture_fichier(nom_fichier):
     return contenu_fichier
 
 def test_corruption(contenu_fichier):
+    """
+        Cette fonction vérifie si la chaîne de caractères
+        passée en paramètre est corrompue ou non. 
+        On vérifie si le nombre de caractères correspond à la taille de la grille (42).
+        On vérifie si chaque caractère de la chaîne de caractères correspond '0', '1', ou '2'.
+        On regarde si les caractères correspondants à un jeton de la même couleur 
+        correspond à une partie valide.
+        On vérifie si les caractères correspondants à un jeton donne une position 
+        valide dans la grille.
+
+        Paramètre :
+            contenu_fichier : chaîne de caractères contenant les positions des jetons dans la grille.
+
+        Renvoie :
+            un booléen
+                True : si la chaîne de caractères est corrompu,
+                False : si la chaîne de caractères est valide.
+    """
+
     if(len(contenu_fichier) != 42):
         return True
 
@@ -38,12 +68,27 @@ def test_corruption(contenu_fichier):
     return False
 
 def chargement(nom_fichier):
+    """
+        Cette fonction permet de remplir la grille à partir du 
+        contenu d'un fichier passé en paramètre préalablement.
+
+        Paramètre :
+            nom_fichier : chaîne de caractères faisant référence au nom d'un fichier.
+
+        Renvoie :
+            un booléen
+                True : si le chargement c'est bien effectué
+                False : si le chargement a échoué
+            grille : renvoie la grille de jeu
+    """
+
     nom_fichier = "data/Liste_sauvegardes/" + nom_fichier
     contenu_fichier = lecture_fichier(nom_fichier)
     
     if(test_corruption(contenu_fichier)):
         return False
         
-    grille = Gestion_grille.Grille(6,7)
+    grille = Gestion_grille.Grille(6, 7)
     grille.remplir_grille(contenu_fichier)
+
     return True, grille
