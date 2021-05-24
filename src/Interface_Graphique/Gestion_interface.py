@@ -1522,16 +1522,26 @@ def affichage_nouvelle_sauvegarde(fenetre, grille):
                             if text.find(".txt") == -1:
                                 text += '.txt'
 
-                            if sauvegarde(grille.grille, text):
-                                running = False
-                                break
-
+                        if verification_syntaxe_nom_fichier(text):
+                            if verifie_existence_fichier(text):
+                                if sauvegarde(grille.grille, text):
+                                    running = False
+                                    break
+                                else:
+                                    if LANGUE == 0:
+                                        affichage_erreur(fenetre, "Le fichier {} n'a pas pu être sauvergardé".format(text))
+                                    else :
+                                        affichage_erreur(fenetre, "File named {} counldn't be saved".format(text))
                             else:
                                 if LANGUE == 0:
-                                    affichage_erreur(fenetre, "Le fichier {} n'a pas pu être sauvergardé".format(text))
-
+                                    affichage_erreur(fenetre, "Le fichier {} existe déjà".format(text))
                                 else :
-                                    affichage_erreur(fenetre, "File named {} counldn't be saved".format(text))
+                                    affichage_erreur(fenetre, "File named {} already exist".format(text))
+                        else:
+                            if LANGUE == 0:
+                                affichage_erreur(fenetre, "Le nom de fichier {} ne respecte pas le format".format(text))
+                            else :
+                                affichage_erreur(fenetre, "The file name {} does not respect the format".format(text))
 
                     else:
                         if LANGUE == 0:

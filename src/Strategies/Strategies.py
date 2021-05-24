@@ -4,6 +4,21 @@ import Gestion_jeton
 from Partie import *
 
 def evaluation_quadruplet(quadruplet, couleur_jeton): 
+    """
+        Cette fonction permet d'évaluer un quadruplet donnée en paramètre
+        par rapport à une couleur de jeton également passé en paramètre.
+
+        Paramètres :
+            quadruplet : tableau contenant soit None soit une couleur de jeton
+            couleur_jeton : couleur d'un jeton
+                1 : rouge
+                2 : jaune
+
+        Renvoie :
+            un entier correspondant au score d'un quadruplet
+
+    """
+
     nb_vide = 0
     nb_jeton = 0
     nb_jeton_adv = 0
@@ -77,6 +92,18 @@ def evaluation_quadruplet(quadruplet, couleur_jeton):
     return 0
     
 def evaluation_coup(cls_grille, couleur_jeton):
+    """
+        Cette fonction permet d'obetnir la somme des scores des quadruplés 
+        possibles dans la grille.
+
+        Paramètres :
+            cls_grille : instance de la clase Grille
+            couleur_jeton : entier qui définit la couleur des jetons
+        
+        Renvoie :
+            un entier correspondant au score d'un quadruplet.
+    """
+
     score = 0
     jeton = 0
 
@@ -118,9 +145,24 @@ def evaluation_coup(cls_grille, couleur_jeton):
 
     return score
 
-
-
 def fail_soft(cls_grille, joueur_actuel, joueur_suivant, profondeur, alpha, beta):
+    """
+        Cette fonction permet de faire des calculs sur la grille en prévoyant les coups à l'avance, 
+        et ainsi nous donner la colonne qui serait la plus optimale de jouer.
+
+        Paramètres :
+            cls_grille : instance de la classe Grille
+            joueur_actuel : instance de la classe Joueur ou Ordinateur
+            joueur_suivant : instance de la classe Joueur ou Ordinateur
+            profondeur : entier correspondant à la profondeur de l'arbre
+            alpha : entier correspondant à la borne supérieure
+            beta : entier correspondant à la borne inférieure
+
+        Renvoie : 
+            un score sous forme d'entier
+            un numéro de colonne de type entier
+    """
+
     fin_partie = (cls_grille.est_pleine() or cls_grille.coup_gagnant(1) or cls_grille.coup_gagnant(2))
 
     if profondeur == 0 or fin_partie:
