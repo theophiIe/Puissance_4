@@ -17,6 +17,10 @@ def test_corruption(contenu_fichier):
         if((ord(caractere) < 48) or (ord(caractere) > 50)):
             return True
 
+    for i in range(35):
+        if contenu_fichier[i] != '0' and contenu_fichier[i+7] == '0':
+            return True
+
     return False
 
 def chargement(nom_fichier):
