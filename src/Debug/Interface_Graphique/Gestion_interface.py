@@ -969,7 +969,26 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                         if val_fin_de_partie == 2:
                             font = pygame.font.Font('Interface_Graphique/Cafeteria-Bold.otf', int( SIZE / 12 ) )
                             print("le joueur commence {}".format(joueur_suivant.commence))
-                            if joueur_suivant.commence:
+                            if joueur_suivant.commence == False and mode_de_jeu == True:
+                                if pygame.mixer.get_init() != None:
+                                    musique('Interface_Graphique/Sounds/victoire_partie.wav', 0.3)
+
+                                if LANGUE == 0:  
+                                    texte_aff = font.render("Coup Gagnant Joueur 2", True, "royalblue1")
+                                elif LANGUE == 1:
+                                    texte_aff = font.render("Winning Move Player 2", True, "royalblue1")
+                                texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
+                                fenetre.blit(texte_aff, texte_rect)
+                                pygame.display.flip()
+                                while True:
+                                    for click in pygame.event.get():
+                                        if click.type == pygame.MOUSEBUTTONDOWN:
+                                            if click.button == 1 and LANGUE == 0:
+                                                return "Vainqueur : J2 !"
+                                            else:
+                                                return "Winner : P2 !"
+
+                            else:
                                 if pygame.mixer.get_init() != None:
                                     musique('Interface_Graphique/Sounds/victoire_partie.wav', 0.3)
                                     
@@ -988,24 +1007,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                                                 return "Vainqueur : J1 !"
                                             else:
                                                 return "Winner : P1 !"
-                            else:
-                                if pygame.mixer.get_init() != None:
-                                    musique('Interface_Graphique/Sounds/victoire_partie.wav', 0.3)
 
-                                if LANGUE == 0:  
-                                    texte_aff = font.render("Coup Gagnant Joueur 2", True, "royalblue1")
-                                elif LANGUE == 1:
-                                    texte_aff = font.render("Winning Move Player 2", True, "royalblue1")
-                                texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
-                                fenetre.blit(texte_aff, texte_rect)
-                                pygame.display.flip()
-                                while True:
-                                    for click in pygame.event.get():
-                                        if click.type == pygame.MOUSEBUTTONDOWN:
-                                            if click.button == 1 and LANGUE == 0:
-                                                return "Vainqueur : J2 !"
-                                            else:
-                                                return "Winner : P2 !"
                         else:
                             if pygame.mixer.get_init() != None:
                                 musique('Interface_Graphique/Sounds/victoire_partie.wav', 0.3)
