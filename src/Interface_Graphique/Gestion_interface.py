@@ -1025,7 +1025,6 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                     if val_fin_de_partie != 0:
                         if val_fin_de_partie == 2:
                             font = pygame.font.Font('assets/Cafeteria-Bold.otf', int( SIZE / 12 ) )
-                            print("le joueur commence {}".format(joueur_suivant.commence))
 
                             if joueur_suivant.commence == False and mode_de_jeu == True:
                                 if pygame.mixer.get_init() != None:
@@ -1882,7 +1881,6 @@ def lancer_affichage():
     LARG = fenetre.get_size()[1]
     global SIZE 
     SIZE= int(LARG*0.95)
-    print("SIZE =", SIZE)
     fenetre = pygame.display.set_mode((SIZE, SIZE))
 
     #init une grille à zero
