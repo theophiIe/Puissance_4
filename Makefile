@@ -4,4 +4,4 @@ run:
 	$(CC) main.py
 
 install_linux:
-	./scripts/setup.sh
+	sudo ./scripts/setup.sh
