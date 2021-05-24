@@ -1,11 +1,8 @@
-from re import L
-
-from numpy.lib.type_check import imag
-from pygame.sprite import LayeredDirty
 import Gestion_bouton
 import Gestion_grille
 import Gestion_joueur
 import Gestion_jeton
+
 from Partie import *
 from Sauvegarde import *
 from Chargement import *
