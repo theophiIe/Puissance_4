@@ -1,6 +1,7 @@
 from re import L
 
 from numpy.lib.type_check import imag
+from pygame.sprite import LayeredDirty
 import Gestion_bouton
 import Gestion_grille
 import Gestion_joueur
@@ -527,21 +528,29 @@ def affichage_chargement(fenetre):
                         nom_fichier = nom_sauvegarde[sauvegarde_choisie]
                         break
                     else:
-                        affichage_erreur(fenetre, "Aucune sauvegarde sélectionnée !")
+                        if LANGUE == 0:
+                            affichage_erreur(fenetre, "Aucune sauvegarde sélectionnée !")
+                        else:
+                            affichage_erreur(fenetre, "No save selected !")
 
                 elif event.button == 1 and b_supprimer.rectangle.collidepoint(event.pos):
                     if pygame.mixer.get_init() != None:
                         musique('Interface_Graphique/Sounds/clic.wav', 0.3)
 
                     if sauvegarde_choisie != -1:
-                        
-                        confirmation = affichage_confirmation(fenetre, "Supprimer la sauvegarde ?")
+                        if LANGUE == 0:
+                            confirmation = affichage_confirmation(fenetre, "Supprimer la sauvegarde ?")
+                        else: 
+                            confirmation = affichage_confirmation(fenetre, "Delete selected save ?")
 
                         if confirmation == True:
 
                             verif_supprimer = supprimer_sauvegarde(nom_sauvegarde[sauvegarde_choisie])
                             if verif_supprimer == False:
-                                affichage_erreur(fenetre, "Erreur lors de la suppression")
+                                if LANGUE == 0:
+                                    affichage_erreur(fenetre, "Erreur lors de la suppression")
+                                else:
+                                    affichage_erreur(fenetre, "Error occured while deleting")
                             else:
                                 # ======= MODIF DEB MENU DEROULANT + LISTES SAUVERGARDES =======
                                 # nombre de sauvegardes
@@ -579,7 +588,10 @@ def affichage_chargement(fenetre):
                         if pygame.mixer.get_init() != None:
                             musique('Interface_Graphique/Sounds/erro.wav', 0.3)
                             
-                        affichage_erreur(fenetre, "Aucune sauvegarde sélectionnée !")
+                        if LANGUE == 0:
+                            affichage_erreur(fenetre, "Aucune sauvegarde sélectionnée !")
+                        else:
+                            affichage_erreur(fenetre, "No save selected !")
 
                 elif event.button == 1 and b_retour.rectangle.collidepoint(event.pos):
                     if pygame.mixer.get_init() != None:
@@ -857,7 +869,11 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                         musique('Interface_Graphique/Sounds/victoire_3.wav', 0.3)
                         
                     font = pygame.font.Font('Interface_Graphique/Cafeteria-Bold.otf', int( SIZE / 12 ) )
-                    texte_aff = font.render("Coup Gagnant Ordi !", True, "royalblue1")
+                    if LANGUE == 0:
+                        texte_aff = font.render("Coup Gagnant Ordi !", True, "royalblue1")
+                    elif LANGUE == 1: 
+                        texte_aff = font.render("Winning Move CPU !", True, "royalblue1")
+                        
                     texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
                     fenetre.blit(texte_aff, texte_rect)
                     pygame.display.flip()
@@ -871,15 +887,21 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                         musique('Interface_Graphique/Sounds/victoire_3.wav', 0.3)
 
                     font = pygame.font.Font('Interface_Graphique/Cafeteria-Bold.otf', int( SIZE / 12 ) )
-                    texte_aff = font.render("Match Nul !", True, "royalblue1")
+                    if LANGUE == 0:
+                        texte_aff = font.render("Match Nul !", True, "royalblue1")
+                    elif LANGUE == 1: 
+                        texte_aff = font.render("Draw !", True, "royalblue1")
+
                     texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
                     fenetre.blit(texte_aff, texte_rect)
                     pygame.display.flip()
                     while True:
                         for click in pygame.event.get():
                             if click.type == pygame.MOUSEBUTTONDOWN:
-                                if click.button == 1:
+                                if click.button == 1 and LANGUE == 0:
                                     return "Match Nul !"
+                                elif click.button == 1 and LANGUE == 1:
+                                    return "Draw !"
 
     tour = qui_commence
     aide = 0
@@ -921,7 +943,11 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                     if pygame.mixer.get_init() != None:
                         musique('Interface_Graphique/Sounds/clic.wav', 0.3)
                         
-                    confirmation = affichage_confirmation(fenetre, "Êtes-vous sûr ?")
+                    if LANGUE == 0:
+                        confirmation = affichage_confirmation(fenetre, "Êtes-vous sûr ?")
+                    elif LANGUE == 1:
+                        confirmation = affichage_confirmation(fenetre, "Are you sure ?")
+                    
                     fenetre.blit(background, (0, 0))
                     affichage_grille_jeton(fenetre, grille)
                     if confirmation == True:
@@ -952,42 +978,57 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                                 if pygame.mixer.get_init() != None:
                                     musique('Interface_Graphique/Sounds/victoire_3.wav', 0.3)
                                     
-                                texte_aff = font.render("Coup Gagnant joueur 1", True, "royalblue1")
+                                if LANGUE == 0:
+                                    texte_aff = font.render("Coup Gagnant Joueur 1", True, "royalblue1")
+                                elif LANGUE == 1:
+                                    texte_aff = font.render("Winning Move Player 1", True, "royalblue1")
+
                                 texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
                                 fenetre.blit(texte_aff, texte_rect)
                                 pygame.display.flip()
                                 while True:
                                     for click in pygame.event.get():
                                         if click.type == pygame.MOUSEBUTTONDOWN:
-                                            if click.button == 1:
+                                            if click.button == 1 and LANGUE == 0:
                                                 return "Vainqueur : J1 !"
+                                            else:
+                                                return "Winner : P1 !"
                             else:
                                 if pygame.mixer.get_init() != None:
                                     musique('Interface_Graphique/Sounds/victoire_3.wav', 0.3)
-                                    
-                                texte_aff = font.render("Coup Gagnant joueur 2", True, "royalblue1")
+
+                                if LANGUE == 0:  
+                                    texte_aff = font.render("Coup Gagnant Joueur 2", True, "royalblue1")
+                                elif LANGUE == 1:
+                                    texte_aff = font.render("Winning Move Player 2", True, "royaleblue1")
                                 texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
                                 fenetre.blit(texte_aff, texte_rect)
                                 pygame.display.flip()
                                 while True:
                                     for click in pygame.event.get():
                                         if click.type == pygame.MOUSEBUTTONDOWN:
-                                            if click.button == 1:
+                                            if click.button == 1 and LANGUE == 0:
                                                 return "Vainqueur : J2 !"
+                                            else:
+                                                return "Winner : P2 !"
                         else:
                             if pygame.mixer.get_init() != None:
                                 musique('Interface_Graphique/Sounds/victoire_3.wav', 0.3)
-                                
                             font = pygame.font.Font('Interface_Graphique/Cafeteria-Bold.otf', int( SIZE / 12 ) )
-                            texte_aff = font.render("Match Nul !", True, "royalblue1")
+                            if LANGUE == 0:
+                                texte_aff = font.render("Match Nul !", True, "royalblue1")
+                            elif LANGUE == 1: 
+                                texte_aff = font.render("Draw !", True, "royalblue1")
                             texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
                             fenetre.blit(texte_aff, texte_rect)
                             pygame.display.flip()
                             while True:
                                 for click in pygame.event.get():
                                     if click.type == pygame.MOUSEBUTTONDOWN:
-                                        if click.button == 1:
+                                        if click.button == 1 and LANGUE == 0:
                                             return "Match Nul !"
+                                        else:
+                                            return "Draw !"
                     tour = not tour
 
                     if type(joueur_actuel) == Gestion_joueur.Ordinateur:
@@ -1011,29 +1052,39 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                                     musique('Interface_Graphique/Sounds/victoire_3.wav', 0.3)
                                     
                                 font = pygame.font.Font('Interface_Graphique/Cafeteria-Bold.otf', int( SIZE / 12 ) )
-                                texte_aff = font.render("Coup Gagnant Ordi !", True, "royalblue1")
+                                if LANGUE == 1:
+                                    texte_aff = font.render("Coup Gagnant Ordi !", True, "royalblue1")
+                                elif LANGUE == 0:
+                                    texte_aff = font.render("Winning Move CPU !", True, "royalblue1")
                                 texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
                                 fenetre.blit(texte_aff, texte_rect)
                                 pygame.display.flip()
                                 while True:
                                     for click in pygame.event.get():
                                         if click.type == pygame.MOUSEBUTTONDOWN:
-                                            if click.button == 1:
+                                            if click.button == 1 and LANGUE == 0:
                                                 return "Vainqueur : ORDI !"
+                                            elif click.button == 1 and LANGUE == 1:
+                                                return "Winner : CPU !"
                             else:
                                 if pygame.mixer.get_init() != None:
                                     musique('Interface_Graphique/Sounds/victoire_3.wav', 0.3)
                                     
                                 font = pygame.font.Font('Interface_Graphique/Cafeteria-Bold.otf', int( SIZE / 12 ) )
-                                texte_aff = font.render("Match Nul !", True, "royalblue1")
+                                if LANGUE == 0:
+                                    texte_aff = font.render("Match Nul !", True, "royalblue1")
+                                elif LANGUE == 1:
+                                    texte_aff =  font.render("Draw !", True, "royalblue1")
                                 texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
                                 fenetre.blit(texte_aff, texte_rect)
                                 pygame.display.flip()
                                 while True:
                                     for click in pygame.event.get():
                                         if click.type == pygame.MOUSEBUTTONDOWN:
-                                            if click.button == 1:
+                                            if click.button == 1 and LANGUE == 0:
                                                 return "Match Nul !"
+                                            elif click.button == 1 and LANGUE == 1:
+                                                return "Draw !"
 
                         b_j1.affichage_bouton_survole(fenetre)
                         b_j2.affichage_bouton(fenetre)
@@ -1068,11 +1119,20 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
         pygame.display.flip()
 
     if tour == True:
-        texte_fin_de_partie = "Vainqueur : J1 !"
+        if LANGUE == 0:
+            texte_fin_de_partie = "Vainqueur : J1 !"
+        elif LANGUE == 1:
+            texte_fin_de_partie = "Winner : P1 !"
     elif tour == False and mode_de_jeu == True:
-        texte_fin_de_partie = "Vainqueur : J2 !"
+        if LANGUE == 0:
+            texte_fin_de_partie = "Vainqueur : J2 !"
+        elif LANGUE == 1:
+            texte_fin_de_partie = "Winner : P2 !"
     elif tour == False and mode_de_jeu == False:
-        texte_fin_de_partie = "Vainqueur : ORDI !"
+        if LANGUE == 0:
+            texte_fin_de_partie = "Vainqueur : ORDI !"
+        elif LANGUE == 1: 
+            texte_fin_de_partie = "Winner : CPU !"
 
     return texte_fin_de_partie
 
@@ -1180,7 +1240,10 @@ def affichage_sauvegarde(fenetre, grille):
 
                 if event.button == 1 and b_sauvegarder.rectangle.collidepoint(event.pos):
                     if sauvegarde_choisie != -1:
-                        confirmation = affichage_confirmation(fenetre, "Ecraser les données ?")
+                        if LANGUE == 0:
+                            confirmation = affichage_confirmation(fenetre, "Ecraser les données ?")
+                        elif LANGUE == 1: 
+                            confirmation = affichage_confirmation(fenetre, "Overwrite data file ?")
                         if confirmation == True :
                             sauvegarde(grille.grille, nom_sauvegarde[sauvegarde_choisie] )
                             running = False
@@ -1191,14 +1254,19 @@ def affichage_sauvegarde(fenetre, grille):
                         break
                 elif event.button == 1 and b_supprimer.rectangle.collidepoint(event.pos):
                     if sauvegarde_choisie != -1:
-                        
-                        confirmation = affichage_confirmation(fenetre, "Supprimer la sauvegarde ?")
+                        if LANGUE == 0:
+                            confirmation = affichage_confirmation(fenetre, "Supprimer la sauvegarde ?")
+                        elif LANGUE == 1:
+                            confirmation = affichage_confirmation(fenetre, "Delete save ?")
 
                         if confirmation == True:
 
                             verif_supprimer = supprimer_sauvegarde(nom_sauvegarde[sauvegarde_choisie])
                             if verif_supprimer == False:
-                                affichage_erreur(fenetre, "Erreur lors de la suppression")
+                                if LANGUE == 0:
+                                    affichage_erreur(fenetre, "Erreur lors de la suppression")
+                                elif LANGUE == 1:
+                                    affichage_erreur(fenetre, "Error occured while deleting")
                             else:
                                 # ======= MODIF DEB MENU DEROULANT + LISTES SAUVERGARDES =======
                                 # nombre de sauvegardes
@@ -1233,7 +1301,10 @@ def affichage_sauvegarde(fenetre, grille):
                                 sauvegarde_choisie = -1
                                 # ======= FIN MENU DEROULANT + LISTES SAUVERGARDES =======
                     else:
-                        affichage_erreur(fenetre, "Aucune sauvegarde sélectionnée !")
+                        if LANGUE == 0:
+                            affichage_erreur(fenetre, "Aucune sauvegarde sélectionnée !")
+                        else:
+                            affichage_erreur(fenetre, "No save selected !")
 
                 elif event.button == 1 and b_retour.rectangle.collidepoint(event.pos):
                     running = False
@@ -1326,7 +1397,11 @@ def affichage_nouvelle_sauvegarde(fenetre, grille):
 
                 if event.button == 1 and b_sauvegarder.rectangle.collidepoint(event.pos):
                     if text != "": 
-                        confirmation = affichage_confirmation(fenetre, "Confirmer ?")
+                        if LANGUE == 0:
+                            confirmation = affichage_confirmation(fenetre, "Confirmer ?")
+                        else:
+                            confirmation = affichage_confirmation(fenetre, "Confirm ?")
+
                         if confirmation == True: 
                             if text.find(".txt") == -1:
                                 text += '.txt'
@@ -1334,9 +1409,16 @@ def affichage_nouvelle_sauvegarde(fenetre, grille):
                                 running = False
                                 break
                             else:
-                                affichage_erreur(fenetre, "Le fichier {} n'a pas pu être sauvergardé".format(text))
+                                if LANGUE == 0:
+                                    affichage_erreur(fenetre, "Le fichier {} n'a pas pu être sauvergardé".format(text))
+                                else :
+                                    affichage_erreur(fenetre, "File named {} counldn't be saved".format(text))
                     else:
-                        affichage_erreur(fenetre, "Nom du fichier vide")
+                        if LANGUE == 0:
+                            affichage_erreur(fenetre, "Nom du fichier vide")
+                        else:
+                            affichage_erreur(fenetre, "Empty file name")
+
                 if event.button == 1 and b_retour.rectangle.collidepoint(event.pos):
                     running = False
                     break
@@ -1653,7 +1735,10 @@ def selection_colonne(fenetre, event):
 
 def lancer_affichage():
     pygame.init()
-    pygame.display.set_caption('Puissance 4')  
+    if LANGUE == 0:
+        pygame.display.set_caption('Puissance 4')  
+    elif LANGUE == 1:
+        pygame.display.set_caption('Connect 4')
     fenetre = pygame.display.set_mode() 
     LONG, LARG = fenetre.get_size() 
     global SIZE 
@@ -1689,7 +1774,10 @@ def lancer_affichage():
             if quel_menu == MODE_DE_JEU:
                 resultat = chargement(nom_fichier)
                 if type(resultat) is bool:
-                    affichage_erreur(fenetre, "Le fichier {} n'a pas pu être chargé".format(nom_fichier))
+                    if LANGUE == 0:
+                        affichage_erreur(fenetre, "Le fichier {} n'a pas pu être chargé".format(nom_fichier))
+                    else:
+                        affichage_erreur(fenetre, "File named {} couldn't be saved".format(nom_fichier))
                     quel_menu = CHARGEMENT
                 else:
                     cls_grille = resultat[1]
