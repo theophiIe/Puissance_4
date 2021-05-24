@@ -1687,7 +1687,7 @@ def affichage_aide(fenetre, grille, joueur_actuel, joueur_suivant):
                         grille.grille[num_ligne][colonne] = None
 
         if coup_joue == False:
-            num_colonne = fail_soft(grille, 5, -math.inf, math.inf, joueur_actuel, joueur_suivant)[1]
+            num_colonne = fail_soft(grille, joueur_actuel, joueur_suivant, 5, -math.inf, math.inf)[1]
             
     b_fleche = Gestion_bouton.Bouton("Interface_Graphique/Sprites/Arrow.png", "Interface_Graphique/Sprites/Arrow.png", SIZE * 0.41/10 + num_colonne * (SIZE*1.068/10), SIZE*9/10, SIZE*0.89/10, SIZE*0.89/10)
     b_fleche.affichage_bouton(fenetre)

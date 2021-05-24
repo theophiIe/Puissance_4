@@ -118,7 +118,7 @@ def evaluation_coup(cls_grille, couleur_jeton):
 
 
 
-def fail_soft(cls_grille, profondeur, alpha, beta, joueur_actuel, joueur_suivant):
+def fail_soft(cls_grille, joueur_actuel, joueur_suivant, profondeur, alpha, beta):
     fin_partie = (cls_grille.est_pleine() or cls_grille.coup_gagnant(1) or cls_grille.coup_gagnant(2))
 
     if profondeur == 0 or fin_partie:
@@ -148,7 +148,7 @@ def fail_soft(cls_grille, profondeur, alpha, beta, joueur_actuel, joueur_suivant
         else:
             ligne = joueur_suivant.jouer_coup(cls_grille.grille, colonne)
 
-        score = -fail_soft(cls_grille, profondeur-1, -beta, -alpha, joueur_actuel, joueur_suivant)[0]
+        score = -fail_soft(cls_grille, joueur_actuel, joueur_suivant, profondeur-1, -beta, -alpha)[0]
 
         Gestion_jeton.Jeton.decremente_nombre_jeton()
         cls_grille.grille[ligne][colonne] = None

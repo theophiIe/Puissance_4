@@ -105,7 +105,7 @@ def actions_coup_joueur(grille, num_colonne, joueur_actuel, joueur_suivant, nive
                         grille.grille[num_ligne][num_colonne] = None
 
         if coup_joue == False:
-            num_colonne = fail_soft(grille, (2*niveau_de_difficulte) + 1, -math.inf, math.inf, joueur_actuel, joueur_suivant)[1]
+            num_colonne = fail_soft(grille, joueur_actuel, joueur_suivant, (2*niveau_de_difficulte) + 1, -math.inf, math.inf)[1]
             num_ligne = joueur_actuel.jouer_coup(grille.grille,num_colonne)
             joueur_actuel,joueur_suivant = joueur_suivant,joueur_actuel
     
