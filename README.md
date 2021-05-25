@@ -2,16 +2,16 @@
 
 ## Arborescence
 Notre application se découpe en plusieurs dossiers :
--assets, qui contient les fichiers image et son,
--data, qui contient le dossier contenant les sauvegardes de parties,
--scripts, qui contient les scripts pour l'installation des dépendances pour Windows, MacOS et Linux,
--src, qui contient tous les fichiers source de notre application,
--executable_windows, qui contient tous les fichiers et dossiers nécessaires à l'exécution du fichier `main.exe` sous Windows,
--executable_linux, qui contient tous les fichiers et dossiers nécessaires à l'exécution du fichier `main` sous Linux,
--executable_mac, qui contient tous les fichiers et dossiers nécessaires à l'exécution du fichier `main` sous Mac,
--un fichier main.py, qui permet le lancement de l'application,
--un fichier Makefile,
--un fichier README.md.
+- assets, qui contient les fichiers image et son,
+- data, qui contient le dossier contenant les sauvegardes de parties,
+- scripts, qui contient les scripts pour l'installation des dépendances pour Windows, MacOS et Linux,
+- src, qui contient tous les fichiers source de notre application,
+- executable_windows, qui contient tous les fichiers et dossiers nécessaires à l'exécution du fichier `main.exe` sous Windows,
+- executable_linux, qui contient tous les fichiers et dossiers nécessaires à l'exécution du fichier `main` sous Linux,
+- executable_mac, qui contient tous les fichiers et dossiers nécessaires à l'exécution du fichier `main` sous Mac,
+- un fichier main.py, qui permet le lancement de l'application,
+- un fichier Makefile,
+- un fichier README.md.
 
 ## Dépendances
 Les dépendances obligatoires au bon fonctionnement de l'application sont : 
@@ -61,11 +61,11 @@ et exécuter la commande ```.\main```.
 
 ## Auteurs
 Cette application a été développée par :
--Gabriel Scrève,
--Léo Lamoureux,
--Lola Pires Pinto,
--Louis-Albert Sottas,
--Romain Gicquiaud--Rousset,
--Théophile Molinatti,
--Thomas Pittis,
--Victor Chhun.
+- Gabriel Scrève,
+- Léo Lamoureux,
+- Lola Pires Pinto,
+- Louis-Albert Sottas,
+- Romain Gicquiaud--Rousset,
+- Théophile Molinatti,
+- Thomas Pittis,
+- Victor Chhun.
