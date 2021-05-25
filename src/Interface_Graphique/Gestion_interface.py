@@ -1609,7 +1609,7 @@ def affichage_nouvelle_sauvegarde(fenetre, grille):
                                 text += '.txt'
 
                         if verification_syntaxe_nom_fichier(text):
-                            if verifie_existence_fichier(text):
+                            if not verifie_existence_fichier(text):
                                 if sauvegarde(grille.grille, text):
                                     running = False
                                     break
