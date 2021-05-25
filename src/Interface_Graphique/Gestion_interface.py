@@ -532,7 +532,7 @@ def affichage_chargement(fenetre):
         else:
             font = pygame.font.Font('assets/Cafeteria-Bold.otf', int(SIZE / (len(nom_sauvegarde[i])/2) ))
 
-        tmp_text = font.render(nom_sauvegarde[i], True, "white")
+        tmp_text = font.render(nom_sauvegarde[i], True, (255, 255, 255))
         tmp_text_rect = tmp_text.get_rect(center = (SIZE*4/10, SIZE/20+i*SIZE/10) )
         text_sauvegardes.append(tmp_text)
         text_sauvegardes_rect.append(tmp_text_rect)
@@ -606,7 +606,7 @@ def affichage_chargement(fenetre):
                                     else:
                                         font = pygame.font.Font('assets/Cafeteria-Bold.otf', int(SIZE / (len(nom_sauvegarde[i])/2) ))
                                     
-                                    tmp_text = font.render(nom_sauvegarde[i], True, "white")
+                                    tmp_text = font.render(nom_sauvegarde[i], True, (255, 255, 255))
                                     tmp_text_rect = tmp_text.get_rect(center = (SIZE*4/10, SIZE/20+i*SIZE/10) )
                                     text_sauvegardes_rect[i] = tmp_text_rect
 
@@ -1383,7 +1383,7 @@ def affichage_sauvegarde(fenetre, grille):
         else:
             font = pygame.font.Font('assets/Cafeteria-Bold.otf', int(SIZE / (len(nom_sauvegarde[i])/2) ))
 
-        tmp_text = font.render(nom_sauvegarde[i], True, "white")
+        tmp_text = font.render(nom_sauvegarde[i], True, (255, 255, 255))
         tmp_text_rect = tmp_text.get_rect(center = (SIZE*4/10, SIZE/20+i*SIZE/10) )
         text_sauvegardes.append(tmp_text)
         text_sauvegardes_rect.append(tmp_text_rect)
@@ -1463,7 +1463,7 @@ def affichage_sauvegarde(fenetre, grille):
                                     else:
                                         font = pygame.font.Font('assets/Cafeteria-Bold.otf', int(SIZE / (len(nom_sauvegarde[i])/2) ))
 
-                                    tmp_text = font.render(nom_sauvegarde[i], True, "white")
+                                    tmp_text = font.render(nom_sauvegarde[i], True, (255, 255, 255))
                                     tmp_text_rect = tmp_text.get_rect(center = (SIZE*4/10, SIZE/20+i*SIZE/10) )
                                     text_sauvegardes_rect[i] = tmp_text_rect
 
@@ -1573,7 +1573,7 @@ def affichage_nouvelle_sauvegarde(fenetre, grille):
     b_retour = Gestion_bouton.Bouton(image[10], image[11], SIZE*0.75/10, SIZE*4/5, SIZE/4, SIZE/10)
     b_retour.affichage_bouton(fenetre)
         
-    input_box = pygame.Rect(SIZE/2 - SIZE/9.5, SIZE/2, SIZE/10, SIZE/20)
+    input_box = pygame.Rect(SIZE/2 - SIZE/9.5, SIZE/2, SIZE/10, SIZE/14)
     clock = pygame.time.Clock()
     color_inactive = pygame.Color('lightskyblue3')
     color_active = pygame.Color('dodgerblue2')
@@ -1581,7 +1581,7 @@ def affichage_nouvelle_sauvegarde(fenetre, grille):
     active = False
     text = ''
 
-    font = pygame.font.Font(None, 50)
+    font = pygame.font.Font('assets/Cafeteria-Bold.otf', 50)
 
     pygame.display.flip()
 
