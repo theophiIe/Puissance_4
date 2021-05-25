@@ -985,10 +985,10 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                     font = pygame.font.Font('assets/Cafeteria-Bold.otf', int( SIZE / 12 ) )
 
                     if LANGUE == 0:
-                        texte_aff = font.render("Coup Gagnant Ordi !", True, "royalblue1")
+                        texte_aff = font.render("Coup Gagnant Ordi !", True, (72,118,255))
 
                     elif LANGUE == 1: 
-                        texte_aff = font.render("Winning Move CPU !", True, "royalblue1")
+                        texte_aff = font.render("Winning Move CPU !", True, (72,118,255))
                         
                     texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
                     fenetre.blit(texte_aff, texte_rect)
@@ -1006,10 +1006,10 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                     font = pygame.font.Font('assets/Cafeteria-Bold.otf', int( SIZE / 12 ) )
 
                     if LANGUE == 0:
-                        texte_aff = font.render("Match Nul !", True, "royalblue1")
+                        texte_aff = font.render("Match Nul !", True, (72,118,255))
 
                     elif LANGUE == 1: 
-                        texte_aff = font.render("Draw !", True, "royalblue1")
+                        texte_aff = font.render("Draw !", True, (72,118,255))
 
                     texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
                     fenetre.blit(texte_aff, texte_rect)
@@ -1101,10 +1101,10 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                                     musique('assets/Sounds/victoire_partie.wav', 0.3)
 
                                 if LANGUE == 0:  
-                                    texte_aff = font.render("Coup Gagnant Joueur 2", True, "royalblue1")
+                                    texte_aff = font.render("Coup Gagnant Joueur 2", True, (72,118,255))
 
                                 elif LANGUE == 1:
-                                    texte_aff = font.render("Winning Move Player 2", True, "royalblue1")
+                                    texte_aff = font.render("Winning Move Player 2", True, (72,118,255))
 
                                 texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
                                 fenetre.blit(texte_aff, texte_rect)
@@ -1124,10 +1124,10 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                                     musique('assets/Sounds/victoire_partie.wav', 0.3)
                                     
                                 if LANGUE == 0:
-                                    texte_aff = font.render("Coup Gagnant Joueur 1", True, "royalblue1")
+                                    texte_aff = font.render("Coup Gagnant Joueur 1", True, (72,118,255))
 
                                 elif LANGUE == 1:
-                                    texte_aff = font.render("Winning Move Player 1", True, "royalblue1")
+                                    texte_aff = font.render("Winning Move Player 1", True, (72,118,255))
 
                                 texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
                                 fenetre.blit(texte_aff, texte_rect)
@@ -1149,10 +1149,10 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                             font = pygame.font.Font('assets/Cafeteria-Bold.otf', int( SIZE / 12 ) )
 
                             if LANGUE == 0:
-                                texte_aff = font.render("Match Nul !", True, "royalblue1")
+                                texte_aff = font.render("Match Nul !", True, (72,118,255))
 
                             elif LANGUE == 1: 
-                                texte_aff = font.render("Draw !", True, "royalblue1")
+                                texte_aff = font.render("Draw !", True, (72,118,255))
 
                             texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
                             fenetre.blit(texte_aff, texte_rect)
@@ -1191,10 +1191,10 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                                 font = pygame.font.Font('assets/Cafeteria-Bold.otf', int( SIZE / 12 ) )
                                 
                                 if LANGUE == 0:
-                                    texte_aff = font.render("Coup Gagnant Ordi !", True, "royalblue1")
+                                    texte_aff = font.render("Coup Gagnant Ordi !", True, (72,118,255))
 
                                 else:
-                                    texte_aff = font.render("Winning Move CPU !", True, "royalblue1")
+                                    texte_aff = font.render("Winning Move CPU !", True, (72,118,255))
 
                                 texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
                                 fenetre.blit(texte_aff, texte_rect)
@@ -1216,10 +1216,10 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                                 font = pygame.font.Font('assets/Cafeteria-Bold.otf', int( SIZE / 12 ))
 
                                 if LANGUE == 0:
-                                    texte_aff = font.render("Match Nul !", True, "royalblue1")
+                                    texte_aff = font.render("Match Nul !", True, (72,118,255))
 
                                 elif LANGUE == 1:
-                                    texte_aff =  font.render("Draw !", True, "royalblue1")
+                                    texte_aff =  font.render("Draw !", True, (72,118,255))
 
                                 texte_rect = texte_aff.get_rect(center = (SIZE/2.4, SIZE/10) )
                                 fenetre.blit(texte_aff, texte_rect)
@@ -1575,8 +1575,8 @@ def affichage_nouvelle_sauvegarde(fenetre, grille):
         
     input_box = pygame.Rect(SIZE/2 - SIZE/9.5, SIZE/2, SIZE/10, SIZE/14)
     clock = pygame.time.Clock()
-    color_inactive = pygame.Color('lightskyblue3')
-    color_active = pygame.Color('dodgerblue2')
+    color_inactive = pygame.Color((141,182,205))
+    color_active = pygame.Color((28,134,238))
     color = color_inactive
     active = False
     text = ''
@@ -1712,7 +1712,7 @@ def affichage_fin_de_partie(fenetre, texte_fin_de_partie):
     background = pygame.image.load("assets/Sprites/Background_trans.png") 
     fenetre.blit(background, (0, 0))
     font = pygame.font.Font('assets/Cafeteria-Bold.otf', int( SIZE / 6 ) )
-    texte_aff = font.render(texte_fin_de_partie, True, "royalblue1")
+    texte_aff = font.render(texte_fin_de_partie, True, (72,118,255))
     texte_rect = texte_aff.get_rect(center = (SIZE*5/10, SIZE*2.25/10) )
     fenetre.blit(texte_aff, texte_rect)
     
@@ -1788,7 +1788,7 @@ def affichage_confirmation(fenetre, texte):
     else:
         font = pygame.font.Font('assets/Cafeteria-Bold.otf', int( SIZE / (len(texte)/1.5) ) )
 
-    texte_aff = font.render(texte, True, "royalblue1")
+    texte_aff = font.render(texte, True, (72,118,255))
     texte_rect = texte_aff.get_rect(center = (SIZE*5/10, SIZE*3.5/10) )
     fenetre.blit(texte_aff, texte_rect)
 
@@ -1860,7 +1860,7 @@ def affichage_erreur(fenetre, texte):
     else:
         font = pygame.font.Font('assets/Cafeteria-Bold.otf', int( SIZE / 12 ) )
 
-    texte_aff = font.render(texte, True, "royalblue1")
+    texte_aff = font.render(texte, True, (72,118,255))
     texte_rect = texte_aff.get_rect(center = (SIZE*5/10, SIZE*3.5/10) )
     fenetre.blit(texte_aff, texte_rect)
 
