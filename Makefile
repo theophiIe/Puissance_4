@@ -4,4 +4,7 @@ run:
 	$(CC) main.py
 
 install_linux:
-	sudo ./scripts/setup.sh
+	sudo ./scripts/setupLinux.sh
+
+install_mac:
+	sudo ./scripts/setupMac.sh
