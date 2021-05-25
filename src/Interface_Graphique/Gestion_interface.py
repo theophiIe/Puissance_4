@@ -169,8 +169,10 @@ def affichage_menu_principal(fenetre):
         Renvoie :
             un entier qui correspond au numéro de la fenêtre suivante
     """
+    # Initialise le tableau des boutons 
     image = image_fr_eng()
 
+    # Initialise l'arrière-plan, le titre ainsi que les boutons à afficher
     background = pygame.image.load(BACKGROUND_SPRITE) 
     fenetre.blit(background, (0, 0))
 
@@ -196,7 +198,7 @@ def affichage_menu_principal(fenetre):
 
     b_langue_anglais = Gestion_bouton.Bouton("assets/Sprites/anglais.png", "assets/Sprites/anglais.png", SIZE*44.3/50, SIZE*9.2/10, SIZE/12, SIZE/20)
 
-
+    # Initialise les sons de l'application
     global MUTE_SOUND
     global LANGUE
 
@@ -212,8 +214,8 @@ def affichage_menu_principal(fenetre):
         else:
             b_langue_francais.affichage_bouton(fenetre)
 
+    # Afficher le background, titre et boutons anglais
     if LANGUE == 1:
-        # afficher le background / titre et boutons anglais
         image = image_fr_eng()
         b_titre = Gestion_bouton.Bouton(image[0], image[0], SIZE/10, SIZE*1.5/10, SIZE*8/10, SIZE*2.5/10)
         b_titre.affichage_bouton(fenetre)
@@ -229,6 +231,7 @@ def affichage_menu_principal(fenetre):
 
     pygame.display.flip()
 
+    # Boucle while permettant d'intéragir avec le menu
     running = True
     while running:
 
@@ -298,6 +301,8 @@ def affichage_menu_principal(fenetre):
 
                     break
 
+                # bouton "jouer" :
+                # si l'utilisateur appuie dessus, l'application va passer à l'affichage menu mode de jeu 
                 if event.button == 1 and b_jouer.rectangle.collidepoint(event.pos):
                     if pygame.mixer.get_init() != None:
                         musique('assets/Sounds/clic.wav', 0.3)
@@ -306,6 +311,8 @@ def affichage_menu_principal(fenetre):
                     quel_menu = MODE_DE_JEU
                     break
 
+                # bouton "charger" :
+                # si l'utilisateur appuie dessus, l'application va passer à l'affichage menu chargement
                 if event.button == 1 and b_charger.rectangle.collidepoint(event.pos):
                     if pygame.mixer.get_init() != None:
                         musique('assets/Sounds/clic.wav', 0.3)
@@ -314,6 +321,8 @@ def affichage_menu_principal(fenetre):
                     quel_menu = CHARGEMENT
                     break
 
+                # bouton "quitter" :
+                # si l'utilisateur appuie dessus, on derme l'application
                 if event.button == 1 and b_quitter.rectangle.collidepoint(event.pos):
                     if pygame.mixer.get_init() != None:
                         musique('assets/Sounds/clic.wav', 0.3)
@@ -325,6 +334,7 @@ def affichage_menu_principal(fenetre):
         if running == False:
             break
 
+        # re-affichage des boutons, titres dans le cas où il y a eu des interactions
         b_titre.affichage_bouton(fenetre)
         point = pygame.mouse.get_pos()
         b_jouer.collision_bouton(fenetre, point)
@@ -473,11 +483,11 @@ def affichage_chargement(fenetre):
     nb_sauv = 0
 
     # init sauvegardes
-    tab_sauvegarde = []
-    nom_sauvegarde = []
-    text_sauvegardes = []
-    text_sauvegardes_rect = []
-    sauvegarde_choisie = -1
+    tab_sauvegarde = []         # tableau contenant les arrières-plans pour les noms de sauvegardes à afficher
+    nom_sauvegarde = []         # tableau contenant les noms des fichiers .txt trouvés dans le dossier Liste_sauvegardes
+    text_sauvegardes = []       # tableau contenant les noms des fichiers .txt à afficher
+    text_sauvegardes_rect = []  # tableau contenant les coordonnées où afficher les noms des fichiers sur la fenêtre
+    sauvegarde_choisie = -1     # entier correspondant au numéro de la sauvegarde dans le tableau de sauvegarde : text_sauvegardes
 
     # récupérer les fichiers .txt
     path = r'data/Liste_sauvegardes'
@@ -551,6 +561,10 @@ def affichage_chargement(fenetre):
                 pygame.quit()
             
             if event.type == pygame.MOUSEBUTTONDOWN:
+                # charger une sauvegarde
+                # - si l'utilisateur a sélectionné la sauvegarde avant d'appuyer sur le bouton,
+                #   on renvoie une chaîne de caractères correspondant au chemin du fichier chargé
+                # - sinon, on affiche un message d'erreur
                 if event.button == 1 and b_charger.rectangle.collidepoint(event.pos):
                     if pygame.mixer.get_init() != None:
                         musique('assets/Sounds/clic.wav', 0.3)
@@ -568,6 +582,11 @@ def affichage_chargement(fenetre):
                         else:
                             affichage_erreur(fenetre, "No save selected !")
 
+                # supprimer une sauvegarde
+                # quand on appuie sur ce bouton, on supprime le fichier sélectionné 
+                # dans le dossier Liste_sauvegardes
+                # puis on réinitialise le tableau de sauvegarde à afficher.
+                # en cas de problème de suppression, on affiche un message d'erreur.
                 elif event.button == 1 and b_supprimer.rectangle.collidepoint(event.pos):
                     if pygame.mixer.get_init() != None:
                         musique('assets/Sounds/clic.wav', 0.3)
@@ -1038,6 +1057,8 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 colonne_selectionnee = selection_colonne(fenetre, event)
 
+                # affiche l'aide représenté par une flèche dessinée en dessous de la grille de jeu
+                # cette flèche s'effacera automatiquement si le joueur pose sa pièce.
                 if event.button == 1 and b_aide.rectangle.collidepoint(event.pos):
                     if pygame.mixer.get_init() != None:
                         musique('assets/Sounds/clic.wav', 0.3)
@@ -1050,6 +1071,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                         fenetre.blit(background, (0, 0))
                         affichage_grille_jeton(fenetre, grille)
 
+                # affiche le menu de sauvegarde
                 elif event.button == 1 and b_sauvegarde.rectangle.collidepoint(event.pos):
                     if pygame.mixer.get_init() != None:
                         musique('assets/Sounds/clic.wav', 0.3)
@@ -1058,6 +1080,8 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                     fenetre.blit(background, (0, 0))
                     affichage_grille_jeton(fenetre, grille)
 
+                # permet à un joueur d'abandonner ce qui affichera directement le menu de victoire.
+                # un ordinateur ne peut pas abandonner
                 elif event.button == 1 and b_abandon.rectangle.collidepoint(event.pos):      
                     if pygame.mixer.get_init() != None:
                         musique('assets/Sounds/clic.wav', 0.3)
@@ -1076,6 +1100,11 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                         tour = not tour
                         break
 
+                # conditions pour poser un jeton dans la grille
+                # on vérifie que la colonne n'est pas remplie
+                # dans ce cas on ajoute le jeton dans la grille de jeu
+                # ensuite on vérifie si ce coup est un coup gagnant
+                # si ce dernier l'est, on affiche le menu de fin de partie après un clic 
                 elif colonne_selectionnee != -1 and grille.coup_valide(colonne_selectionnee):
                     num_ligne, num_colonne, joueur_actuel, joueur_suivant = actions_coup_joueur(grille, colonne_selectionnee, joueur_actuel, joueur_suivant, niveau_de_difficulte)
                     
@@ -1168,7 +1197,9 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
                                             return "Draw !"
 
                     tour = not tour
-
+                    
+                    # si le deuxième joueur est un ordinateur
+                    # ce dernier jouera juste apèrs le clic d'un joueur
                     if type(joueur_actuel) == Gestion_joueur.Ordinateur:
                         b_j2.affichage_bouton_survole(fenetre)
                         b_j1.affichage_bouton(fenetre)
@@ -1268,6 +1299,7 @@ def affichage_partie(fenetre, grille, mode_de_jeu, qui_commence, niveau_de_diffi
 
         pygame.display.flip()
 
+    # messages de fin de partie dans le cas où le bouton abandon a été cliqué
     if tour == True and mode_de_jeu == True:
         if LANGUE == 0:
             texte_fin_de_partie = "Vainqueur : J1 !"
@@ -1402,6 +1434,13 @@ def affichage_sauvegarde(fenetre, grille):
                 pygame.quit()
             
             if event.type == pygame.MOUSEBUTTONDOWN:
+                # Permet de créer une nouvelle sauvegarde,
+                # si l'uilisateur n'a pas sélectionné de sauvegarde, l'application va lancer le menu
+                # nouvelle sauvegarde et va demander à l'utilisateur d'écrire un nom de fichier pour enregistrer 
+                # les données dans ce nouveau fichier.
+                # Si l'uilisateur a sélectionné une sauvegarde et qu'il appuie sur ce bouton,
+                # la fonction va écraser les données de la sauvegarde par les nouvelles données
+                # de la grille en train d'être jouée.
                 if event.button == 1 and b_sauvegarder.rectangle.collidepoint(event.pos):
                     if pygame.mixer.get_init() != None:
                         musique('assets/Sounds/clic.wav', 0.3)
@@ -1573,8 +1612,11 @@ def affichage_nouvelle_sauvegarde(fenetre, grille):
     b_retour = Gestion_bouton.Bouton(image[10], image[11], SIZE*0.75/10, SIZE*4/5, SIZE/4, SIZE/10)
     b_retour.affichage_bouton(fenetre)
         
+    # Zone à cliquer pour écrire le nom d'un fichier
     input_box = pygame.Rect(SIZE/2 - SIZE/9.5, SIZE/2, SIZE/10, SIZE/14)
     clock = pygame.time.Clock()
+    # cliquer une fois sur la zone de texte pour activer l'écriture
+    # cliquer une deuxième fois pour arrêter d'écrire
     color_inactive = pygame.Color((141,182,205))
     color_active = pygame.Color((28,134,238))
     color = color_inactive
@@ -1596,6 +1638,13 @@ def affichage_nouvelle_sauvegarde(fenetre, grille):
                 if pygame.mixer.get_init() != None:
                     musique('assets/Sounds/clic.wav', 0.3)
 
+                # créé une nouvelle sauvegarde avec le nom écrit dans la zone de texte
+                # cette condition vérifie :
+                #   que la syntaxe est respectée
+                #   que la chaîne de caractère n'a pas le mêm nom qu'un autre fichier déjà existant
+                #   que le nom n'est pas vide
+                # si ces cas sont respectés, un pop-up de confirmation s'affiche et demande
+                # l'accord de l'utilisateur pour créer ce fichier.
                 if event.button == 1 and b_sauvegarder.rectangle.collidepoint(event.pos):
                     if text != "": 
                         if LANGUE == 0:
@@ -1648,6 +1697,11 @@ def affichage_nouvelle_sauvegarde(fenetre, grille):
 
                 color = color_active if active else color_inactive
 
+            # dans le cas où l'uilisateur a appuyé sur la zone de texte
+            # il peut écrire dedans en appuyant dur les touches du clavier 
+            # (le nom du fichier ne peut pas excéder 30 caractères)
+            # appuyer sur la touche retour pour supprimer un caractère
+            # appuyer sur la touche entrer pour supprimer toute la chaîne de caractères
             if event.type == pygame.KEYDOWN:
                 if active:
                     if event.key == pygame.K_RETURN:
@@ -1672,20 +1726,21 @@ def affichage_nouvelle_sauvegarde(fenetre, grille):
         b_sauvegarder.collision_bouton(fenetre, point)
         b_retour.collision_bouton(fenetre, point)
         
-        # Render the current text.
+        # colorie le texte écrit
         txt_surface = font.render(text, True, color)
 
-        # Resize the box if the text is too long.
+        # re-dimensionne la zone de texte en fonction de la taille 
+        # de la chaîne de caractère
         width = max(SIZE/5, txt_surface.get_width()+10)
         input_box.w = width
 
-        # Blit the input_box rect.
+        # Affiche la zone de texte
         if width > SIZE/5:
             input_box.x = SIZE/2 - SIZE/9.5 - ( (width-SIZE/5) /2 )
 
         pygame.draw.rect(fenetre, color, input_box, 4)
 
-        # Blit the text.
+        # affiche le texte
         fenetre.blit(txt_surface, (input_box.x+5, input_box.y+7))
     
         pygame.display.flip()
@@ -2037,6 +2092,8 @@ def lancer_affichage():
     elif LANGUE == 1:
         pygame.display.set_caption('Connect 4')
 
+    # Initialise la taille de la fenêtre
+    # la fenetre aura pour dimension : SIZE * SIZE
     fenetre = pygame.display.set_mode() 
     LARG = fenetre.get_size()[1]
     global SIZE 
@@ -2045,8 +2102,14 @@ def lancer_affichage():
 
     #init une grille à zero
     cls_grille = Gestion_grille.Grille(6,7)
+
+    # variable pour la boucle while
     running = True
+    
+    # variable entier qui définit le numéro de l'affichage
     quel_menu = MENU_PRINCIPAL
+    
+    # variables pour le lancement de la partie
     nom_fichier = ""
     mode_de_jeu = 0
     qui_commence = 2
@@ -2065,6 +2128,10 @@ def lancer_affichage():
         elif quel_menu == CHARGEMENT: 
             quel_menu, nom_fichier = affichage_chargement(fenetre)
             
+            # on vérifie si le fichier .txt chargé n'est pas corrompu
+            # - si le fichier ne respecte pas les tests de vérifications, 
+            #   on renvoie un message d'erreur et on revient au menu de chargement.
+            # - sinon on remplit la grille avce les informations du fichier.
             if quel_menu == MODE_DE_JEU:
                 resultat = chargement(nom_fichier)
 
