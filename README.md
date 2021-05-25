@@ -15,12 +15,12 @@ Notre application se découpe en plusieurs dossiers :
 
 ## Dépendances
 Les dépendances obligatoires au bon fonctionnement de l'application sont : 
--python3 (version supérieure à 3.6.9),
--pip3.
+- python3 (version supérieure à 3.6.9),
+- pip3.
 
 Les dépendances supplémentaires sont :
--numpy,
--pygame (sous la version 2.0.0dev6 pour MacOS).
+- numpy,
+- pygame (sous la version 2.0.0dev6 pour MacOS).
 
 Pour l'installation de numpy et de pygame, voir ci-dessous.
 
