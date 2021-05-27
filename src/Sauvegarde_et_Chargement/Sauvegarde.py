@@ -61,7 +61,7 @@ def verifie_existence_fichier(nom_fichier):
             False : si le nom de fichier est disponible.
     """
 
-    if os.path.exists(nom_fichier):
+    if os.path.exists("data/Liste_sauvegardes/"+nom_fichier):
         return True
 
     return False
