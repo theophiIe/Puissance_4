@@ -2140,7 +2140,7 @@ def lancer_affichage():
                         affichage_erreur(fenetre, "Le fichier {} n'a pas pu être chargé".format(nom_fichier))
                         
                     else:
-                        affichage_erreur(fenetre, "File named {} couldn't be saved".format(nom_fichier))
+                        affichage_erreur(fenetre, "File named {} couldn't be loaded".format(nom_fichier))
 
                     quel_menu = CHARGEMENT
 
